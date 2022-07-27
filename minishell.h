@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:23:53 by bshintak          #+#    #+#             */
-/*   Updated: 2022/07/22 17:14:31 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/07/27 11:44:47 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,20 @@ typedef struct	s_built
 	char	*exit;
 }				t_built;
 
+/*		LIBFT		*/
+
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strrchr(const char *str, int c);
-void	read_line(void);
+int		ft_strlen(char *str);
+int		is_space(char c);
+
+/*		SRC		*/
+
+void	read_line(char **argv);
 void	exec_line(char *line);
-void	find_builtin(char **argv);
-void	built_pwd(void);
+void	find_builtin(char *line);
+void	builtin_pwd(void);
+void	builtin_echo(char *line);
 
 
 

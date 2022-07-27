@@ -6,17 +6,21 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 11:43:50 by bshintak          #+#    #+#             */
-/*   Updated: 2022/07/22 17:16:03 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/07/27 11:39:00 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	find_builtin(char **argv)
+void	find_builtin(char *line)
 {
-	printf("aqui\n");
-	if (argv[1][0] == 'p')
-		built_pwd();
+	int	len;
+
+	len = ft_strlen(line);
+	if (ft_strncmp(line, "pwd", 3) == 0 && len == 3)
+		return (builtin_pwd());
+	else if (ft_strncmp(line, "echo", 4) == 0)
+		return (builtin_echo(line));
 	else
 		printf("wrong\n");
 	//if (argv == "pwd")

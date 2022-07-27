@@ -6,7 +6,7 @@
 #    By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/22 16:27:20 by bshintak          #+#    #+#              #
-#    Updated: 2022/07/22 16:59:44 by bshintak         ###   ########.fr        #
+#    Updated: 2022/07/27 11:04:38 by bshintak         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,9 @@ $(VERBOSE).SILENT:
 
 NAME =	libft.a
 SRC =	ft_strncmp			\
-		ft_strrchr
+		ft_strrchr			\
+		ft_strlen			\
+		is_space
 
 CC =		gcc
 RM =		rm -f

@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:58:37 by bshintak          #+#    #+#             */
-/*   Updated: 2022/07/22 17:14:02 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/07/27 11:05:00 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int main(int argc, char **argv)
 {
-	find_builtin(argv);
 	while(1)
-		read_line();
+		read_line(argv);
 }

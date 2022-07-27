@@ -6,7 +6,7 @@
 #    By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/21 17:10:37 by bshintak          #+#    #+#              #
-#    Updated: 2022/07/22 17:00:26 by bshintak         ###   ########.fr        #
+#    Updated: 2022/07/27 11:35:33 by bshintak         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ RM			=	rm -f
 SRC_NAME	=	main.c			\
 				read_line.c		\
 				find_builtin.c	\
-				pwd.c
+				pwd.c			\
+				echo.c
 
 SRCS		=	$(addprefix $(SRC_PATH)/, $(SRC_NAME))
 OBJS		=	$(patsubst $(SRC_PATH)/%.c, $(OBJ_PATH)/%.o, $(SRCS))

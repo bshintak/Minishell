@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/22 11:37:07 by bshintak          #+#    #+#             */
-/*   Updated: 2022/07/27 11:36:48 by bshintak         ###   ########.fr       */
+/*   Created: 2022/07/27 10:56:47 by bshintak          #+#    #+#             */
+/*   Updated: 2022/07/27 10:58:36 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	builtin_pwd(void)
+int	ft_strlen(char *str)
 {
-	printf("%s\n", getcwd(NULL, 0));
+	int	i;
+
+	i = 0;
+	while(str[i])
+		i++;
+	return (i);
 }

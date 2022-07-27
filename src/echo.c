@@ -1,18 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/22 11:37:07 by bshintak          #+#    #+#             */
-/*   Updated: 2022/07/27 11:36:48 by bshintak         ###   ########.fr       */
+/*   Created: 2022/07/27 11:35:18 by bshintak          #+#    #+#             */
+/*   Updated: 2022/07/27 11:47:39 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	builtin_pwd(void)
+void	builtin_echo(char *line)
 {
-	printf("%s\n", getcwd(NULL, 0));
+	int	i;
+
+	i = 0;
+	if (line[i] == 'e' && line[i + 1] == 'c' 
+		&& line[i + 2] == 'h' && line[i + 3] == 'o')
+		i += 5;
+	while (line[i])
+		printf("%c", line[i++]);
+	printf("\n");
 }
