@@ -15,8 +15,7 @@ $(VERBOSE).SILENT:
 NAME		=	minishell
 CC			=	gcc
 FLAGS		=	-Wall -Werror -Wextra -fsanitize=address
-INCLUDE		=	-I ~/.brew/opt/readline/include
-LIBS		=	-L ~/.brew/opt/readline/lib -lreadline
+INCLUDE		=	-I ~/.brew/opt/readline/include -lreadline
 MKD			=	mkdir
 RM			=	rm -f
 
@@ -41,8 +40,8 @@ $(OBJ_PATH)/%.o : $(SRC_PATH)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(DEPS) $(OBJ_PATH) $(OBJS)
-	$(CC) $(CFLAGS) $(INCLUDE) $(LIBS) $(OBJS) -o $(NAME) $(DEPS)
-	echo "\x1b[36m[MINISHELL COMPILED]\x1b[0m"
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(DEPS) $(INCLUDE)
+		echo "\x1b[36m[MINISHELL COMPILED]\x1b[0m"
 
 LIBFT_PATH	= ./libft
 ./libft/libft.a: $(shell make -C $(LIBFT_PATH) -q libft.a || echo force)

@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 11:35:18 by bshintak          #+#    #+#             */
-/*   Updated: 2022/07/27 16:53:54 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/10/21 17:29:48 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,13 @@
 void	builtin_echo(char *line)
 {
 	int	i;
+	int	len;
 
-	i = 0;
-	if (line[i] == 'e' && line[i + 1] == 'c' 
-		&& line[i + 2] == 'h' && line[i + 3] == 'o')
-		i += 5;
-	else if (is_space(line [i + 4] == 0) && line[i + 4] != '\0')
-	{
-		printf("command not found\n");
-		return ;
-	}
-	if (line[5] == '-' && line[6] == 'n')
-		i += 3;
-	while (line[i])
-	{
-		if (line[i] == '"' || line[i] == '\'')
-			i++;
+	i = 4;
+	len = ft_strlen(line);
+	while (is_space(line[i]))
+		i++;
+	while (len > i)
 		printf("%c", line[i++]);
-	}
-	if (!(line[5] == '-' && line[6] == 'n'))
-		printf("\n");
+	printf("\n");
 }

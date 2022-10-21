@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 11:43:50 by bshintak          #+#    #+#             */
-/*   Updated: 2022/07/27 15:59:57 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/10/21 17:20:16 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,15 @@
 
 void	find_builtin(char *line)
 {
-	int	len;
-
-	len = ft_strlen(line);
-	if (ft_strncmp(line, "pwd", 3) == 0 && len == 3)
+	if (!ft_strcmp(line, "pwd"))
 		return (builtin_pwd());
-	else if (ft_strncmp(line, "echo", 4) == 0)
+	else if (!ft_strncmp(line, "echo", 4))
 		return (builtin_echo(line));
-	else if (ft_strncmp(line, "cd", 2) == 0)
-		return (builtin_cd());
+	// else if (ft_strncmp(line, "cd", 2) == 0)
+	// 	return (builtin_cd());
 	else
 		printf("wrong\n");
 	//if (argv == "pwd")
 		//built_pwd(argv);
-		
+	
 }
