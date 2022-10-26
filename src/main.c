@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:58:37 by bshintak          #+#    #+#             */
-/*   Updated: 2022/10/21 16:03:10 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/10/26 18:24:54 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,18 @@
 
 int main(int argc, char **argv)
 {
-	char *line;
+	char 		*line;
+	char 		*token;
+	t_token		*wtv;
+
 	while (1)
 	{
 		line = readline("➜  MiniShell: ");
 		if (!line)
 			return (printf("error\n"));
-		find_builtin(line);
+		add_history(line);
+		token = get_token(line);
+		printf("%s\n", token);
+		// find_builtin(line);
 	}
 }

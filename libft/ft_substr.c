@@ -1,40 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/27 11:35:18 by bshintak          #+#    #+#             */
-/*   Updated: 2022/10/21 17:29:48 by bshintak         ###   ########.fr       */
+/*   Created: 2022/10/26 16:01:04 by bshintak          #+#    #+#             */
+/*   Updated: 2022/10/26 16:06:13 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	builtin_echo(char *line)
+char	*ft_substr(char *s, unsigned int start, int len)
 {
-	int	i;
-	int	len;
-	int new_line;
+	char	*ptr;
+	int		i;
+	int		j;
 
-	i = 4;
-	new_line = 0;
-	len = ft_strlen(line);
-	while (is_space(line[i]))
-		i++;
-	if (line[i] == '-')
-	{
-		if (line[i + 1] == 'n' && line[i + 2] == ' ')
-			new_line = 1;
-		i += 3;
-	}
-	while (len > i)
-	{
-		while (line[i] == '"')
-			i++;
-		printf("%c", line[i++]);
-	}
-	if (new_line == 0)
-		printf("\n");
+	if (!s)
+		return (0);
+	if (len > ft_strlen(s))
+		len = ft_strlen(s) + 1;
+	ptr = (char *)malloc(len + 1);
+	if (!ptr)
+		return (0);
+	i = start;
+	j = 0;
+	while (i < ft_strlen(s) && j < len)
+		ptr[j++] = s[i++];
+	ptr[j] = 0;
+	return (ptr);
 }

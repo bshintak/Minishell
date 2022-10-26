@@ -6,7 +6,7 @@
 #    By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/21 17:10:37 by bshintak          #+#    #+#              #
-#    Updated: 2022/07/27 17:40:50 by bshintak         ###   ########.fr        #
+#    Updated: 2022/10/26 14:22:30 by bshintak         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRC_NAME	=	main.c			\
 				pwd.c			\
 				echo.c			\
 				cd.c			\
+				parser.c		\
 				ctrl.c
 
 SRCS		=	$(addprefix $(SRC_PATH)/, $(SRC_NAME))
