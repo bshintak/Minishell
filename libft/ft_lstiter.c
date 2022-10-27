@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 16:54:49 by bshintak          #+#    #+#             */
-/*   Updated: 2022/10/27 17:53:47 by bshintak         ###   ########.fr       */
+/*   Created: 2021/10/26 18:47:49 by bshintak          #+#    #+#             */
+/*   Updated: 2022/10/27 16:13:06 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char	*ft_strchr(char *s, int c)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	if (!s || !c)
-		return (0);
-	while (*s != '\0' && (unsigned char)c != *s)
-		s++;
-	if ((unsigned char)c == *s)
-		return (s);
-	return (0);
+	if (!lst)
+		return ;
+	while (lst)
+	{
+		f(lst->content);
+		lst = lst->next;
+	}
 }

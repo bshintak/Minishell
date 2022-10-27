@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 16:54:49 by bshintak          #+#    #+#             */
-/*   Updated: 2022/10/27 17:53:47 by bshintak         ###   ########.fr       */
+/*   Created: 2021/10/26 17:09:32 by bshintak          #+#    #+#             */
+/*   Updated: 2022/10/27 16:13:06 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char	*ft_strchr(char *s, int c)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	if (!s || !c)
-		return (0);
-	while (*s != '\0' && (unsigned char)c != *s)
-		s++;
-	if ((unsigned char)c == *s)
-		return (s);
-	return (0);
+	if (!lst || !new)
+		return ;
+	if (*lst != NULL)
+		new->next = *lst;
+	*lst = new;
 }

@@ -6,7 +6,7 @@
 #    By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/22 16:27:20 by bshintak          #+#    #+#              #
-#    Updated: 2022/10/26 17:06:49 by bshintak         ###   ########.fr        #
+#    Updated: 2022/10/27 16:18:05 by bshintak         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,16 @@ SRC =	ft_strcmp			\
 		ft_strrchr			\
 		ft_strlen			\
 		is_space			\
-		ft_substr
+		ft_substr			\
+		ft_lstnew			\
+		ft_lstsize			\
+		ft_lstmap			\
+		ft_lstlast			\
+		ft_lstiter			\
+		ft_lstdelone		\
+		ft_lstclear			\
+		ft_lstadd_back		\
+		ft_lstadd_front		\
 
 CC =		gcc
 RM =		rm -f
