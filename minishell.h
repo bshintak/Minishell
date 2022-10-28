@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:23:53 by bshintak          #+#    #+#             */
-/*   Updated: 2022/10/27 18:28:58 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/10/28 18:13:08 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,26 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
-# define SPACES		" \t\f\n\v\r"
-# define OPERATORS	"<>|"
+# define SPACES				" \t\f\n\v\r"
+# define OPERATORS			"<>|"
+# define SPACES_OPERATORS	" \t\f\n\v\r<>|"
+# define ID_WORD	0
+# define ID_REDIR	1
+# define ID_PIPE	2
 
-typedef enum e_type
-{
-	ID_WORD,
-	ID_PIPE,
-	ID_REDIR,
-} t_token_type;
+// typedef enum e_type
+// {
+// 	ID_WORD,
+// 	ID_PIPE,
+// 	ID_REDIR,
+// } t_token_type;
 
 typedef struct	s_token
 {
 	char			*content;
-	t_token_type	id;
+	int				start;
+	// t_token_type	id;
+	int				id;
 }				t_token;
 
 // typedef struct	s_list
@@ -78,8 +84,9 @@ t_list	*ft_lstnew(void *content);
 
 /*		SRC		*/
 
+void	parser(char *line);
 void	token_list(char *line, t_list **idk);
-char	*get_token(char *line, int *i);
+char	*get_token1(char *line);
 void	read_line(char **argv);
 void	exec_line(char *line);
 void	find_builtin(char *line);

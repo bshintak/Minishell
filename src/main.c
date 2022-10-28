@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:58:37 by bshintak          #+#    #+#             */
-/*   Updated: 2022/10/27 18:43:11 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/10/28 16:07:32 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void print_token(void *tok)
 int main(int argc, char **argv)
 {
 	char 		*line;
+	char		*print;
 	t_list		*idk;
 
 	idk = NULL;
@@ -30,10 +31,13 @@ int main(int argc, char **argv)
 		if (!line)
 			return (printf("error\n"));
 		add_history(line);
-		token_list(line, &idk);
-		ft_lstiter(idk, print_token);
+		parser(line);
+		// print = get_token(line);
+		// printf("%s\n", print);
+		// token_list(line, &idk);
+		// ft_lstiter(idk, print_token);
 		// printf("%s\n", token);
 		// find_builtin(line);
-		ft_lstclear(&idk, free);
+		// ft_lstclear(&idk, free);
 	}
 }
