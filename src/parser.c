@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 13:11:37 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/01 11:58:06 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/11/01 15:22:31 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,23 +47,73 @@ void	parser(char *line)
 		token = get_token(line);
 		if (!token)
 			break ;
-		//printf("token = %s\n", token);
+		printf("token = %s\n", token);
 	}
-	// printf("\n");
 }
 
-char *get_word(int *i, char *line)
+int	quotation_marks(int *i, char *line)
 {
-	int	final;
-	char *word;
+	int		aux;
+	char	*mark;
+
+	aux = *i;
+	if (line[*i] == '\"')
+	{
+		aux++;
+		while(line[aux] != '\"' && line[aux])
+			aux++;
+	}
+	else if (line[*i] == '\'')
+	{
+		aux++;
+		while(line[aux] != '\'' && line[aux])
+			aux++;
+	}
+	return (aux);
+}
+
+char	*get_word(int *i, char *line)
+{
+	int		final;
+	char	*word;
+	int		init;
 
 	final = *i;
-	while (!ft_is(line[final], SPACES_OPERATORS))
+	if (ft_is(line[final], "\""))
+	{
 		final++;
-	word = ft_substr(line, *i, final - *i);
-	*i = final;
-	printf("word = %s\n", word);
-	return (word);
+		while(line[*i] && !ft_is(line[final], "\""))
+		{
+			init = final;
+			final = quotation_marks(i, line);
+			// printf("final = %d\n", final);
+			word = ft_substr(line, init, final - 1);
+			// printf("ret = %s\n", word);
+			*i = final + 1;
+		}
+	}
+	if (ft_is(line[final], "\'"))
+	{
+		final++;
+		while(line[*i] && !ft_is(line[final], "\'"))
+		{
+			init = final;
+			final = quotation_marks(i, line);
+			printf("final = %d\n", final);
+			word = ft_substr(line, init, final - 1);
+			printf("ret = %s\n", word);
+			*i = final + 1;
+		}
+	}
+	if (!ft_is(line[final], "\""))
+	{
+		while (!ft_is(line[final], SPACES_OPERATORS))
+			final++;
+		word = ft_substr(line, *i, final - *i);
+		printf("ret = %s\n", word);
+		*i = final;
+	}
+	return(word);
 }
 
 char	*get_operator(int *i, char *line)
