@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:23:53 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/03 15:02:27 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/11/03 15:26:43 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,57 +35,30 @@
 # define ID_INPUT_HERDOC	4	/* '<<' */
 # define ID_OUTPUT_APPEND	5	/* '>>' */
 
-typedef struct	s_token
-{
-	char			*content;
-	int				start;
-	int				id;
-}				t_token;
-
-typedef struct	s_list
-{
-	void			*content;
-	struct s_list	*next;
-}				t_list;
-
-typedef struct	s_type
-{
-	char	**command;
-	char	*word;
-	char 	*redirection;
-	char	*pipe;
-}				t_type;
-
 /*		LIBFT		*/
-
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_substr(char *s, unsigned int start, int len);
-char	*ft_strrchr(const char *str, int c);
 int		ft_strcmp(char *s1, char *s2);
-char	*ft_strchr(char *s, int c);
 int		ft_strlen(char *str);
-int		is_space(char c);
 
-void	ft_lstadd_back(t_list **lst, t_list *new);
-void	ft_lstadd_front(t_list **lst, t_list *new);
-void	ft_lstclear(t_list **lst, void (*del)(void *));
-void	ft_lstdelone(t_list *lst, void (*del)(void *));
-void	ft_lstiter(t_list *lst, void (*f)(void *));
-t_list	*ft_lstlast(t_list *lst);
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
-t_list	*ft_lstnew(void *content);
+/*		GET_ID		*/
+int		get_id(char *token);
 
-/*		SRC		*/
-
-void	parser(char *line);
-void	token_list(char *line, t_list **idk);
+/*		GET_TOKEN	*/
 char	*get_token(char *line, int reset);
-void	read_line(char **argv);
-void	exec_line(char *line);
+char	*get_operator(int *i, char *line);
+char	*get_word(int *i, char *line);
+
+/*		UTILS GET_TOKEN		*/
+int		ft_is(char c, char *set);
+int		quotation_marks(int *i, char *line);
+
+/*		PARSER		*/
+void	parser(char *line);
+
+/*		BUILTIN		*/
 void	find_builtin(char *line);
 void	builtin_pwd(void);
-void	builtin_cd(void);
 void	builtin_echo(char *line);
-void	all_ctrl(void);
 
 #endif
