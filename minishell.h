@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:23:53 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/01 11:26:04 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/11/03 14:24:07 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
+# define FALSE	0
+# define TRUE	1
 # define SPACES_OPERATORS	" \t\f\n\v\r<>|"
 # define SPACES				" \t\f\n\v\r"
 # define OPERATORS			"<>|"

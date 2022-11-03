@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 13:11:37 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/01 15:22:31 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/11/03 14:28:35 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,10 @@ int	quotation_marks(int *i, char *line)
 		aux++;
 		while(line[aux] != '\"' && line[aux])
 			aux++;
+		if (line[aux] != '\"')
+			return (FALSE);
 	}
-	else if (line[*i] == '\'')
+	if (line[*i] == '\'')
 	{
 		aux++;
 		while(line[aux] != '\'' && line[aux])
@@ -79,38 +81,21 @@ char	*get_word(int *i, char *line)
 	int		init;
 
 	final = *i;
-	if (ft_is(line[final], "\""))
+	if (ft_is(line[final], "\"") || ft_is(line[final], "\'"))
 	{
 		final++;
-		while(line[*i] && !ft_is(line[final], "\""))
-		{
-			init = final;
-			final = quotation_marks(i, line);
-			// printf("final = %d\n", final);
-			word = ft_substr(line, init, final - 1);
-			// printf("ret = %s\n", word);
-			*i = final + 1;
-		}
+		init = final;
+		final = quotation_marks(i, line);
+		if (!final)
+			return(FALSE);
+		word = ft_substr(line, init, final - init);
+		*i = final + 1;
 	}
-	if (ft_is(line[final], "\'"))
-	{
-		final++;
-		while(line[*i] && !ft_is(line[final], "\'"))
-		{
-			init = final;
-			final = quotation_marks(i, line);
-			printf("final = %d\n", final);
-			word = ft_substr(line, init, final - 1);
-			printf("ret = %s\n", word);
-			*i = final + 1;
-		}
-	}
-	if (!ft_is(line[final], "\""))
+	if (!ft_is(line[final], "\"") && !ft_is(line[final], "\'"))
 	{
 		while (!ft_is(line[final], SPACES_OPERATORS))
 			final++;
 		word = ft_substr(line, *i, final - *i);
-		printf("ret = %s\n", word);
 		*i = final;
 	}
 	return(word);
