@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 13:11:37 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/03 14:44:38 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/11/03 14:59:48 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,30 +26,47 @@ int	ft_is(char c, char *set)
 	return (0);
 }
 
-void	get_id(char *word)
+int	get_id(char *token)
 {
-	t_token	*wtv;
-	if (word[0] == '>' || word[0] == '<')
-		wtv->id = ID_REDIR;
-	else if (word[0] == '|')
-		wtv->id = ID_PIPE;
-	else
-		wtv->id = ID_WORD;
+	int	len;
+
+	len = ft_strlen(token);
+	if (len == 1)
+	{
+		if (token[0] == '>')
+			return (ID_OUTPUT_REDIR);
+		else if (token[0] == '<')
+			return (ID_INPUT_REDIR);
+		else if (token[0] == '|')
+			return (ID_PIPE);
+	}
+	else if (len == 2)
+	{
+		if (token[0] == '<' && token[1] == '<')
+			return (ID_INPUT_HERDOC);
+		else if (token[0] == '>' && token[1] == '>')
+			return (ID_OUTPUT_APPEND);
+	}
+	return (ID_WORD);
 }
 
 void	parser(char *line)
 {
 	char	*token;
 	int		reset;
+	int		id;
 
 	token = NULL;
 	reset = 1;
+	id = 0;
 	while (1)
 	{
 		token = get_token(line, reset);
 		if (!token)
 			break ;
 		printf("token = %s\n", token);
+		id = get_id(token);
+		printf("id = %d\n", id);
 		reset = 0;
 	}
 }

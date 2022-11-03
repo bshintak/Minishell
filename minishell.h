@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:23:53 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/03 14:41:27 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/11/03 15:02:27 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,19 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
-# define FALSE	0
-# define TRUE	1
+# define FALSE				0
+# define TRUE				1
+
 # define SPACES_OPERATORS	" \t\f\n\v\r<>|"
 # define SPACES				" \t\f\n\v\r"
 # define OPERATORS			"<>|"
-# define ID_WORD	0
-# define ID_REDIR	1
-# define ID_PIPE	2
+
+# define ID_WORD			0	/* 'wtv' */
+# define ID_INPUT_REDIR		1	/* '<' */
+# define ID_OUTPUT_REDIR	2	/* '>' */
+# define ID_PIPE			3	/* '|' */
+# define ID_INPUT_HERDOC	4	/* '<<' */
+# define ID_OUTPUT_APPEND	5	/* '>>' */
 
 typedef struct	s_token
 {
