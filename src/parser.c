@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 13:11:37 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/03 14:28:35 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/11/03 14:44:38 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,17 @@ void	get_id(char *word)
 void	parser(char *line)
 {
 	char	*token;
+	int		reset;
 
 	token = NULL;
+	reset = 1;
 	while (1)
 	{
-		token = get_token(line);
+		token = get_token(line, reset);
 		if (!token)
 			break ;
 		printf("token = %s\n", token);
+		reset = 0;
 	}
 }
 
@@ -70,6 +73,8 @@ int	quotation_marks(int *i, char *line)
 		aux++;
 		while(line[aux] != '\'' && line[aux])
 			aux++;
+		if (line[aux] != '\'')
+			return (FALSE);
 	}
 	return (aux);
 }
@@ -112,15 +117,16 @@ char	*get_operator(int *i, char *line)
 	}
 	else
 		redir = ft_substr(line, *i, 1);
-	(*i)++;
-	printf("redir = %s\n", redir);
+	*i += 1;
 	return (redir);
 }
 
-char	*get_token(char *line)
+char	*get_token(char *line, int reset)
 {
     static int     	i = 0;
 
+	if (reset)
+		i = 0;
     while (line[i])
     {
 		if (!ft_is(line[i], SPACES_OPERATORS))

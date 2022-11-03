@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:23:53 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/03 14:24:07 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/11/03 14:41:27 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ t_list	*ft_lstnew(void *content);
 
 void	parser(char *line);
 void	token_list(char *line, t_list **idk);
-char	*get_token(char *line);
+char	*get_token(char *line, int reset);
 void	read_line(char **argv);
 void	exec_line(char *line);
 void	find_builtin(char *line);
