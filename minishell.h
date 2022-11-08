@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:23:53 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/03 15:26:43 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/11/03 19:35:25 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_substr(char *s, unsigned int start, int len);
 int		ft_strcmp(char *s1, char *s2);
 int		ft_strlen(char *str);
+int		is_space(char c);
 
 /*		GET_ID		*/
 int		get_id(char *token);

@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 15:21:00 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/03 15:21:34 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/11/07 11:22:05 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	ft_is(char c, char *set)
 	while (set[i] != '\0' && c != set[i])
 		i++;
 	if (c == set[i])
-		return (1);
-	return (0);
+		return (TRUE);
+	return (FALSE);
 }
 
 int	quotation_marks(int *i, char *line)

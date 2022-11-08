@@ -6,7 +6,7 @@
 #    By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/21 17:10:37 by bshintak          #+#    #+#              #
-#    Updated: 2022/10/26 14:22:30 by bshintak         ###   ########.fr        #
+#    Updated: 2022/11/03 19:36:25 by bshintak         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,14 +19,15 @@ INCLUDE		=	-I ~/.brew/opt/readline/include -lreadline
 MKD			=	mkdir
 RM			=	rm -f
 
-SRC_NAME	=	main.c			\
-				read_line.c		\
-				find_builtin.c	\
-				pwd.c			\
-				echo.c			\
-				cd.c			\
-				parser.c		\
-				ctrl.c
+SRC_NAME	=	main.c				\
+				find_builtin.c		\
+				pwd.c				\
+				echo.c				\
+				cd.c				\
+				parser.c			\
+				get_token.c			\
+				get_id.c			\
+				utils_get_token.c
 
 SRCS		=	$(addprefix $(SRC_PATH)/, $(SRC_NAME))
 OBJS		=	$(patsubst $(SRC_PATH)/%.c, $(OBJ_PATH)/%.o, $(SRCS))
