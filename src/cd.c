@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 15:52:54 by bshintak          #+#    #+#             */
-/*   Updated: 2022/07/27 16:34:14 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/11/08 11:23:50 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,5 @@
 
 void	builtin_cd(void)
 {
-	char	*pwd;
-	pwd = getenv("HOME");
-	printf("%s\n", pwd);
+	
 }
