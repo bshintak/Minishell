@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   find_builtin.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 11:43:50 by bshintak          #+#    #+#             */
 /*   Updated: 2022/11/10 12:00:41 by bshintak         ###   ########.fr       */
@@ -18,8 +18,8 @@ void	find_builtin(char *line)
 		return (builtin_pwd());
 	else if (!ft_strncmp(line, "echo", 4))
 		return (builtin_echo(line));
-	// else if (ft_strncmp(line, "cd", 2) == 0)
-	// 	return (builtin_cd());
+	else if (ft_strncmp(line, "cd", 2) == 0)
+		return (builtin_cd(line));
 	// else
 	// 	printf("wrong\n");
 	//if (argv == "pwd")

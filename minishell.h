@@ -69,5 +69,6 @@ void	find_builtin(char *line);
 void	builtin_pwd(void);
 void	builtin_echo(char *line);
 void	builtin_env(void);
+void	builtin_cd(char *line);
 
 #endif
