@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 15:19:39 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/03 15:20:46 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/11/10 11:59:38 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*get_word(int *i, char *line)
 		init = final;
 		final = quotation_marks(i, line);
 		if (!final)
-			return(FALSE);
+			return (FALSE);
 		word = ft_substr(line, init, final - init);
 		*i = final + 1;
 	}
@@ -36,7 +36,7 @@ char	*get_word(int *i, char *line)
 		word = ft_substr(line, *i, final - *i);
 		*i = final;
 	}
-	return(word);
+	return (word);
 }
 
 char	*get_operator(int *i, char *line)
