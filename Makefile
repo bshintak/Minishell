@@ -6,7 +6,7 @@
 #    By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/21 17:10:37 by bshintak          #+#    #+#              #
-#    Updated: 2022/11/03 19:36:25 by bshintak         ###   ########.fr        #
+#    Updated: 2022/11/10 18:50:11 by bshintak         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,9 +25,11 @@ SRC_NAME	=	main.c				\
 				echo.c				\
 				cd.c				\
 				parser.c			\
+				get_env.c			\
 				get_token.c			\
 				get_id.c			\
-				utils_get_token.c
+				utils_get_token.c	\
+				errors.c
 
 SRCS		=	$(addprefix $(SRC_PATH)/, $(SRC_NAME))
 OBJS		=	$(patsubst $(SRC_PATH)/%.c, $(OBJ_PATH)/%.o, $(SRCS))
@@ -43,7 +45,7 @@ $(OBJ_PATH)/%.o : $(SRC_PATH)/%.c
 
 $(NAME): $(DEPS) $(OBJ_PATH) $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(DEPS) $(INCLUDE)
-		echo "\x1b[36m[MINISHELL COMPILED]\x1b[0m"
+		echo "\033[32m[MINISHELL COMPILED]\033[0m"
 
 LIBFT_PATH	= ./libft
 ./libft/libft.a: $(shell make -C $(LIBFT_PATH) -q libft.a || echo force)

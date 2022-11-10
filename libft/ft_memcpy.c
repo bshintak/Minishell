@@ -1,35 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 13:11:37 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/10 18:17:11 by bshintak         ###   ########.fr       */
+/*   Created: 2022/11/10 18:31:24 by bshintak          #+#    #+#             */
+/*   Updated: 2022/11/10 18:32:09 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	parser(char *line, t_node *tree)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	char	*token;
-	int		reset;
-	int		id;
+	size_t	i;
 
-	token = NULL;
-	tree = NULL;
-	reset = 1;
-	id = 0;
-	while (1)
-	{
-		token = get_token(line, reset);
-		if (!token)
-			break ;
-		printf("token = %s\n", token);
-		id = get_id(token);
-		printf("id = %d\n", id);
-		reset = 0;
-	}
+	i = -1;
+	if (!src && !dest)
+		return (NULL);
+	while (++i < n)
+		*(char *)(dest + i) = *(char *)(src + i);
+	return (dest);
 }

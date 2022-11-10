@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 13:11:37 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/10 18:17:11 by bshintak         ###   ########.fr       */
+/*   Created: 2022/11/10 19:25:05 by bshintak          #+#    #+#             */
+/*   Updated: 2022/11/10 19:28:49 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	parser(char *line, t_node *tree)
+char	*ft_strjoin(char *s1, char *s2)
 {
-	char	*token;
-	int		reset;
-	int		id;
+	char	*ptr;
+	int		i;
+	int		j;
 
-	token = NULL;
-	tree = NULL;
-	reset = 1;
-	id = 0;
-	while (1)
-	{
-		token = get_token(line, reset);
-		if (!token)
-			break ;
-		printf("token = %s\n", token);
-		id = get_id(token);
-		printf("id = %d\n", id);
-		reset = 0;
-	}
+	if (!s1 || !s2)
+		return (0);
+	ptr = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (!ptr)
+		return (0);
+	i = 0;
+	j = 0;
+	while (s1[i])
+		ptr[j++] = s1[i++];
+	i = 0;
+	while (s2[i])
+		ptr[j++] = s2[i++];
+	ptr[j] = '\0';
+	return (ptr);
 }

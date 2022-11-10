@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 13:11:37 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/10 18:17:11 by bshintak         ###   ########.fr       */
+/*   Created: 2022/11/10 19:18:42 by bshintak          #+#    #+#             */
+/*   Updated: 2022/11/10 19:18:55 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	parser(char *line, t_node *tree)
+int	ft_atoi(const char *str)
 {
-	char	*token;
-	int		reset;
-	int		id;
+	int	sinal;
+	int	num;
+	int	i;
 
-	token = NULL;
-	tree = NULL;
-	reset = 1;
-	id = 0;
-	while (1)
+	sinal = 1;
+	num = 0;
+	i = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+		i++;
+	if (str[i] == '+' || str[i] == '-')
 	{
-		token = get_token(line, reset);
-		if (!token)
-			break ;
-		printf("token = %s\n", token);
-		id = get_id(token);
-		printf("id = %d\n", id);
-		reset = 0;
+		if (str[i] == '-')
+			sinal *= -1;
+		i++;
 	}
+	while (str[i] >= 48 && str[i] <= 57)
+		num = (num * 10) + (str[i++] - 48);
+	return (sinal * num);
 }
