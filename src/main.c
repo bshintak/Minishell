@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:58:37 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/03 15:25:52 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/11/10 12:42:01 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int main(int argc, char **argv)
+int main(int argc, char **argv, char **env)
 {
 	char 		*line;
 
@@ -22,6 +22,7 @@ int main(int argc, char **argv)
 		if (!line)
 			return (printf("error\n"));
 		add_history(line);
+		find_builtin(line);
 		parser(line);
 	}
 }
