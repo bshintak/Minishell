@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 17:33:05 by bshintak          #+#    #+#             */
-/*   Updated: 2022/07/27 17:39:24 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/11/14 11:44:28 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,11 @@ void	ctrl_c(int sig)
 void	all_ctrl(void)
 {
 	signal(SIGINT, ctrl_c);
+}
+
+void	ctrl_slash()
+{
+	sigset_t	slash;
+	
+	sigemptyset(&slash);
 }

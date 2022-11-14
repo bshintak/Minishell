@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 18:18:02 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/10 19:35:27 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/11/14 10:47:58 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	**get_env(char **env)
 	i = 0;
 	while (env[i])
 		i++;
-	copy_env = malloc(sizeof(char *) * (i + 1));
+	copy_env = (char **)malloc(sizeof(char *) * (i + 1));
 	if (!copy_env)
 		ret_error("ERROR: Memory allocation failed.\n");
 	i = -1;

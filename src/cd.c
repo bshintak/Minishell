@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 15:52:54 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/09 17:19:52 by lleiria-         ###   ########.fr       */
+/*   Updated: 2022/11/14 10:54:25 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,13 @@ void	builtin_cd(char *line)
 	char	*path;
 	
 	path = getcwd(NULL, 1025);
-	chdir(line[3]);
+	if (line[3] == '.')
+		chdir("..");
+	printf("path: %s\n", path);
 }
 
-int main(void)
-{
-	builtin_cd();
-	return (0);
-}
+// int main(void)
+// {
+// 	builtin_cd();
+// 	return (0);
+// }

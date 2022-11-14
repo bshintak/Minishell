@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:23:53 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/10 12:29:31 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/11/14 10:45:30 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,17 @@ typedef struct s_node
 
 /*		LIBFT		*/
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+void	*ft_memcpy(void *dest, const void *src, size_t n);
 char	*ft_substr(char *s, unsigned int start, int len);
+char	*ft_strjoin(char *s1, char *s2);
 int		ft_strcmp(char *s1, char *s2);
 int		ft_strlen(char *str);
+char	*ft_strdup(char *s);
 int		is_space(char c);
+
+char	*ft_itoa(int n);
+int		ft_atoi(const char *str);
+void	ft_putstr_fd(char *s, int fd);
 
 /*		GET_ID		*/
 int		get_id(char *token);
@@ -62,7 +69,7 @@ int		ft_is(char c, char *set);
 int		quotation_marks(int *i, char *line);
 
 /*		PARSER		*/
-void	parser(char *line);
+void	parser(char *line, t_node *tree);
 
 /*		BUILTIN		*/
 void	find_builtin(char *line);
@@ -70,5 +77,11 @@ void	builtin_pwd(void);
 void	builtin_echo(char *line);
 void	builtin_env(void);
 void	builtin_cd(char *line);
+
+/*		GET_ENV		*/
+char	**get_env(char **env);
+
+/*		ERRORS		*/
+char	*ret_error(char *str);
 
 #endif

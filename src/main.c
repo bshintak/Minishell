@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:58:37 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/10 19:35:01 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/11/14 11:22:23 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,26 +20,23 @@ int main(int argc, char **argv, char **env)
 	int			i;
 
 	i = -1;
+	tree = NULL;
 	if (argc != 1 && argv[1])
 	{
 		printf("wrong argument!\n");
 		return (-1);
 	}
 	env_copy = get_env(env);
-	while (env_copy[++i])
-		printf("%s\n", env_copy[i]);
+	// while (env_copy[++i])
+	// 	printf("%s\n", env_copy[i]);
 	while (1)
 	{
-		line = readline("➜  MiniShell: ");
+		line = readline("➜  bshintak&&lleiria-MiniShell: ");
 		if (!line)
 			return (printf("error\n"));
 		add_history(line);
-<<<<<<< HEAD
 		parser(line, tree);
-=======
 		find_builtin(line);
-		parser(line);
->>>>>>> b1e579e1289a2c4fd3cd75c867764ee0aaa442f3
 	}
 	return (0);
 }
