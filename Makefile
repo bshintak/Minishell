@@ -6,7 +6,7 @@
 #    By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/21 17:10:37 by bshintak          #+#    #+#              #
-#    Updated: 2022/11/10 18:50:11 by bshintak         ###   ########.fr        #
+#    Updated: 2022/11/14 12:09:43 by bshintak         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ $(VERBOSE).SILENT:
 
 NAME		=	minishell
 CC			=	gcc
-FLAGS		=	-Wall -Werror -Wextra -fsanitize=address
+CFLAGS		=	-Wall -Werror -Wextra -fsanitize=address
 INCLUDE		=	-I ~/.brew/opt/readline/include -lreadline
 MKD			=	mkdir
 RM			=	rm -f
@@ -29,7 +29,8 @@ SRC_NAME	=	main.c				\
 				get_token.c			\
 				get_id.c			\
 				utils_get_token.c	\
-				errors.c
+				errors.c			\
+				ctrl.c
 
 SRCS		=	$(addprefix $(SRC_PATH)/, $(SRC_NAME))
 OBJS		=	$(patsubst $(SRC_PATH)/%.c, $(OBJ_PATH)/%.o, $(SRCS))

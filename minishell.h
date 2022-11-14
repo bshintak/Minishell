@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:23:53 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/14 10:45:30 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/11/14 12:27:20 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int		ft_is(char c, char *set);
 int		quotation_marks(int *i, char *line);
 
 /*		PARSER		*/
-void	parser(char *line, t_node *tree);
+void	parser(char *line, t_node *tree, char ***env);
 
 /*		BUILTIN		*/
 void	find_builtin(char *line);
@@ -83,5 +83,9 @@ char	**get_env(char **env);
 
 /*		ERRORS		*/
 char	*ret_error(char *str);
+
+/*		CTRL		*/
+void	ctrl_c(void);
+void	ctrl_slash(void);
 
 #endif
