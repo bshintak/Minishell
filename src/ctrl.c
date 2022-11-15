@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 17:33:05 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/15 16:46:50 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/11/15 18:11:36 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,22 +33,24 @@ void	ctrl_c(int signal)
 	}
 }
 
-// void	all_ctrl(void)
-// {
-// 	signal(SIGINT, ctrl_c);
-// }
+void	ctrl_d(int signal)
+{
+	printf("aqui\n");
+	if (signal == SIGQUIT)
+	{
+		rl_replace_line("", 0);
+		ft_putstr_fd("\nexit\n", STDOUT_FILENO);
+		set_exit(0, CLEAR_EXIT);
+	}
+}
 
 void	get_signal(int signal, void (*function)())
 {
 	struct sigaction wtv;
-	// sigset_t	slash;
 	
 	sigemptyset(&(wtv.sa_mask));
 	wtv.sa_flags = 0;
 	wtv.sa_handler = function;
 	if (sigaction(signal, &wtv, NULL) == -1)
 		ret_error("ERROR: sigaction\n");
-	// ret_error()
-	// sigaddset(&slash, SIGQUIT);
-	// sigprocmask(SIG_BLOCK, &slash, NULL);
 }

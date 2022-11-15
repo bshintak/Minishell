@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:23:53 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/15 17:04:01 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/11/15 17:18:20 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ char	*ret_error(char *str);
 /*		CTRL		*/
 void	get_signal(int signal, void (*function)());
 void	ctrl_c(int signal);
+void	ctrl_d(int signal);
 void	ctrl_slash(void);
 
 /*		UTILS_EXIT		*/

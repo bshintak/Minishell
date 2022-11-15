@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:58:37 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/15 17:03:20 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/11/15 18:24:34 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,19 @@ int main(int argc, char **argv, char **env)
 	// while (env_copy[++i])
 	// 	printf("%s\n", env_copy[i]);
 	ctrl_slash();
-	// get_signal(SIGINT, ctrl_c);
+	get_signal(SIGINT, ctrl_c);
 	while (1)
 	{
 		line = readline("➜  bshintak&&lleiria-MiniShell: ");
 		if (!line)
-			return (printf("error\n"));
+		{
+			ft_putstr_fd("\nexit\n", STDOUT_FILENO);
+			break ;
+		}
 		add_history(line);
 		// find_builtin(line);
 		parser(line, tree, env_copy);
 	}
+	free(line);
 	return (0);
 }
