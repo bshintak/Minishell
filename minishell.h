@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:23:53 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/14 12:27:20 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/11/15 15:17:46 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ typedef struct s_node
 {
 	void			*data;
 	struct s_node	*left;
-	struct s_node	*right;	
+	struct s_node	*right;
+	struct s_node	*up;
 }				t_node;
 
 # define FALSE				0
@@ -44,14 +45,15 @@ typedef struct s_node
 
 /*		LIBFT		*/
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
-void	*ft_memcpy(void *dest, const void *src, size_t n);
 char	*ft_substr(char *s, unsigned int start, int len);
 char	*ft_strjoin(char *s1, char *s2);
 int		ft_strcmp(char *s1, char *s2);
 int		ft_strlen(char *str);
+char	*ft_strchr(char *s, int c);
 char	*ft_strdup(char *s);
-int		is_space(char c);
 
+void	*ft_memcpy(void *dest, const void *src, size_t n);
+int		is_space(char c);
 char	*ft_itoa(int n);
 int		ft_atoi(const char *str);
 void	ft_putstr_fd(char *s, int fd);
@@ -66,10 +68,11 @@ char	*get_word(int *i, char *line);
 
 /*		UTILS GET_TOKEN		*/
 int		ft_is(char c, char *set);
+char	*find_string(char *find, char **str);
 int		quotation_marks(int *i, char *line);
 
 /*		PARSER		*/
-void	parser(char *line, t_node *tree, char ***env);
+void	parser(char *line, t_node *tree, char **env);
 
 /*		BUILTIN		*/
 void	find_builtin(char *line);
@@ -80,6 +83,9 @@ void	builtin_cd(char *line);
 
 /*		GET_ENV		*/
 char	**get_env(char **env);
+
+/*		GET_TIL		*/
+char	*get_til(char *token, char **env);
 
 /*		ERRORS		*/
 char	*ret_error(char *str);
