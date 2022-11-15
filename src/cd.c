@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 15:52:54 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/14 10:54:25 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/11/15 16:38:33 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,17 @@
 void	builtin_cd(char *line)
 {
 	char	*path;
-	
+
+	while (*line != ' ')
+		line++;
+	line++;
+	printf ("line: %s\n", line);
 	path = getcwd(NULL, 1025);
-	if (line[3] == '.')
-		chdir("..");
-	printf("path: %s\n", path);
+	printf("old path: %s\n", path);
+	if (chdir(line) == -1)
+		printf("error\n");
+	path = getcwd(NULL, 1025);
+	printf("new path: %s\n", path);
 }
 
 // int main(void)
