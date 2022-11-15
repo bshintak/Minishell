@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 12:37:37 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/15 15:29:25 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/11/15 16:13:41 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ char	*get_til(char *token, char **env)
 	if ((token[0] == '~' && token_size == 1)
 		|| (token[0] == '~' && token[1] == '/' && token_size == 2))
 		home = find_home(env);
-	printf("%s\n", home);
-	return (NULL);
+	// printf("%s\n", home);
+	return (home);
 }

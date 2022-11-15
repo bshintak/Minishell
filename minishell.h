@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:23:53 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/15 15:17:46 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/11/15 15:55:37 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,10 @@ typedef struct s_node
 # define ID_PIPE			3	/* '|' */
 # define ID_INPUT_HERDOC	4	/* '<<' */
 # define ID_OUTPUT_APPEND	5	/* '>>' */
+
+# define EXIT_CTRL_C		130
+# define SET_EXIT			1
+# define CLEAR_EXIT			2
 
 /*		LIBFT		*/
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
@@ -91,7 +95,8 @@ char	*get_til(char *token, char **env);
 char	*ret_error(char *str);
 
 /*		CTRL		*/
-void	ctrl_c(void);
+void	get_signal(int signal, void (*function)());
+void	ctrl_c(int signal);
 void	ctrl_slash(void);
 
 #endif
