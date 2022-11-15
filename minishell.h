@@ -43,6 +43,10 @@ typedef struct s_node
 # define ID_INPUT_HERDOC	4	/* '<<' */
 # define ID_OUTPUT_APPEND	5	/* '>>' */
 
+# define EXIT_CTRL_C		130
+# define SET_EXIT			1
+# define CLEAR_EXIT			2
+
 /*		LIBFT		*/
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_substr(char *s, unsigned int start, int len);
@@ -91,7 +95,8 @@ char	*get_til(char *token, char **env);
 char	*ret_error(char *str);
 
 /*		CTRL		*/
-void	ctrl_c(void);
+void	get_signal(int signal, void (*function)());
+void	ctrl_c(int signal);
 void	ctrl_slash(void);
 
 #endif
