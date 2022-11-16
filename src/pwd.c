@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 11:37:07 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/01 11:47:18 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/11/16 10:35:32 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,11 @@
 
 void	builtin_pwd(void)
 {
-	printf("%s\n", getcwd(NULL, 0));
+	char	*path;
+
+	path = getcwd(NULL, 1025);
+	if (path == NULL)
+		printf("Error: %s\n", strerror(errno));
+	else
+		printf("%s\n", path);
 }
