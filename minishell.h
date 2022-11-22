@@ -6,7 +6,7 @@
 /*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:23:53 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/16 10:19:50 by lleiria-         ###   ########.fr       */
+/*   Updated: 2022/11/21 13:02:52 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,11 @@ int		quotation_marks(int *i, char *line);
 void	parser(char *line, t_node *tree, char **env);
 
 /*		BUILTIN		*/
-void	find_builtin(char *line);
+void	find_builtin(char *line, char ***env);
 void	builtin_pwd(void);
 void	builtin_echo(char *line);
 void	builtin_env(void);
-void	builtin_cd(char *line);
+void	builtin_cd(char *line, char ***env);
 
 /*		GET_ENV		*/
 char	**get_env(char **env);
