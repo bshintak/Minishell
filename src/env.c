@@ -6,27 +6,20 @@
 /*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 16:34:59 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/08 10:50:38 by lleiria-         ###   ########.fr       */
+/*   Updated: 2022/11/22 15:25:20 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	builtin_env()
+void	builtin_env(char **env)
 {
-	extern char **environ;
-	int i;
+	int	i;
 
 	i = 0;
-	while (environ[i])
+	while (env[i])
 	{
-		printf("%s\n", environ[i]);
+		printf("%s\n", env[i]);
 		i++;
 	}
 }
-
-// int	main()
-// {
-// 	builtin_env();
-// 	return (0);
-// }

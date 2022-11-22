@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_get_token.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 15:21:00 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/15 15:23:22 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/11/22 15:04:45 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	quotation_marks(int *i, char *line)
 	if (line[*i] == '\"')
 	{
 		aux++;
-		while(line[aux] != '\"' && line[aux])
+		while (line[aux] != '\"' && line[aux])
 			aux++;
 		if (line[aux] != '\"')
 			return (FALSE);
@@ -43,7 +43,7 @@ int	quotation_marks(int *i, char *line)
 	if (line[*i] == '\'')
 	{
 		aux++;
-		while(line[aux] != '\'' && line[aux])
+		while (line[aux] != '\'' && line[aux])
 			aux++;
 		if (line[aux] != '\'')
 			return (FALSE);

@@ -6,7 +6,7 @@
 /*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:23:53 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/21 13:02:52 by lleiria-         ###   ########.fr       */
+/*   Updated: 2022/11/22 14:37:47 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <signal.h>
-#include <errno.h>
+# include <errno.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 
@@ -83,7 +83,7 @@ void	parser(char *line, t_node *tree, char **env);
 void	find_builtin(char *line, char ***env);
 void	builtin_pwd(void);
 void	builtin_echo(char *line);
-void	builtin_env(void);
+void	builtin_env(char **env);
 void	builtin_cd(char *line, char ***env);
 
 /*		GET_ENV		*/

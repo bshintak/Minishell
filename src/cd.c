@@ -6,7 +6,7 @@
 /*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 15:52:54 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/22 10:53:01 by lleiria-         ###   ########.fr       */
+/*   Updated: 2022/11/22 15:18:45 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	create_old(char ***env, char *old_path)
 
 void	update_env(char *old_path, char *new_path, char ***env)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while ((*env)[i])
@@ -47,7 +47,6 @@ void	update_env(char *old_path, char *new_path, char ***env)
 		}
 		if (ft_strncmp((*env)[i], "PWD=", 4) == 0)
 		{
-			
 			if ((*env)[i])
 				free((*env)[i]);
 			(*env)[i] = ft_strjoin("PWD=", new_path);
@@ -77,11 +76,11 @@ void	builtin_cd(char *line, char ***env)
 	update_env(old_path, new_path, env);
 	create_old(env, old_path);
 	i = 0;
-	while((*env)[i])
+	while ((*env)[i])
 	{
-		if (ft_strncmp((*env)[i], "OLDPWD=", 7) == 0 || ft_strncmp((*env)[i], "PWD=", 4) == 0)
+		if (ft_strncmp((*env)[i], "OLDPWD=", 7) == 0
+			|| ft_strncmp((*env)[i], "PWD=", 4) == 0)
 			printf("env[%d]: %s\n", i, (*env)[i]);
 		i++;
 	}
-	
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_token.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 15:19:39 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/10 11:59:38 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/11/22 14:50:38 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ char	*get_operator(int *i, char *line)
 {
 	char	*redir;
 
-	if ((line[*i] == '<' && line[*i + 1] == '<') || (line[*i] == '>' && line[*i + 1] == '>'))
+	if ((line[*i] == '<' && line[*i + 1] == '<')
+		|| (line[*i] == '>' && line[*i + 1] == '>'))
 	{
 		redir = ft_substr(line, *i, 2);
 		*i += 1;
@@ -56,17 +57,17 @@ char	*get_operator(int *i, char *line)
 
 char	*get_token(char *line, int reset)
 {
-    static int     	i = 0;
+	static int	i = 0;
 
 	if (reset)
 		i = 0;
-    while (line[i])
-    {
+	while (line[i])
+	{
 		if (!ft_is(line[i], SPACES_OPERATORS))
 			return (get_word(&i, line));
 		if (ft_is(line[i], OPERATORS))
 			return (get_operator(&i, line));
-        i++;
-    }
-	return(NULL);
+		i++;
+	}
+	return (NULL);
 }

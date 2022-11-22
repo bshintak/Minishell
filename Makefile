@@ -6,7 +6,7 @@
 #    By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/21 17:10:37 by bshintak          #+#    #+#              #
-#    Updated: 2022/11/15 16:44:18 by bshintak         ###   ########.fr        #
+#    Updated: 2022/11/22 12:41:46 by lleiria-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRC_NAME	=	main.c				\
 				pwd.c				\
 				echo.c				\
 				cd.c				\
+				env.c				\
 				parser.c			\
 				get_env.c			\
 				get_token.c			\
