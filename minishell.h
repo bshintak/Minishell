@@ -6,7 +6,7 @@
 /*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:23:53 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/22 14:37:47 by lleiria-         ###   ########.fr       */
+/*   Updated: 2022/11/25 14:42:59 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void	builtin_pwd(void);
 void	builtin_echo(char *line);
 void	builtin_env(char **env);
 void	builtin_cd(char *line, char ***env);
+void	builtin_export(char *line, char ***env);
 
 /*		GET_ENV		*/
 char	**get_env(char **env);

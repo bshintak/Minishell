@@ -1,40 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/27 16:34:59 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/25 12:15:09 by lleiria-         ###   ########.fr       */
+/*   Created: 2021/10/18 14:55:27 by lleiria-          #+#    #+#             */
+/*   Updated: 2022/11/25 17:27:01 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	have_value(char *env_line)
+int	ft_isdigit(int c)
 {
-	int	i;
-
-	i = 0;
-	while (env_line[i] != '\0')
-	{
-		if (env_line[i] == '=')
-			return (1);
-		i++;
-	}
-	return (0);
+	if (c >= '0' && c <= '9')
+		return (1);
+	else
+		return (0);
 }
-
-void	builtin_env(char **env)
+/*
+int main()
 {
-	int	i;
+    char c;
+    c = '1';
+    printf("\nResult when digit: %d", ft_isdigit(c));
 
-	i = 0;
-	while (env[i])
-	{
-		if (have_value(env[i]))
-			printf("%s\n", env[i]);
-		i++;
-	}
+    c = '+';
+    printf("\nResult when other: %d", ft_isdigit(c));
+
+    c='A';
+    printf("\nResult when alphabetic character: %d", ft_isdigit(c));
+
+    return 0;
 }
+*/

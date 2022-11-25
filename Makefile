@@ -6,7 +6,7 @@
 #    By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/21 17:10:37 by bshintak          #+#    #+#              #
-#    Updated: 2022/11/22 12:41:46 by lleiria-         ###   ########.fr        #
+#    Updated: 2022/11/25 14:42:06 by lleiria-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,8 @@ SRC_NAME	=	main.c				\
 				utils_get_token.c	\
 				exit_utils.c		\
 				errors.c			\
-				ctrl.c
+				ctrl.c				\
+				export.c			\
 
 SRCS		=	$(addprefix $(SRC_PATH)/, $(SRC_NAME))
 OBJS		=	$(patsubst $(SRC_PATH)/%.c, $(OBJ_PATH)/%.o, $(SRCS))
