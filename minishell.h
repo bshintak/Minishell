@@ -6,7 +6,7 @@
 /*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:23:53 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/25 14:42:59 by lleiria-         ###   ########.fr       */
+/*   Updated: 2022/11/28 11:40:47 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ int		ft_strcmp(char *s1, char *s2);
 int		ft_strlen(char *str);
 char	*ft_strchr(char *s, int c);
 char	*ft_strdup(char *s);
+int		ft_isalnum(int c);
+int		ft_isdigit(int c);
 
 void	*ft_memcpy(void *dest, const void *src, size_t n);
 int		is_space(char c);

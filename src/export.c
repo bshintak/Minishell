@@ -6,27 +6,48 @@
 /*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 11:25:35 by lleiria-          #+#    #+#             */
-/*   Updated: 2022/11/25 16:16:29 by lleiria-         ###   ########.fr       */
+/*   Updated: 2022/11/28 16:41:00 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-// int valid_var(char *var)
-// {
-// 	int i;
+void	insert_var(char ***env, char *var)
+{
+	int		i;
+	char	**copy_env;
 
-// 	i = 0;
-// 	if (ft_isdigit(var[i]))
-// 		return (0);
-// 	while (var[i])
-// 	{
-// 		if (!ft_isalnum(var[i]) && var[i] != '_')
-// 			return (0);
-// 		i++;
-// 	}
-// 	return (1);
-// }
+	i = 0;
+	while ((*env)[i])
+		i++;
+	copy_env = malloc(sizeof(char *) * (i + 2));
+	i = 0;
+	while ((*env)[i])
+	{
+		copy_env[i] = (*env)[i];
+		i++;
+	}
+	copy_env[i] = var;
+	copy_env[i + 1] = NULL;
+	free(*env);
+	(*env) = copy_env;
+}
+
+int	valid_var(char *var)
+{
+	int	i;
+
+	i = 0;
+	if (ft_isdigit(var[i]))
+		return (0);
+	while (var[i])
+	{
+		if (!ft_isalnum(var[i]) && var[i] != '_' && var[i] != '=')
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
 void	print_export_line(char *env_line)
 {
@@ -34,20 +55,24 @@ void	print_export_line(char *env_line)
 
 	i = 0;
 	ft_putstr_fd("declare -x ", 1);
-	while (env_line[i] != '=')
+	while (env_line[i] != '\0' && env_line[i] != '=')
 	{
 		write(1, &env_line[i], 1);
 		i++;
 	}
-	write(1, &env_line[i], 1);
-	write(1, "\"", 1);
-	i++;
-	while (env_line[i] != '\0')
+	if (env_line[i] == '=')
 	{
 		write(1, &env_line[i], 1);
+		write(1, "\"", 1);
 		i++;
+		while (env_line[i] != '\0')
+		{
+			write(1, &env_line[i], 1);
+			i++;
+		}
+		write(1, "\"", 1);
 	}
-	ft_putstr_fd("\"\n", 1);
+	write(1, "\n", 1);
 }
 
 int	only_export(char *line)
@@ -77,9 +102,15 @@ void	builtin_export(char *line, char ***env)
 			i++;
 		}
 	}
-	while (*line != ' ')
+	else
+	{
+		while (*line != ' ')
+			line++;
 		line++;
-	line++;
-	printf("line: %s\n", line);
-	// if (valid_var(line))
+		printf("line: %s\n", line);
+		if (valid_var(line))
+			insert_var(env, line);
+		else
+			printf("not valid var\n");
+	}
 }
