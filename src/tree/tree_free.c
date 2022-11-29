@@ -6,11 +6,11 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 14:27:59 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/28 14:34:41 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/11/29 12:23:34 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 void	cmd_free(char **node)
 {

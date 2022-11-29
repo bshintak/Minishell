@@ -6,11 +6,11 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 15:23:21 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/16 19:23:33 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/11/29 12:17:41 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 int	get_id(char *token)
 {

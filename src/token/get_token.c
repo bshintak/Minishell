@@ -6,11 +6,11 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 15:19:39 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/16 19:26:24 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/11/29 12:17:48 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 char	*get_word(int *i, char *line)
 {

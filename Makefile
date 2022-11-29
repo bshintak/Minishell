@@ -6,7 +6,7 @@
 #    By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/21 17:10:37 by bshintak          #+#    #+#              #
-#    Updated: 2022/11/29 12:03:50 by bshintak         ###   ########.fr        #
+#    Updated: 2022/11/29 12:26:49 by bshintak         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,28 +24,30 @@ BUILTINS	= 	builtins/pwd.c				\
 				builtins/echo.c				\
 				builtins/cd.c				\
 				builtins/env.c				\
+				builtins/export.c
+
+TOKEN		=	token/get_token.c			\
+				token/get_id.c				\
+				token/get_til.c				\
+				token/word_parser.c			\
+				token/utils_get_token.c
+
+TREE		=	tree/create_tree.c			\
+				tree/add_node.c				\
+				tree/add_node_utils.c		\
+				tree/is_node.c				\
+				tree/put_something.c		\
+				tree/utils_tree.c			\
+				tree/tree_free.c
 
 SRC_WTV		=	main.c						\
 				parser.c					\
-				word_parser.c				\
 				get_env.c					\
-				get_token.c					\
-				get_id.c					\
-				get_til.c					\
-				utils_get_token.c			\
 				utils_exit.c				\
-				utils_tree.c				\
 				errors.c					\
-				ctrl.c						\
-				create_tree.c				\
-				put_something.c				\
-				is_node.c					\
-				add_node.c					\
-				add_node_utils.c			\
-				tree_free.c
+				ctrl.c
 
-SRC_NAME	=	$(BUILTINS) $(SRC_WTV)
-				
+SRC_NAME	=	$(BUILTINS) $(TOKEN) $(TREE) $(SRC_WTV)
 
 SRCS		=	$(addprefix $(SRC_PATH)/, $(SRC_NAME))
 OBJS		=	$(patsubst $(SRC_PATH)/%.c, $(OBJ_PATH)/%.o, $(SRCS))

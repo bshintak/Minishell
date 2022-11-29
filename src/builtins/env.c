@@ -6,27 +6,35 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 16:34:59 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/17 13:57:28 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/11/29 12:12:08 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	builtin_env()
+int	have_value(char *env_line)
 {
-	extern char **environ;
-	int i;
+	int	i;
 
 	i = 0;
-	while (environ[i])
+	while (env_line[i] != '\0')
 	{
-		printf("%s\n", environ[i]);
+		if (env_line[i] == '=')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+void	builtin_env(char **env)
+{
+	int	i;
+
+	i = 0;
+	while (env[i])
+	{
+		if (have_value(env[i]))
+			printf("%s\n", env[i]);
 		i++;
 	}
 }
-
-// int	main()
-// {
-// 	builtin_env();
-// 	return (0);
-// }

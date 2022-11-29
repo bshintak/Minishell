@@ -6,11 +6,11 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 12:08:08 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/29 10:55:55 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/11/29 12:23:39 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 int	strlen_matrix(char **str)
 {

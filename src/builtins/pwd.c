@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 11:37:07 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/17 13:57:38 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/11/29 12:12:47 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,11 @@
 
 void	builtin_pwd(void)
 {
-	printf("%s\n", getcwd(NULL, 0));
+	char	*path;
+
+	path = getcwd(NULL, 1025);
+	if (path == NULL)
+		printf("Error: %s\n", strerror(errno));
+	else
+		printf("%s\n", path);
 }

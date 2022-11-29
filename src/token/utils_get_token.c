@@ -6,11 +6,11 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 15:21:00 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/15 15:23:22 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/11/29 12:17:59 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 int	ft_is(char c, char *set)
 {
@@ -29,13 +29,12 @@ int	ft_is(char c, char *set)
 int	quotation_marks(int *i, char *line)
 {
 	int		aux;
-	// char	*mark;
 
 	aux = *i;
 	if (line[*i] == '\"')
 	{
 		aux++;
-		while(line[aux] != '\"' && line[aux])
+		while (line[aux] != '\"' && line[aux])
 			aux++;
 		if (line[aux] != '\"')
 			return (FALSE);
@@ -43,7 +42,7 @@ int	quotation_marks(int *i, char *line)
 	if (line[*i] == '\'')
 	{
 		aux++;
-		while(line[aux] != '\'' && line[aux])
+		while (line[aux] != '\'' && line[aux])
 			aux++;
 		if (line[aux] != '\'')
 			return (FALSE);

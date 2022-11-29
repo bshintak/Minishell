@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+         #
+#    By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/22 16:27:20 by bshintak          #+#    #+#              #
-#    Updated: 2022/11/10 19:25:39 by bshintak         ###   ########.fr        #
+#    Updated: 2022/11/25 16:31:26 by lleiria-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,9 @@ SRC =	ft_strcmp			\
 		ft_memcpy			\
 		ft_putstr_fd		\
 		ft_itoa				\
-		ft_atoi
+		ft_atoi				\
+		ft_isalnum			\
+		ft_isdigit			\
 
 CC =		gcc
 RM =		rm -f

@@ -6,11 +6,11 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 12:37:37 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/17 10:38:13 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/11/29 12:17:44 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 char	*find_home(char **env)
 {

@@ -6,11 +6,11 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:46:34 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/29 11:06:22 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/11/29 12:23:23 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 int	is_command(t_node *node)
 {

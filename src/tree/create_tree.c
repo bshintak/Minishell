@@ -6,11 +6,11 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 10:43:06 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/29 12:03:03 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/11/29 12:23:19 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 t_node	*create_node(int id)
 {

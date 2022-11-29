@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 17:33:05 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/16 10:34:00 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/11/29 12:11:11 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	ctrl_c(int signal)
 
 void	get_signal(int signal, void (*function)())
 {
-	struct sigaction wtv;
-	
+	struct sigaction	wtv;
+
 	sigemptyset(&(wtv.sa_mask));
 	wtv.sa_flags = 0;
 	wtv.sa_handler = function;

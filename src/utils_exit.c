@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 16:19:07 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/15 16:41:26 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/11/22 14:53:28 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,5 @@ int	set_exit(int status, int option)
 		ret = status;
 	if (option == CLEAR_EXIT)
 		ret = 0;
-	return (ret);	
+	return (ret);
 }

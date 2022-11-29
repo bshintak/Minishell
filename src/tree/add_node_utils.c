@@ -6,11 +6,11 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 11:56:39 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/29 10:58:51 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/11/29 12:23:08 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 void	add_on_top(t_node **tree, t_node *node)
 {

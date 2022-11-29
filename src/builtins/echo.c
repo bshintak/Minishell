@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 11:35:18 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/17 13:57:23 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/11/29 12:11:52 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	builtin_echo(char *line)
 {
 	int	i;
 	int	len;
-	int new_line;
+	int	new_line;
 
 	i = 4;
 	new_line = 0;

@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:23:53 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/29 11:17:17 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/11/29 12:16:35 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <signal.h>
+# include <errno.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 
@@ -73,6 +74,8 @@ int		ft_strcmp(char *s1, char *s2);
 int		ft_strlen(char *str);
 char	*ft_strchr(char *s, int c);
 char	*ft_strdup(char *s);
+int		ft_isalnum(int c);
+int		ft_isdigit(int c);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
 int		is_space(char c);
 char	*ft_itoa(int n);
@@ -95,12 +98,13 @@ int		quotation_marks(int *i, char *line);
 /*		PARSER				*/
 t_node	*parser(char *line, char **env);
 
-/*		BUILTINS			*/
-void	find_builtin(char *line);
+/*		BUILTIN		*/
+void	find_builtin(char *line, char ***env);
 void	builtin_pwd(void);
 void	builtin_echo(char *line);
-void	builtin_env(void);
-void	builtin_cd(char *line);
+void	builtin_env(char **env);
+void	builtin_cd(char *line, char ***env);
+void	builtin_export(char *line, char ***env);
 
 /*		GET_ENV				*/
 char	**get_env(char **env);
