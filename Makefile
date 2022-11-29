@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+         #
+#    By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/21 17:10:37 by bshintak          #+#    #+#              #
-#    Updated: 2022/11/29 12:26:49 by bshintak         ###   ########.fr        #
+#    Updated: 2022/11/29 16:24:41 by lleiria-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ BUILTINS	= 	builtins/pwd.c				\
 				builtins/echo.c				\
 				builtins/cd.c				\
 				builtins/env.c				\
-				builtins/export.c
+				builtins/export.c			\
+				builtins/unset.c			\
 
 TOKEN		=	token/get_token.c			\
 				token/get_id.c				\
