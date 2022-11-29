@@ -6,11 +6,11 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 15:52:54 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/15 17:03:45 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/11/17 13:57:15 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 // void	builtin_cd(void)
 // {

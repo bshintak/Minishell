@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 18:18:02 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/14 10:47:58 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/11/17 12:47:17 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ char	*get_shlvl(char *line)
 
 	copy = ft_itoa(ft_atoi(line + 6) + 1);
 	ret = ft_strjoin("SHLVL=", copy);
-	//printf("shlvl = %s\n", ret);
 	return (ret);
 }
 

@@ -1,26 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/10 18:30:47 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/29 12:00:20 by bshintak         ###   ########.fr       */
+/*   Created: 2022/07/27 11:35:18 by bshintak          #+#    #+#             */
+/*   Updated: 2022/11/17 13:57:23 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
-char	*ft_strdup(char *s)
+void	builtin_echo(char *line)
 {
-	char	*dst;
-	size_t	i;
+	int	i;
+	int	len;
+	int new_line;
 
-	i = ft_strlen(s) + 1;
-	dst = malloc(sizeof(char) * i);
-	if (!dst)
-		return (NULL);
-	ft_memcpy(dst, s, i);
-	return (dst);
+	i = 4;
+	new_line = 0;
+	len = ft_strlen(line);
+	while (is_space(line[i]))
+		i++;
+	if (line[i] == '-')
+	{
+		if (line[i + 1] == 'n' && line[i + 2] == ' ')
+			new_line = 1;
+		i += 3;
+	}
+	while (len > i)
+	{
+		while (line[i] == '"')
+			i++;
+		printf("%c", line[i++]);
+	}
+	if (new_line == 0)
+		printf("\n");
 }

@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 19:16:38 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/10 19:17:02 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/11/17 11:16:50 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*ft_itoa(int n)
 	if (n == 0)
 		return (ft_strdup("0"));
 	len = ft_intlen(n);
-	ptr = (char *)malloc((len + 1) * sizeof(char));
+	ptr = (char *)((len + 1) * sizeof(char));
 	if (!ptr)
 		return (NULL);
 	if (n < 0)

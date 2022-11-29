@@ -1,40 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   tree_free.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/27 11:35:18 by bshintak          #+#    #+#             */
-/*   Updated: 2022/10/21 17:29:48 by bshintak         ###   ########.fr       */
+/*   Created: 2022/11/28 14:27:59 by bshintak          #+#    #+#             */
+/*   Updated: 2022/11/28 14:34:41 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	builtin_echo(char *line)
+void	cmd_free(char **node)
 {
 	int	i;
-	int	len;
-	int new_line;
 
-	i = 4;
-	new_line = 0;
-	len = ft_strlen(line);
-	while (is_space(line[i]))
-		i++;
-	if (line[i] == '-')
+	i = -1;
+	while (node[++i])
+		free(node[i]);
+	free (node);
+}
+
+void	node_free(t_node *node)
+{
+	if (is_redir(node))
 	{
-		if (line[i + 1] == 'n' && line[i + 2] == ' ')
-			new_line = 1;
-		i += 3;
+		if (node->data)
+			free(node->data);
 	}
-	while (len > i)
+	else if (is_command(node))
 	{
-		while (line[i] == '"')
-			i++;
-		printf("%c", line[i++]);
+		if (node->data)
+			node_free(node);
 	}
-	if (new_line == 0)
-		printf("\n");
+	free(node);
+}
+
+void	tree_free(t_node *tree)
+{
+	if (!tree)
+		return ;
+	if (tree->left)
+		node_free(tree->left);
+	else if (tree->right)
+		node_free(tree->right);
 }

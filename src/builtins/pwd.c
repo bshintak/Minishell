@@ -1,32 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/27 16:34:59 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/08 10:50:38 by lleiria-         ###   ########.fr       */
+/*   Created: 2022/07/22 11:37:07 by bshintak          #+#    #+#             */
+/*   Updated: 2022/11/17 13:57:38 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
-void	builtin_env()
+void	builtin_pwd(void)
 {
-	extern char **environ;
-	int i;
-
-	i = 0;
-	while (environ[i])
-	{
-		printf("%s\n", environ[i]);
-		i++;
-	}
+	printf("%s\n", getcwd(NULL, 0));
 }
-
-// int	main()
-// {
-// 	builtin_env();
-// 	return (0);
-// }

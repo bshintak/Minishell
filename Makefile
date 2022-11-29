@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+         #
+#    By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/21 17:10:37 by bshintak          #+#    #+#              #
-#    Updated: 2022/11/15 16:44:18 by bshintak         ###   ########.fr        #
+#    Updated: 2022/11/29 12:03:50 by bshintak         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,20 +19,33 @@ INCLUDE		=	-I ~/.brew/opt/readline/include -lreadline
 MKD			=	mkdir
 RM			=	rm -f
 
-SRC_NAME	=	main.c				\
-				find_builtin.c		\
-				pwd.c				\
-				echo.c				\
-				cd.c				\
-				parser.c			\
-				get_env.c			\
-				get_token.c			\
-				get_id.c			\
-				get_til.c			\
-				utils_get_token.c	\
-				exit_utils.c		\
-				errors.c			\
-				ctrl.c
+BUILTINS	= 	builtins/pwd.c				\
+				builtins/find_builtin.c		\
+				builtins/echo.c				\
+				builtins/cd.c				\
+				builtins/env.c				\
+
+SRC_WTV		=	main.c						\
+				parser.c					\
+				word_parser.c				\
+				get_env.c					\
+				get_token.c					\
+				get_id.c					\
+				get_til.c					\
+				utils_get_token.c			\
+				utils_exit.c				\
+				utils_tree.c				\
+				errors.c					\
+				ctrl.c						\
+				create_tree.c				\
+				put_something.c				\
+				is_node.c					\
+				add_node.c					\
+				add_node_utils.c			\
+				tree_free.c
+
+SRC_NAME	=	$(BUILTINS) $(SRC_WTV)
+				
 
 SRCS		=	$(addprefix $(SRC_PATH)/, $(SRC_NAME))
 OBJS		=	$(patsubst $(SRC_PATH)/%.c, $(OBJ_PATH)/%.o, $(SRCS))
@@ -44,6 +57,7 @@ OBJ_PATH	=	./objects
 all: $(NAME)
 
 $(OBJ_PATH)/%.o : $(SRC_PATH)/%.c
+	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(DEPS) $(OBJ_PATH) $(OBJS)

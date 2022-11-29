@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_til.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 12:37:37 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/15 16:23:42 by lleiria-         ###   ########.fr       */
+/*   Updated: 2022/11/17 10:38:13 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 char	*find_home(char **env)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	while (ft_strncmp(env[i], "HOME=", 5))
 		i++;
 	if (env[i])
@@ -26,7 +28,7 @@ char	*get_til(char *token, char **env)
 {
 	int		token_size;
 	char	*home;
-	
+
 	if (!token || !env)
 		return (NULL);
 	token_size = ft_strlen(token);

@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 18:46:24 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/10 18:48:14 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/11/29 12:00:31 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 char	*ret_error(char *str)
 {
-	ft_putstr_fd(str, 2);
-	exit(1);
+	ft_putstr_fd(str, STDERR_FILENO);
+	exit(EXIT_FAILURE);
 }
