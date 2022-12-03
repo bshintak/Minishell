@@ -3,38 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 11:35:18 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/29 12:11:52 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/03 15:48:38 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	builtin_echo(char *line)
+void	print_echo(char **cmd, int i, char aux)
 {
-	int	i;
-	int	len;
-	int	new_line;
+	while (cmd[i + 1])
+	{
+		ft_putstr_fd(cmd[i++], 1);
+		ft_putchar_fd(' ', 1);
+	}
+	if (aux == 'y')
+		ft_putendl_fd(cmd[i], 1);
+	else if (aux == 'n')
+		ft_putstr_fd(cmd[i], 1);
+}
 
-	i = 4;
-	new_line = 0;
-	len = ft_strlen(line);
-	while (is_space(line[i]))
-		i++;
-	if (line[i] == '-')
-	{
-		if (line[i + 1] == 'n' && line[i + 2] == ' ')
-			new_line = 1;
-		i += 3;
-	}
-	while (len > i)
-	{
-		while (line[i] == '"')
-			i++;
-		printf("%c", line[i++]);
-	}
-	if (new_line == 0)
-		printf("\n");
+void	builtin_echo(char **cmd)
+{
+	if (!ft_strncmp(cmd[1], "-n", 3))
+		print_echo(cmd, 2, 'n');
+	else
+		print_echo(cmd, 1, 'y');
 }

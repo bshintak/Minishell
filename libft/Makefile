@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+         #
+#    By: codespace <codespace@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/22 16:27:20 by bshintak          #+#    #+#              #
-#    Updated: 2022/11/25 16:31:26 by lleiria-         ###   ########.fr        #
+#    Updated: 2022/12/03 15:36:45 by codespace        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,8 @@ SRC =	ft_strcmp			\
 		is_space			\
 		ft_memcpy			\
 		ft_putstr_fd		\
+		ft_putchar_fd		\
+		ft_putendl_fd		\
 		ft_itoa				\
 		ft_atoi				\
 		ft_isalnum			\

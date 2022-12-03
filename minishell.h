@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:23:53 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/03 14:54:14 by codespace        ###   ########.fr       */
+/*   Updated: 2022/12/03 15:38:18 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ int		is_space(char c);
 char	*ft_itoa(int n);
 int		ft_atoi(const char *str);
 void	ft_putstr_fd(char *s, int fd);
+void	ft_putchar_fd(char c, int fd);
+void	ft_putendl_fd(char *s, int fd);
 
 /*		GET_ID				*/
 int		get_id(char *token);
@@ -101,7 +103,7 @@ t_node	*parser(char *line, char **env);
 /*		BUILTIN		*/
 void	find_builtin(t_node *token, char ***env);
 void	builtin_pwd(void);
-void	builtin_echo(char *line);
+void	builtin_echo(char **cmd);
 void	builtin_env(char **env);
 void	builtin_cd(char *line, char ***env);
 void	builtin_export(char *line, char ***env);

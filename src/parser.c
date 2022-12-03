@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 13:11:37 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/29 11:50:10 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/03 15:40:25 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ t_node	*parser(char *line, char **env)
 		token = get_token(line, reset);
 		if (!token)
 			break ;
-		printf("token = %s\n", token);
+		//printf("token = %s\n", token);
 		id = get_id(token);
-		printf("id = %d\n", id);
+		//printf("id = %d\n", id);
 		if (id == ID_WORD)
 			token = word_parser(token, env);
 		create_tree(&tree, token, id);

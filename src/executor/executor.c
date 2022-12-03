@@ -5,7 +5,6 @@ void	executor(t_node **tree, char **env)
 	t_node	*node;
 
 	node = *tree;
-	printf("aqui\n");
 	if (!node->right)
 	{
 		if (node->id == ID_BUILTIN)

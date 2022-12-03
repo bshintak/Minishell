@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 10:43:06 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/03 14:54:09 by codespace        ###   ########.fr       */
+/*   Updated: 2022/12/03 15:40:38 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ t_node	*create_node(int id, int builtin)
 	if (builtin == 1)
 		id = ID_BUILTIN;
 	node->id = id;
-	printf("node id = %d\n", node->id);
 	node->data = NULL;
 	node->left = NULL;
 	node->right = NULL;
