@@ -14,47 +14,24 @@
 
 void	put_command(t_node *node, char *token)
 {
-	t_command *wtv;
+	char	**wtv;
 
 	if (!node && !token)
 		return ;
-	if (!node->data)
-	{
-		wtv = malloc(sizeof(t_command));
-		if (!wtv)
-			ret_error("ERROR: Memory allocation failed.\n");
-		wtv->cmd = NULL;
-	}
-	else
-	{
-		wtv = (t_command *)node->data;
-		wtv->cmd = update_string(wtv->cmd, token);
-		node->data = (void *)wtv;
-	}
+	wtv = node->data;
+	node->data = update_string(wtv, token);
 }
 
 void	put_redir(t_node *node, char *token)
 {
-	t_redir	*wtv;
-	
 	if (!node && !token)
 		return ;
-	wtv = malloc(sizeof(t_redir));
-	if (!wtv)
-		ret_error("ERROR: Memory allocation failed.\n");
-	wtv->redir = ft_strdup(token);
-	node->data = (void *)wtv;
+	node->data = ft_strdup(token);
 }
 
 void	put_herdoc(t_node *node, char *token)
 {
-	t_herdoc	*wtv;
-	
 	if (!node && !token)
 		return ;
-	wtv = malloc(sizeof(t_herdoc));
-	if (!wtv)
-		ret_error("ERROR: Memory allocation failed.\n");
-	wtv->herdoc = ft_strdup(token);
-	node->data = (void *)wtv;
+	node->data = ft_strdup(token);
 }

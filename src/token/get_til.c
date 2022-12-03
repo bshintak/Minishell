@@ -29,6 +29,7 @@ char	*get_til(char *token, char **env)
 	int		token_size;
 	char	*home;
 
+	home = NULL;
 	if (!token || !env)
 		return (NULL);
 	token_size = ft_strlen(token);

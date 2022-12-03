@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+         #
+#    By: codespace <codespace@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/21 17:10:37 by bshintak          #+#    #+#              #
-#    Updated: 2022/11/29 16:24:41 by lleiria-         ###   ########.fr        #
+#    Updated: 2022/12/03 14:02:50 by codespace        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,8 @@ TREE		=	tree/create_tree.c			\
 				tree/utils_tree.c			\
 				tree/tree_free.c
 
+EXECUTOR	=	executor/executor.c			\
+
 SRC_WTV		=	main.c						\
 				parser.c					\
 				get_env.c					\
@@ -48,7 +50,7 @@ SRC_WTV		=	main.c						\
 				errors.c					\
 				ctrl.c
 
-SRC_NAME	=	$(BUILTINS) $(TOKEN) $(TREE) $(SRC_WTV)
+SRC_NAME	=	$(BUILTINS) $(TOKEN) $(TREE) $(EXECUTOR) $(SRC_WTV)
 
 SRCS		=	$(addprefix $(SRC_PATH)/, $(SRC_NAME))
 OBJS		=	$(patsubst $(SRC_PATH)/%.c, $(OBJ_PATH)/%.o, $(SRCS))

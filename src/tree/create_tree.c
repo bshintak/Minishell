@@ -3,23 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   create_tree.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 10:43:06 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/29 12:23:19 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/03 14:54:09 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-t_node	*create_node(int id)
+t_node	*create_node(int id, int builtin)
 {
 	t_node	*node;
 
 	node = malloc(sizeof(t_node));
 	if (!node)
 		ret_error("ERROR: Memory allocation failed.\n");
+	if (builtin == 1)
+		id = ID_BUILTIN;
 	node->id = id;
+	printf("node id = %d\n", node->id);
 	node->data = NULL;
 	node->left = NULL;
 	node->right = NULL;
@@ -55,7 +58,9 @@ void	create_tree(t_node **tree, char *token, int id)
 	t_node	*new_node;
 	t_node	*node_with_type;
 	t_node	*node;
+	int		builtin;
 
+	builtin = 0;
 	new_node = NULL;
 	node_with_type = NULL;
 	if (id == ID_WORD)
@@ -65,11 +70,13 @@ void	create_tree(t_node **tree, char *token, int id)
 			check_node_type(node, token);
 		else
 		{
-			new_node = create_node(ID_COMMAND);
+			if (is_builtin(token))
+				builtin = 1;
+			new_node = create_node(ID_COMMAND, builtin);
 			node_with_type = check_node_type(new_node, token);
 			add_new_node(tree, node_with_type);
 		}
 	}
 	else
-		add_new_node(tree, create_node(id));
+		add_new_node(tree, create_node(id, builtin));
 }

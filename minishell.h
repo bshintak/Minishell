@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:23:53 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/29 16:24:58 by lleiria-         ###   ########.fr       */
+/*   Updated: 2022/12/03 14:54:14 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int		quotation_marks(int *i, char *line);
 t_node	*parser(char *line, char **env);
 
 /*		BUILTIN		*/
-void	find_builtin(char *line, char ***env);
+void	find_builtin(t_node *token, char ***env);
 void	builtin_pwd(void);
 void	builtin_echo(char *line);
 void	builtin_env(char **env);
@@ -127,7 +127,7 @@ int		set_exit(int status, int option);
 char	*word_parser(char *token, char **env);
 
 /*		CREATE_TREE				*/
-t_node	*create_node(int id);
+t_node	*create_node(int id, int builtin);
 void	create_tree(t_node **tree, char *token, int id);
 
 /*		IS_NODE					*/
@@ -144,6 +144,7 @@ void	put_herdoc(t_node *node, char *token);
 /*		UTILS_TREE				*/
 char	**update_string(char **str, char *token);
 t_node	*search_node(t_node *tree);
+int		is_builtin(char *token);
 
 /*		ADD_NODE				*/
 void	add_pipe(t_node **tree, t_node *node);
@@ -157,5 +158,8 @@ void	add_on_left(t_node *node, t_node *new);
 
 /*		TREE_FREE				*/
 void	tree_free(t_node *tree);
+
+/*		EXECUTOR				*/
+void	executor(t_node **tree, char **env);
 
 #endif
