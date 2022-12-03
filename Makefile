@@ -15,7 +15,7 @@ $(VERBOSE).SILENT:
 NAME		=	minishell
 CC			=	gcc
 CFLAGS		=	-Wall -Werror -Wextra #-fsanitize=address
-INCLUDE		=	-I ~/.brew/opt/readline/include -lreadline
+INCLUDE		=	-lreadline
 MKD			=	mkdir
 RM			=	rm -f
 

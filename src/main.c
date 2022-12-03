@@ -17,11 +17,8 @@ int	main(int argc, char **argv, char **env)
 	char		*line;
 	char		**env_copy;
 	t_node		*tree;
-	//char		**help;
-	//int i = 0;
 
 	tree = NULL;
-	//help = NULL;
 	if (argc != 1 && argv[1])
 	{
 		printf("wrong argument!\n");
@@ -46,10 +43,12 @@ int	main(int argc, char **argv, char **env)
 		}
 		add_history(line);
 		tree = parser(line, env_copy);
-		executor(&tree, env_copy);
 		free(line);
 		if (tree)
+		{
+			executor(&tree, env_copy);
 			tree_free(tree);
+		}
 	}
 	return (0);
 }

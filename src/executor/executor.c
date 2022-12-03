@@ -18,5 +18,9 @@ void	executor(t_node **tree, char **env)
 				find_builtin(node->left, &env);
 			node = node->right;
 		}
+		if (node->left->id == ID_BUILTIN)
+			find_builtin(node->left, &env);
+		if (node->right->id == ID_BUILTIN)
+			find_builtin(node->right, &env);
 	}
 }
