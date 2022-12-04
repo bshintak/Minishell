@@ -26,26 +26,16 @@ int	ft_is(char c, char *set)
 	return (FALSE);
 }
 
-int	quotation_marks(int *i, char *line)
+int	quotation_marks(char *line, char quote)
 {
-	int		aux;
+	int	i;
 
-	aux = *i;
-	if (line[*i] == '\"')
+	i = 0;
+	while (line[i])
 	{
-		aux++;
-		while (line[aux] != '\"' && line[aux])
-			aux++;
-		if (line[aux] != '\"')
-			return (FALSE);
+		if (line[i] == quote)
+			return (i + 1);
+		i++;
 	}
-	if (line[*i] == '\'')
-	{
-		aux++;
-		while (line[aux] != '\'' && line[aux])
-			aux++;
-		if (line[aux] != '\'')
-			return (FALSE);
-	}
-	return (aux);
+	return (0);
 }

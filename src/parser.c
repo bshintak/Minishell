@@ -28,9 +28,7 @@ t_node	*parser(char *line, char **env)
 		token = get_token(line, reset);
 		if (!token)
 			break ;
-		//printf("token = %s\n", token);
 		id = get_id(token);
-		//printf("id = %d\n", id);
 		if (id == ID_WORD)
 			token = word_parser(token, env);
 		create_tree(&tree, token, id);

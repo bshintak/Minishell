@@ -16,26 +16,21 @@ char	*get_word(int *i, char *line)
 {
 	int		final;
 	char	*word;
-	int		init;
-
+	//int		num_quotes;
+	
 	final = *i;
-	if (ft_is(line[final], "\"") || ft_is(line[final], "\'"))
+	while (line[final])
 	{
+		if (ft_strchr("\"", line[final]))
+			final += quotation_marks(&line[final + 1], '\"');
+		if (ft_strchr("\'", line[final]))
+			final += quotation_marks(&line[final + 1], '\'');
+		if (ft_strchr(" \t\r\n\v<>|", line[final]))
+			break ;
 		final++;
-		init = final;
-		final = quotation_marks(i, line);
-		if (!final)
-			return (FALSE);
-		word = ft_substr(line, init, final - init);
-		*i = final + 1;
 	}
-	if (!ft_is(line[final], "\"") && !ft_is(line[final], "\'"))
-	{
-		while (!ft_is(line[final], SPACES_OPERATORS))
-			final++;
-		word = ft_substr(line, *i, final - *i);
-		*i = final;
-	}
+	word = ft_substr(line, *i, final - (*i));
+	*i = final;
 	return (word);
 }
 

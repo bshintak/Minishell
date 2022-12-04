@@ -66,6 +66,9 @@ typedef struct s_herdoc
 # define SET_EXIT			1
 # define CLEAR_EXIT			2
 
+# define MISSING_QUOTE		1
+# define DOLLAR_QUOTE		2
+
 /*		LIBFT				*/
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_substr(char *s, unsigned int start, int len);
@@ -95,7 +98,7 @@ char	*get_word(int *i, char *line);
 /*		UTILS_GET_TOKEN		*/
 int		ft_is(char c, char *set);
 char	*find_string(char *find, char **str);
-int		quotation_marks(int *i, char *line);
+int		quotation_marks(char *line, char quote);
 
 /*		PARSER				*/
 t_node	*parser(char *line, char **env);
