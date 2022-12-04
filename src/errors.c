@@ -17,3 +17,9 @@ char	*ret_error(char *str)
 	ft_putstr_fd(str, STDERR_FILENO);
 	exit(EXIT_FAILURE);
 }
+
+char	*ret_without_error(char *str)
+{
+	ft_putstr_fd(str, STDIN_FILENO);
+	exit(EXIT_SUCCESS);
+}

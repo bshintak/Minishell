@@ -31,6 +31,7 @@ TOKEN		=	token/get_token.c			\
 				token/get_id.c				\
 				token/get_til.c				\
 				token/word_parser.c			\
+				token/utils_word_parser.c	\
 				token/utils_get_token.c
 
 TREE		=	tree/create_tree.c			\

@@ -39,9 +39,27 @@ int	needs_of_token(char *token)
 	return (0);
 }
 
+char	*update_dollar(char *token, char **env)
+{
+	char	*dollar;
+	int		i;
+
+	i = -1;
+	dollar = NULL;
+	while(token[++i])
+	{
+		if (token[i] == '$' && token[i + 1] == '?')
+			dollar = find_shlvl(env);
+		else if (token[i] == '$' && token[i + 1] != '?')
+			dollar = expand_dollar(token + 1, env);
+	}
+	return (dollar);
+}
+
 char	*word_parser(char *token, char **env)
 {
 	char	*home;
+	char	*dollar;
 
 	home = get_til(token, env);
 	if (home)
@@ -53,6 +71,14 @@ char	*word_parser(char *token, char **env)
 	if (!needs_of_token(token))
 		return (token);
 	if (needs_of_token(token) == MISSING_QUOTE)
-		ret_error("ERROR: missing quote!\n");
+		ret_without_error("ERROR: missing quote\n");
+	else 
+		dollar = update_dollar(token, env);
+	if (dollar)
+	{
+		if (token)
+			free(token);
+		token = dollar;
+	}
 	return (token);
 }

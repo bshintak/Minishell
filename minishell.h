@@ -120,6 +120,7 @@ char	*get_til(char *token, char **env);
 
 /*		ERRORS				*/
 char	*ret_error(char *str);
+char	*ret_without_error(char *str);
 
 /*		CTRL				*/
 void	get_signal(int signal, void (*function)());
@@ -130,6 +131,10 @@ int		set_exit(int status, int option);
 
 /*		WORD_PARSER				*/
 char	*word_parser(char *token, char **env);
+
+/*		UTILS_WORD_PARSER		*/
+char	*find_shlvl(char **env);
+char    *expand_dollar(char *token, char **env);
 
 /*		CREATE_TREE				*/
 t_node	*create_node(int id, int builtin);
