@@ -17,7 +17,7 @@ char	*find_home(char **env)
 	int	i;
 
 	i = 0;
-	while (ft_strncmp(env[i], "HOME=", 5))
+	while (env[i] && ft_strncmp(env[i], "HOME=", 5))
 		i++;
 	if (env[i])
 		return (env[i] + 5);

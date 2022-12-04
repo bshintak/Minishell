@@ -5,7 +5,7 @@ char	*find_shlvl(char **env)
 	int	i;
 
 	i = 0;
-	while (ft_strncmp(env[i], "SHLVL=", 6))
+	while (env[i] && ft_strncmp(env[i], "SHLVL=", 6))
 		i++;
 	if (env[i])
 		return (env[i] + 6);
@@ -21,7 +21,7 @@ char    *expand_dollar(char *token, char **env)
     if (!token)
         return (NULL);
     size = ft_strlen(token);
-    while (ft_strncmp(env[i], token, size))
+    while (env[i] && ft_strncmp(env[i], token, size))
         i++;
     if (env[i])
         return (env[i] + size + 1);
