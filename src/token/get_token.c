@@ -16,7 +16,6 @@ char	*get_word(int *i, char *line)
 {
 	int		final;
 	char	*word;
-	//int		num_quotes;
 	
 	final = *i;
 	while (line[final])

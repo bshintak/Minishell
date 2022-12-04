@@ -56,6 +56,35 @@ char	*update_dollar(char *token, char **env)
 	return (dollar);
 }
 
+char	*remove_quotes(char *token, int *i)
+{
+	int	index;
+	int	final;
+
+	index = *i;
+	final = 0;
+	if (token[index] == '\"')
+		final = pos_final('\"', token);
+	printf("final = %d\n", final);
+	return(NULL);
+}
+
+char	*dollar_and_quotes(char	*token, char **env)
+{
+	int	i;
+	char	*new_token;
+
+	(void)env;
+	i = -1;
+	while (token[++i])
+	{
+		if ((token[i] == '\"' || token[i] == '\'') && token[i + 1] != '$')
+			new_token = remove_quotes(token, &i);
+		return (new_token);
+	}
+	return (NULL);
+}
+
 char	*word_parser(char *token, char **env)
 {
 	char	*home;
@@ -68,11 +97,12 @@ char	*word_parser(char *token, char **env)
 			free(token);
 		token = home;
 	}
-	if (!needs_of_token(token))
-		return (token);
 	if (needs_of_token(token) == MISSING_QUOTE)
 		ret_without_error("ERROR: missing quote\n");
-	else 
+	else if (!needs_of_token(token))
+		return (token);
+	//dollar_and_quotes(token, env);
+	else
 		dollar = update_dollar(token, env);
 	if (dollar)
 	{

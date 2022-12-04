@@ -26,6 +26,20 @@ int	ft_is(char c, char *set)
 	return (FALSE);
 }
 
+int	pos_final(char c, char *set)
+{
+	int	size;
+
+	if (!set)
+		return (0);
+	size = ft_strlen(set);
+	while (c != set[size] && set[size] > 0)
+		size--;
+	if (c == set[size])
+		return (size);
+	return (0);
+}
+
 int	quotation_marks(char *line, char quote)
 {
 	int	i;

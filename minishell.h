@@ -76,6 +76,7 @@ char	*ft_strjoin(char *s1, char *s2);
 int		ft_strcmp(char *s1, char *s2);
 int		ft_strlen(char *str);
 char	*ft_strchr(char *s, int c);
+char	*ft_strrchr(const char *str, int c);
 char	*ft_strdup(char *s);
 int		ft_isalnum(int c);
 int		ft_isdigit(int c);
@@ -97,6 +98,7 @@ char	*get_word(int *i, char *line);
 
 /*		UTILS_GET_TOKEN		*/
 int		ft_is(char c, char *set);
+int		pos_final(char c, char *set);
 char	*find_string(char *find, char **str);
 int		quotation_marks(char *line, char quote);
 
