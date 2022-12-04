@@ -31,20 +31,11 @@ typedef struct s_node
 	struct s_node	*up;
 }				t_node;
 
-typedef struct s_command
+typedef struct s_quotes
 {
-	char		**cmd;
-}				t_command;
-
-typedef struct s_redir
-{
-	char		*redir;
-}				t_redir;
-
-typedef struct s_herdoc
-{
-	char		*herdoc;
-}				t_herdoc;
+	int				simple_quo;
+	int				double_quo;
+}				t_quotes;
 
 # define FALSE				0
 # define TRUE				1

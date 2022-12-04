@@ -26,14 +26,11 @@ int	ft_is(char c, char *set)
 	return (FALSE);
 }
 
-int	pos_final(char c, char *set)
+int	pos_final(char c, char *set, int size)
 {
-	int	size;
-
 	if (!set)
 		return (0);
-	size = ft_strlen(set);
-	while (c != set[size] && set[size] > 0)
+	while (c != set[size] && size > 0)
 		size--;
 	if (c == set[size])
 		return (size);
