@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:58:37 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/03 15:39:15 by codespace        ###   ########.fr       */
+/*   Updated: 2022/12/06 15:52:50 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	main(int argc, char **argv, char **env)
 	char		*line;
 	char		**env_copy;
 	t_node		*tree;
+	// int			i = -1;
 
 	tree = NULL;
 	if (argc != 1 && argv[1])
@@ -43,10 +44,9 @@ int	main(int argc, char **argv, char **env)
 		}
 		add_history(line);
 		tree = parser(line, env_copy);
-		free(line);
 		if (tree)
 		{
-			executor(&tree, env_copy);
+			executor(&tree, &env_copy);
 			tree_free(tree);
 		}
 	}

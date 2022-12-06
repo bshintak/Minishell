@@ -1,6 +1,6 @@
 #include "../../minishell.h"
 
-void	executor(t_node **tree, char **env)
+void	executor(t_node **tree, char ***env)
 {
 	t_node	*node;
 
@@ -8,19 +8,20 @@ void	executor(t_node **tree, char **env)
 	if (!node->right)
 	{
 		if (node->id == ID_BUILTIN)
-			find_builtin(node, &env);
+			find_builtin(node, env);
+
 	}
 	else
 	{	
 		while (node->right->id == ID_PIPE)
 		{
 			if (node->left->id == ID_BUILTIN)
-				find_builtin(node->left, &env);
+				find_builtin(node->left, env);
 			node = node->right;
 		}
 		if (node->left->id == ID_BUILTIN)
-			find_builtin(node->left, &env);
+			find_builtin(node->left, env);
 		if (node->right->id == ID_BUILTIN)
-			find_builtin(node->right, &env);
+			find_builtin(node->right, env);
 	}
 }

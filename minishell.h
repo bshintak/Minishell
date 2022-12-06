@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:23:53 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/03 15:38:18 by codespace        ###   ########.fr       */
+/*   Updated: 2022/12/06 15:53:06 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ char	*get_word(int *i, char *line);
 
 /*		UTILS_GET_TOKEN		*/
 int		ft_is(char c, char *set);
-int		pos_final(char c, char *set);
 char	*find_string(char *find, char **str);
 int		quotation_marks(char *line, char quote);
 
@@ -101,9 +100,9 @@ void	find_builtin(t_node *token, char ***env);
 void	builtin_pwd(void);
 void	builtin_echo(char **cmd);
 void	builtin_env(char **env);
-void	builtin_cd(char *line, char ***env);
-void	builtin_export(char *line, char ***env);
-void	builtin_unset(char *line, char ***env);
+void	builtin_cd(char **line, char ***env);
+void	builtin_export(char **line, char ***env);
+void	builtin_unset(char **line, char ***env);
 
 /*		GET_ENV				*/
 char	**get_env(char **env);
@@ -163,6 +162,6 @@ void	add_on_left(t_node *node, t_node *new);
 void	tree_free(t_node *tree);
 
 /*		EXECUTOR				*/
-void	executor(t_node **tree, char **env);
+void	executor(t_node **tree, char ***env);
 
 #endif

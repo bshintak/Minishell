@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_builtin.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 11:43:50 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/03 15:23:11 by codespace        ###   ########.fr       */
+/*   Updated: 2022/12/06 15:52:32 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,18 @@ void	find_builtin(t_node *token, char ***env)
 	char	**cmd;
 
 	cmd = ((char **)(token->data));
-	if (!ft_strncmp(cmd[0], "pwd", 4))
+	if (!ft_strncmp(cmd[0], "pwd", 3))
 		return (builtin_pwd());
-	else if (!ft_strncmp(cmd[0], "echo", 5))
+	else if (!ft_strncmp(cmd[0], "echo", 4))
 		return (builtin_echo(cmd));
-	else if (!ft_strncmp(cmd[0], "cd", 3))
-		return (builtin_cd(cmd[0], env));
-	else if (!ft_strncmp(cmd[0], "env", 4))
+	else if (!ft_strncmp(cmd[0], "cd", 2))
+		return (builtin_cd(cmd, env));
+	else if (!ft_strncmp(cmd[0], "env", 3))
 		return (builtin_env(*env));
-	else if (!ft_strncmp(cmd[0], "export", 7))
-		return (builtin_export(cmd[0], env));
-	else if (!ft_strncmp(cmd[0], "unset", 6))
-		return (builtin_unset(cmd[0], env));
+	else if (!ft_strncmp(cmd[0], "export", 6))
+		return (builtin_export(cmd, env));
+	else if (!ft_strncmp(cmd[0], "unset", 5))
+		return (builtin_unset(cmd, env));
 	else
 		printf("is not a builtin\n");
-	// if (argv == "pwd")
-	// 	built_pwd(argv);
 }

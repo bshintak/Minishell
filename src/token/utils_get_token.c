@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 15:21:00 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/29 12:17:59 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/06 12:15:31 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,6 @@ int	ft_is(char c, char *set)
 	if (c == set[i])
 		return (TRUE);
 	return (FALSE);
-}
-
-int	pos_final(char c, char *set, int size)
-{
-	if (!set)
-		return (0);
-	while (c != set[size] && size > 0)
-		size--;
-	if (c == set[size])
-		return (size);
-	return (0);
 }
 
 int	quotation_marks(char *line, char quote)

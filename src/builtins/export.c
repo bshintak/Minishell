@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 11:25:35 by lleiria-          #+#    #+#             */
-/*   Updated: 2022/11/29 12:27:02 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/06 15:40:21 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	valid_var(char *var)
 
 void	print_export_line(char *env_line)
 {
-	int	i;
+	int		i;
 
 	i = 0;
 	ft_putstr_fd("declare -x ", 1);
@@ -75,26 +75,12 @@ void	print_export_line(char *env_line)
 	write(1, "\n", 1);
 }
 
-int	only_export(char *line)
-{
-	int	i;
-
-	i = 0;
-	while (line[i] != '\0')
-	{
-		if (line[i] == 't' && line[i + 1] == '\0')
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-void	builtin_export(char *line, char ***env)
+void	builtin_export(char **line, char ***env)
 {
 	int		i;
 
 	i = 0;
-	if (only_export(line))
+	if (!line[1])
 	{
 		while ((*env)[i])
 		{
@@ -104,12 +90,8 @@ void	builtin_export(char *line, char ***env)
 	}
 	else
 	{
-		while (*line != ' ')
-			line++;
-		line++;
-		printf("line: %s\n", line);
-		if (valid_var(line))
-			insert_var(env, line);
+		if (valid_var(line[1]))
+			insert_var(env, line[1]);
 		else
 			printf("not valid var\n");
 	}

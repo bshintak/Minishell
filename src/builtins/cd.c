@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 15:52:54 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/29 12:11:34 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/05 10:45:42 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,19 +57,15 @@ void	update_env(char *old_path, char *new_path, char ***env)
 	}
 }
 
-void	builtin_cd(char *line, char ***env)
+void	builtin_cd(char **line, char ***env)
 {
 	char	*new_path;
 	char	*old_path;
 	int		i;
 
-	while (*line != ' ')
-		line++;
-	line++;
-	printf ("line: %s\n", line);
 	old_path = getcwd(NULL, 1025);
 	printf("old path: %s\n", old_path);
-	if (chdir(line) == -1)
+	if (chdir(line[1]) == -1)
 		printf("error\n");
 	new_path = getcwd(NULL, 1025);
 	printf("new path: %s\n", new_path);
