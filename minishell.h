@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:23:53 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/06 15:53:06 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/07 13:00:50 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,5 +163,7 @@ void	tree_free(t_node *tree);
 
 /*		EXECUTOR				*/
 void	executor(t_node **tree, char ***env);
+
+void	print2d(t_node *root);
 
 #endif

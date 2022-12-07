@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:58:37 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/06 15:52:50 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/07 13:07:03 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,11 @@ int	main(int argc, char **argv, char **env)
 		}
 		add_history(line);
 		tree = parser(line, env_copy);
+		// print2d(tree);
 		if (tree)
 		{
 			executor(&tree, &env_copy);
-			tree_free(tree);
+			// tree_free(tree);
 		}
 	}
 	return (0);

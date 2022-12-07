@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: codespace <codespace@student.42.fr>        +#+  +:+       +#+         #
+#    By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/21 17:10:37 by bshintak          #+#    #+#              #
-#    Updated: 2022/12/03 14:02:50 by codespace        ###   ########.fr        #
+#    Updated: 2022/12/07 13:02:18 by lleiria-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,8 @@ SRC_WTV		=	main.c						\
 				get_env.c					\
 				utils_exit.c				\
 				errors.c					\
-				ctrl.c
+				ctrl.c						\
+				print_tree.c
 
 SRC_NAME	=	$(BUILTINS) $(TOKEN) $(TREE) $(EXECUTOR) $(SRC_WTV)
 
