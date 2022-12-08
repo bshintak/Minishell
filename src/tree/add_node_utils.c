@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_node_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 11:56:39 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/29 12:23:08 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/08 12:10:02 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	add_on_top(t_node **tree, t_node *node)
 {
-	t_node *top;
+	t_node	*top;
 
 	top = *tree;
 	if (!top)

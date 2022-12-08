@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_tree.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 12:08:08 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/29 12:23:39 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/08 12:02:17 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	strlen_matrix(char **str)
 	i = 0;
 	if (str)
 	{
-		while(str[i])
+		while (str[i])
 		i++;
 	}
 	return (i);
@@ -43,7 +43,7 @@ char	**update_string(char **str, char *token)
 	char	**new_str;
 	int		size;
 	int		i;
-	
+
 	i = -1;
 	if (!str)
 	{
@@ -57,7 +57,7 @@ char	**update_string(char **str, char *token)
 	{
 		size = strlen_matrix(str);
 		new_str = malloc(sizeof(char *) * size + 2);
-		while(str[++i])
+		while (str[++i])
 			new_str[i] = str[i];
 		new_str[i] = ft_strdup(token);
 		new_str[i + 1] = 0;

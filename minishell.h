@@ -6,7 +6,7 @@
 /*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:23:53 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/07 13:00:50 by lleiria-         ###   ########.fr       */
+/*   Updated: 2022/12/08 11:54:15 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ int		ft_atoi(const char *str);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putendl_fd(char *s, int fd);
+char	*ft_strnstr(const char *str, const char *to_find, size_t len);
+char	**ft_split(char *s, char c);
 
 /*		GET_ID				*/
 int		get_id(char *token);
@@ -126,7 +128,7 @@ char	*word_parser(char *token, char **env);
 
 /*		UTILS_WORD_PARSER		*/
 char	*find_shlvl(char **env);
-char    *expand_dollar(char *token, char **env);
+char	*expand_dollar(char *token, char **env);
 
 /*		CREATE_TREE				*/
 t_node	*create_node(int id, int builtin);
@@ -163,6 +165,8 @@ void	tree_free(t_node *tree);
 
 /*		EXECUTOR				*/
 void	executor(t_node **tree, char ***env);
+char	**get_paths(char **env);
+char	*get_cmd_path(char *cmd, char **paths);
 
 void	print2d(t_node *root);
 

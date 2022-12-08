@@ -1,17 +1,35 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   executor.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/07 15:24:36 by lleiria-          #+#    #+#             */
+/*   Updated: 2022/12/08 12:11:15 by lleiria-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../minishell.h"
 
 void	execute_cmd(t_node *tree, char ***env)
 {
 	char	**cmd;
-	int		i;
+	char	**paths;
+	char	*cmd_path;
 
-	(void)env;
 	cmd = ((char **)(tree->data));
-	i = 0;
-	while (cmd[i])
+	if (access(cmd[0], F_OK) == 0)
+		execve(cmd[0], cmd, *env);
+	else
 	{
-		printf("Cmd[%d] is: %s\n", i, cmd[i]);
-		i++;
+		paths = get_paths(*env);
+		if (!paths)
+			return ;
+		cmd_path = get_cmd_path(cmd[0], paths);
+		if (!cmd_path)
+			return ;
+		execve(cmd_path, cmd, *env);
 	}
 }
 
@@ -26,7 +44,6 @@ void	executor(t_node **tree, char ***env)
 			find_builtin(node, env);
 		if (node->id == ID_COMMAND)
 			execute_cmd(node, env);
-
 	}
 	else
 	{	

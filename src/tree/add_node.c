@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_node.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 12:54:06 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/29 12:23:14 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/08 12:06:07 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	add_command(t_node **tree, t_node *node)
 {
 	t_node	*first_wtv;
-	
+
 	printf("command\n");
 	first_wtv = *tree;
 	if (!first_wtv || is_redir(first_wtv))
@@ -42,13 +42,12 @@ void	add_redir(t_node **tree, t_node *node)
 			add_on_left(first_wtv, node);
 		else
 			add_on_right(next_wtv, node);
-		
 	}
 }
 
 void	add_pipe(t_node **tree, t_node *node)
 {
-	t_node *wtv;
+	t_node	*wtv;
 
 	printf("pipe\n");
 	wtv = *tree;

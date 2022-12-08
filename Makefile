@@ -6,7 +6,7 @@
 #    By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/21 17:10:37 by bshintak          #+#    #+#              #
-#    Updated: 2022/12/07 13:02:18 by lleiria-         ###   ########.fr        #
+#    Updated: 2022/12/07 15:26:23 by lleiria-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ TREE		=	tree/create_tree.c			\
 				tree/tree_free.c
 
 EXECUTOR	=	executor/executor.c			\
+				executor/executor_utils.c	\
 
 SRC_WTV		=	main.c						\
 				parser.c					\
