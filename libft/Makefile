@@ -23,6 +23,7 @@ SRC =	ft_strcmp			\
 		ft_substr			\
 		is_space			\
 		ft_memcpy			\
+		ft_memset			\
 		ft_putstr_fd		\
 		ft_putchar_fd		\
 		ft_putendl_fd		\
@@ -30,8 +31,11 @@ SRC =	ft_strcmp			\
 		ft_atoi				\
 		ft_isalnum			\
 		ft_isdigit			\
+		ft_isalpha			\
 		ft_split			\
 		ft_strnstr			\
+		ft_calloc			\
+		ft_bzero
 
 CC =		gcc
 RM =		rm -f

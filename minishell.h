@@ -71,8 +71,12 @@ char	*ft_strrchr(const char *str, int c);
 char	*ft_strdup(char *s);
 int		ft_isalnum(int c);
 int		ft_isdigit(int c);
-void	*ft_memcpy(void *dest, const void *src, size_t n);
+int		ft_isalpha(int a);
 int		is_space(char c);
+void	*ft_memset(void *s, int c, size_t n);
+void	*ft_memcpy(void *dest, const void *src, size_t n);
+void	*ft_calloc(size_t count, size_t size);
+void	ft_bzero(void *s, size_t n);
 char	*ft_itoa(int n);
 int		ft_atoi(const char *str);
 void	ft_putstr_fd(char *s, int fd);
@@ -127,8 +131,14 @@ int		set_exit(int status, int option);
 char	*word_parser(char *token, char **env);
 
 /*		UTILS_WORD_PARSER		*/
+int		size_env(char *str);
+int		size_parser(char *s);
 char	*find_shlvl(char **env);
+int		word_size_parser(char *word);
 char	*expand_dollar(char *token, char **env);
+char	*join_char(char *token, char c);
+char    *join_exp(char *token, char *new_token);
+char    *join_tokens(char *token, char *new_token);
 
 /*		CREATE_TREE				*/
 t_node	*create_node(int id, int builtin);
