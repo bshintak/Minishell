@@ -49,18 +49,26 @@ char	**update_string(char **str, char *token)
 	{
 		new_str = malloc(sizeof(char *) * 2);
 		if (!new_str)
-			ret_error("ERROR: Memory allocation failed.\n");
+		{
+			ft_putendl_fd("minishell: Out of memory!", 2);
+			exit(EXIT_FAILURE);
+		}
 		new_str[0] = ft_strdup(token);
 		new_str[1] = NULL;
 	}
 	else
 	{
 		size = strlen_matrix(str);
-		new_str = malloc(sizeof(char *) * size + 2);
+		new_str = malloc(sizeof(char *) * (size + 2));
+		if (!new_str)
+		{
+			ft_putendl_fd("minishell: Out of memory!", 2);
+			exit(EXIT_FAILURE);
+		}
 		while (str[++i])
 			new_str[i] = str[i];
 		new_str[i] = ft_strdup(token);
-		new_str[i + 1] = 0;
+		new_str[i + 1] = NULL;
 		free (str);
 	}
 	return (new_str);

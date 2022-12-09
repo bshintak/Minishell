@@ -27,7 +27,9 @@ void	print_echo(char **cmd, int i, char aux)
 
 void	builtin_echo(char **cmd)
 {
-	if (!ft_strncmp(cmd[1], "-n", 3))
+	if (!cmd[1])
+		ft_putstr_fd("\n", 1);
+	else if (!ft_strncmp(cmd[1], "-n", 3))
 		print_echo(cmd, 2, 'n');
 	else
 		print_echo(cmd, 1, 'y');

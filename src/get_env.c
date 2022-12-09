@@ -19,6 +19,7 @@ char	*get_shlvl(char *line)
 
 	copy = ft_itoa(ft_atoi(line + 6) + 1);
 	ret = ft_strjoin("SHLVL=", copy);
+	free(copy);
 	return (ret);
 }
 
@@ -30,7 +31,7 @@ char	**get_env(char **env)
 	i = 0;
 	while (env[i])
 		i++;
-	copy_env = (char **)malloc(sizeof(char *) * (i + 1));
+	copy_env = malloc(sizeof(char *) * (i + 1));
 	if (!copy_env)
 		ret_error("ERROR: Memory allocation failed.\n");
 	i = -1;
@@ -41,5 +42,6 @@ char	**get_env(char **env)
 		else
 			copy_env[i] = ft_strdup(env[i]);
 	}
+	copy_env[i] = '\0';
 	return (copy_env);
 }

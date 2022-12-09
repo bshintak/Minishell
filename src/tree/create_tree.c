@@ -18,7 +18,7 @@ t_node	*create_node(int id, int builtin)
 
 	node = malloc(sizeof(t_node));
 	if (!node)
-		ret_error("ERROR: Memory allocation failed.\n");
+		return (0);
 	if (builtin == 1)
 		id = ID_BUILTIN;
 	node->id = id;

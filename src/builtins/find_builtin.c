@@ -18,17 +18,17 @@ void	find_builtin(t_node *token, char ***env)
 
 	cmd = ((char **)(token->data));
 	if (!ft_strncmp(cmd[0], "pwd", 3))
-		return (builtin_pwd());
+		builtin_pwd();
 	else if (!ft_strncmp(cmd[0], "echo", 4))
-		return (builtin_echo(cmd));
+		builtin_echo(cmd);
 	else if (!ft_strncmp(cmd[0], "cd", 2))
-		return (builtin_cd(cmd, env));
+		builtin_cd(cmd, env);
 	else if (!ft_strncmp(cmd[0], "env", 3))
-		return (builtin_env(*env));
+		builtin_env(*env);
 	else if (!ft_strncmp(cmd[0], "export", 6))
-		return (builtin_export(cmd, env));
+		builtin_export(cmd, env);
 	else if (!ft_strncmp(cmd[0], "unset", 5))
-		return (builtin_unset(cmd, env));
+		builtin_unset(cmd, env);
 	else
-		printf("is not a builtin\n");
+		return ;
 }
