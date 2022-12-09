@@ -26,6 +26,8 @@ int	main(int argc, char **argv, char **env)
 		return (-1);
 	}
 	env_copy = get_env(env);
+	if (!env_copy)
+		return (0);
 	get_signal(SIGQUIT, SIG_IGN);
 	get_signal(SIGINT, ctrl_c);
 	while (1)
@@ -45,11 +47,13 @@ int	main(int argc, char **argv, char **env)
 		add_history(line);
 		tree = parser(line, env_copy);
 		// print2d(tree);
+		free (line);
 		if (tree)
 		{
 			executor(&tree, &env_copy);
-			// tree_free(tree);
+			tree_free(tree);
 		}
 	}
+	free (env_copy);
 	return (0);
 }

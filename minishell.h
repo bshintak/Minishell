@@ -55,7 +55,8 @@ typedef struct s_quotes
 
 # define EXIT_CTRL_C		130
 # define SET_EXIT			1
-# define CLEAR_EXIT			2
+# define EXIT_SYNTAX		2
+# define CLEAR_EXIT			3
 
 # define MISSING_QUOTE		1
 # define DOLLAR_QUOTE		2
@@ -117,8 +118,13 @@ char	**get_env(char **env);
 char	*get_til(char *token, char **env);
 
 /*		ERRORS				*/
-char	*ret_error(char *str);
-char	*ret_without_error(char *str);
+void	new_line(void);
+void	ret_error(char *str);
+void	ret_without_error(char *str);
+void	print_error(char *token);
+
+/*		SYNTAX_ERROR		*/
+int 	syntax_error(t_node *tree, char *token);
 
 /*		CTRL				*/
 void	get_signal(int signal, void (*function)());

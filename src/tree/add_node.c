@@ -16,7 +16,6 @@ void	add_command(t_node **tree, t_node *node)
 {
 	t_node	*first_wtv;
 
-	printf("command\n");
 	first_wtv = *tree;
 	if (!first_wtv || is_redir(first_wtv))
 		add_on_top(tree, node);
@@ -29,7 +28,6 @@ void	add_redir(t_node **tree, t_node *node)
 	t_node	*first_wtv;
 	t_node	*next_wtv;
 
-	printf("redir\n");
 	first_wtv = *tree;
 	if (!first_wtv || is_redir(first_wtv))
 		add_on_top(tree, node);
@@ -49,7 +47,6 @@ void	add_pipe(t_node **tree, t_node *node)
 {
 	t_node	*wtv;
 
-	printf("pipe\n");
 	wtv = *tree;
 	if (!wtv)
 		wtv = node;

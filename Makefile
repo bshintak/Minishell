@@ -45,15 +45,17 @@ TREE		=	tree/create_tree.c			\
 EXECUTOR	=	executor/executor.c			\
 				executor/executor_utils.c	\
 
+ERROR		=	error/syntax_error.c		\
+				error/errors.c
+
 SRC_WTV		=	main.c						\
 				parser.c					\
 				get_env.c					\
 				utils_exit.c				\
-				errors.c					\
 				ctrl.c						\
 				print_tree.c
 
-SRC_NAME	=	$(BUILTINS) $(TOKEN) $(TREE) $(EXECUTOR) $(SRC_WTV)
+SRC_NAME	=	$(BUILTINS) $(TOKEN) $(TREE) $(EXECUTOR) $(ERROR) $(SRC_WTV)
 
 SRCS		=	$(addprefix $(SRC_PATH)/, $(SRC_NAME))
 OBJS		=	$(patsubst $(SRC_PATH)/%.c, $(OBJ_PATH)/%.o, $(SRCS))

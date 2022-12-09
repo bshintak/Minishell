@@ -70,7 +70,7 @@ char	*update_quote_dollar(char *dollar, char **env)
 	size = 0;
 	ret = ft_calloc(1, sizeof(char));
 	if (!ret)
-		return (NULL);
+		ret_error("ERROR: Memory allocation failed.\n");
 	while (dollar[++i])
 	{
 		if (dollar[i] != '$')
@@ -134,23 +134,14 @@ char	*word_parser(char *token, char **env)
 		token = home;
 	}
 	if (needs_of_token(token) == MISSING_QUOTE)
-		printf("ERROR: missing quote\n");
+		new_line();
 	if (!needs_of_token(token))
 		return (token);
 	dollar = ft_calloc(1, sizeof(char));
 	if (!dollar)
-		return (NULL);
+		ret_error("ERROR: Memory allocation failed.\n");
 	while (token[++i])
 		dollar = dollar_quotes(token, dollar, env, &i);
-	//else
-	//	dollar = update_dollar(token, env);
-	//if (dollar)
-	//{
-	//	if (token)
-	//		free(token);
-	//	token = dollar;
-	//}
-	//free(quo);
-	//free(token);
+	free(token);
 	return (dollar);
 }
