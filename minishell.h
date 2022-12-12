@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:23:53 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/08 11:54:15 by lleiria-         ###   ########.fr       */
+/*   Updated: 2022/12/12 14:09:12 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ char	*get_word(int *i, char *line);
 
 /*		UTILS_GET_TOKEN		*/
 int		ft_is(char c, char *set);
-char	*find_string(char *find, char **str);
 int		quotation_marks(char *line, char quote);
 
 /*		PARSER				*/
@@ -110,12 +109,10 @@ void	builtin_env(char **env);
 void	builtin_cd(char **line, char ***env);
 void	builtin_export(char **line, char ***env);
 void	builtin_unset(char **line, char ***env);
+int		ft_exit(char *line);
 
 /*		GET_ENV				*/
 char	**get_env(char **env);
-
-/*		GET_TIL				*/
-char	*get_til(char *token, char **env);
 
 /*		ERRORS				*/
 void	new_line(void);
@@ -124,7 +121,7 @@ void	ret_without_error(char *str);
 void	print_error(char *token);
 
 /*		SYNTAX_ERROR		*/
-int 	syntax_error(t_node *tree, char *token);
+int		syntax_error(t_node *tree, char *token);
 
 /*		CTRL				*/
 void	get_signal(int signal, void (*function)());
@@ -136,15 +133,25 @@ int		set_exit(int status, int option);
 /*		WORD_PARSER				*/
 char	*word_parser(char *token, char **env);
 
+/*		EXPAND_HOME				*/
+char	*get_til(char *token, char **env);
+
+/*		EXPAND_SHLVL			*/
+char	*find_shlvl(char **env);
+
+/*		EXPAND_DOLLAR			*/
+char	*expand_dollar(char *token, char **env);
+
 /*		UTILS_WORD_PARSER		*/
 int		size_env(char *str);
 int		size_parser(char *s);
-char	*find_shlvl(char **env);
 int		word_size_parser(char *word);
-char	*expand_dollar(char *token, char **env);
+
+/*		UPDATE_DOLLAR_QUOTE		*/
+char	*update_quote_dollar(char *dollar, char **env);
+char	*update_dollar(char *dollar, char **env, int *i, char *ret);
 char	*join_char(char *token, char c);
-char    *join_exp(char *token, char *new_token);
-char    *join_tokens(char *token, char *new_token);
+char	*join_tokens(char *token, char *new_token);
 
 /*		CREATE_TREE				*/
 t_node	*create_node(int id, int builtin);
@@ -184,6 +191,7 @@ void	executor(t_node **tree, char ***env);
 char	**get_paths(char **env);
 char	*get_cmd_path(char *cmd, char **paths);
 
+/*		PRINT_TREE				*/
 void	print2d(t_node *root);
 
 #endif

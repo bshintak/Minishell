@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 19:04:29 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/06 15:00:22 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/12 11:38:07 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,54 +39,25 @@ int	needs_of_token(char *token)
 	return (0);
 }
 
-char	*update_dollar(char *dollar, char **env, int *i, char *ret)
+char	*dollar_quotes2(char *tk, int size, char **env, int *i)
 {
 	int		index;
-	int		size;
-	char	*elm_env;
-	char	*final;
+	char	*aux;
 
 	index = *i;
-	size = size_env(&dollar[index + 1]);
-	if (!size)
-		ret = join_char(ret, dollar[index]);
+	aux = NULL;
+	if (ft_strchr("\"\'", tk[index]))
+	{
+		aux = ft_substr(&tk[index + 1], 0, size - 2);
+		if (tk[index] == '\"')
+			aux = update_quote_dollar(aux, env);
+	}
 	else
 	{
-		final = &dollar[index + (size + 1)];
-		elm_env = expand_dollar(&dollar[index + 1], env);
-		ret = join_exp(ret, elm_env);
-		ret = join_exp(ret, final);
+		aux = ft_substr(&tk[index], 0, size);
+		aux = update_quote_dollar(aux, env);
 	}
-	return (ret);
-}
-
-char	*update_quote_dollar(char *dollar, char **env)
-{
-	char	*ret;
-	int		size;
-	int		i;
-
-	i = -1;
-	size = 0;
-	ret = ft_calloc(1, sizeof(char));
-	if (!ret)
-		ret_error("ERROR: Memory allocation failed.\n");
-	while (dollar[++i])
-	{
-		if (dollar[i] != '$')
-		{
-			size = word_size_parser(&dollar[i]);
-			ret = join_tokens(ret, ft_substr(&dollar[i], 0, size));
-			i += size - 1;
-		}
-		else if (dollar[i] == '$')
-		{
-			ret = update_dollar(dollar, env, &i, ret);
-			return (ret);
-		}
-	}
-	free (dollar);
-	return (ret);
+	return (aux);
 }
 
 char	*dollar_quotes(char *tk, char *dol, char **env, int *i)
@@ -100,17 +71,7 @@ char	*dollar_quotes(char *tk, char *dol, char **env, int *i)
 	size = size_parser(&tk[index]);
 	if (size)
 	{
-		if (ft_strchr("\"\'", tk[index]))
-		{
-			aux = ft_substr(&tk[index + 1], 0, size - 2);
-			if (tk[index] == '\"')
-				aux = update_quote_dollar(aux, env);
-		}
-		else
-		{
-			aux = ft_substr(&tk[index], 0, size);
-			aux = update_quote_dollar(aux, env);
-		}
+		aux = dollar_quotes2(tk, size, env, &index);
 		dol = join_tokens(dol, aux);
 		*i += size - 1;
 	}

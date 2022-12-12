@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 13:11:37 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/05 11:37:27 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/12 15:00:51 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*error_parser(char *token, t_node *tree)
 	if (token)
 		free(token);
 	set_exit(EXIT_SYNTAX, SET_EXIT);
-	return	(NULL);
+	return (NULL);
 }
 
 t_node	*parser(char *line, char **env)

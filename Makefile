@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+         #
+#    By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/21 17:10:37 by bshintak          #+#    #+#              #
-#    Updated: 2022/12/07 15:26:23 by lleiria-         ###   ########.fr        #
+#    Updated: 2022/12/12 15:09:15 by bshintak         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,13 +26,14 @@ BUILTINS	= 	builtins/pwd.c				\
 				builtins/env.c				\
 				builtins/export.c			\
 				builtins/unset.c			\
+				builtins/exit.c
 
 TOKEN		=	token/get_token.c			\
 				token/get_id.c				\
-				token/get_til.c				\
 				token/word_parser.c			\
 				token/utils_word_parser.c	\
-				token/utils_get_token.c
+				token/utils_get_token.c		\
+				token/update_dollar_quote.c	\
 
 TREE		=	tree/create_tree.c			\
 				tree/add_node.c				\
@@ -45,6 +46,10 @@ TREE		=	tree/create_tree.c			\
 EXECUTOR	=	executor/executor.c			\
 				executor/executor_utils.c	\
 
+EXPAND		=	expand/expand_home.c		\
+				expand/expand_shlvl.c		\
+				expand/expand_dollar.c		\
+
 ERROR		=	error/syntax_error.c		\
 				error/errors.c
 
@@ -53,9 +58,9 @@ SRC_WTV		=	main.c						\
 				get_env.c					\
 				utils_exit.c				\
 				ctrl.c						\
-				print_tree.c
+				print_tree.c				\
 
-SRC_NAME	=	$(BUILTINS) $(TOKEN) $(TREE) $(EXECUTOR) $(ERROR) $(SRC_WTV)
+SRC_NAME	=	$(BUILTINS) $(TOKEN) $(TREE) $(EXECUTOR) $(EXPAND) $(ERROR) $(SRC_WTV)
 
 SRCS		=	$(addprefix $(SRC_PATH)/, $(SRC_NAME))
 OBJS		=	$(patsubst $(SRC_PATH)/%.c, $(OBJ_PATH)/%.o, $(SRCS))

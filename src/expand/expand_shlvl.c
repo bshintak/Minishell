@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   expand_shlvl.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/12 11:17:17 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/12 11:17:18 by bshintak         ###   ########.fr       */
+/*   Created: 2022/12/12 11:41:32 by bshintak          #+#    #+#             */
+/*   Updated: 2022/12/12 11:42:40 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
-int	ft_isalpha(int a)
+char	*find_shlvl(char **env)
 {
-	if ((a >= 97 && a <= 122) || (a >= 65 && a <= 90))
-		return (1);
-	return (0);
+	int	i;
+
+	i = 0;
+	while (env[i] && ft_strncmp(env[i], "SHLVL=", 6))
+		i++;
+	if (env[i])
+		return (env[i] + 6);
+	return (NULL);
 }

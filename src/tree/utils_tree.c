@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_tree.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 12:08:08 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/08 12:02:17 by lleiria-         ###   ########.fr       */
+/*   Updated: 2022/12/12 15:07:19 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,15 @@ int	strlen_matrix(char **str)
 	return (i);
 }
 
+void	fail_malloc(char **str)
+{
+	if (!str)
+	{
+		ft_putendl_fd("minishell: Out of memory!", 2);
+		exit(EXIT_FAILURE);
+	}
+}
+
 char	**update_string(char **str, char *token)
 {
 	char	**new_str;
@@ -48,11 +57,7 @@ char	**update_string(char **str, char *token)
 	if (!str)
 	{
 		new_str = malloc(sizeof(char *) * 2);
-		if (!new_str)
-		{
-			ft_putendl_fd("minishell: Out of memory!", 2);
-			exit(EXIT_FAILURE);
-		}
+		fail_malloc(new_str);
 		new_str[0] = ft_strdup(token);
 		new_str[1] = NULL;
 	}
@@ -60,11 +65,7 @@ char	**update_string(char **str, char *token)
 	{
 		size = strlen_matrix(str);
 		new_str = malloc(sizeof(char *) * (size + 2));
-		if (!new_str)
-		{
-			ft_putendl_fd("minishell: Out of memory!", 2);
-			exit(EXIT_FAILURE);
-		}
+		fail_malloc(new_str);
 		while (str[++i])
 			new_str[i] = str[i];
 		new_str[i] = ft_strdup(token);

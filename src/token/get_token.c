@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 15:19:39 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/06 12:15:27 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/12 11:52:33 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*get_word(int *i, char *line)
 {
 	int		final;
 	char	*word;
-	
+
 	final = *i;
 	while (line[final])
 	{

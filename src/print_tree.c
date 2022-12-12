@@ -1,3 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_tree.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/12 11:20:29 by bshintak          #+#    #+#             */
+/*   Updated: 2022/12/12 11:23:49 by bshintak         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/*
 #include "../minishell.h"
 
 #define COUNT 10
@@ -5,11 +18,11 @@
 //cat <in >out | ls <in2 >out2 | <<in3 >>out3 grep | <<in4 less >out4
 
 static void	print2dutil(t_node *root, int space);
-void	print_node1(t_node *node);
+void		print_node1(t_node *node);
 
-/*
- Code based in https://www.geeksforgeeks.org/print-binary-tree-2-dimensions/
-*/
+
+// Code based in https://www.geeksforgeeks.org/print-binary-tree-2-dimensions/
+
 
 void	print2d(t_node *root)
 {
@@ -85,4 +98,4 @@ void	print_node1(t_node *node)
 			printf("<< ");
 		print_data(*node);
 	}
-}
+}*/

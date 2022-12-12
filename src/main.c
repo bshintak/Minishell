@@ -3,28 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:58:37 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/08 11:55:41 by lleiria-         ###   ########.fr       */
+/*   Updated: 2022/12/12 14:58:23 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+int	main_exit(char *line)
+{
+	if (!line)
+	{
+		ft_putstr_fd("exit\n", STDOUT_FILENO);
+		return (1);
+	}
+	return (0);
+}
+
+int	wrong_arg(int argc, char **argv)
+{
+	if (argc != 1 && argv[1])
+	{
+		printf("wrong argument!\n");
+		return (1);
+	}
+	return (0);
+}
+
+void	tree_parser(char *line, char ***env)
+{
+	t_node		*tree;
+
+	tree = parser(line, *env);
+	free (line);
+	if (tree)
+	{
+		executor(&tree, env);
+		tree_free(tree);
+	}
+}
+
 int	main(int argc, char **argv, char **env)
 {
 	char		*line;
 	char		**env_copy;
-	t_node		*tree;
-	// int			i = -1;
 
-	tree = NULL;
-	if (argc != 1 && argv[1])
-	{
-		printf("wrong argument!\n");
-		return (-1);
-	}
+	if (wrong_arg(argc, argv))
+		return (0);
 	env_copy = get_env(env);
 	if (!env_copy)
 		return (0);
@@ -33,26 +60,13 @@ int	main(int argc, char **argv, char **env)
 	while (1)
 	{
 		line = readline("➜  bshintak&&lleiria-MiniShell: ");
-		if (!line)
-		{
-			ft_putstr_fd("exit\n", STDOUT_FILENO);
+		if (main_exit(line))
 			break ;
-		}
-		if (!ft_strncmp(line, "exit", 5))
-		{
-			free (line);
-			rl_clear_history();
-			return (0);
-		}
-		add_history(line);
-		tree = parser(line, env_copy);
-		// print2d(tree);
-		free (line);
-		if (tree)
-		{
-			executor(&tree, &env_copy);
-			tree_free(tree);
-		}
+		if (!ft_strncmp(line, "exit", 4))
+			return (ft_exit(&line[5]));
+		if (line)
+			add_history(line);
+		tree_parser(line, &env_copy);
 	}
 	free (env_copy);
 	return (0);
