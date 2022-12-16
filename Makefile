@@ -6,7 +6,7 @@
 #    By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/21 17:10:37 by bshintak          #+#    #+#              #
-#    Updated: 2022/12/12 15:09:15 by bshintak         ###   ########.fr        #
+#    Updated: 2022/12/16 12:42:53 by bshintak         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,7 @@ EXECUTOR	=	executor/executor.c			\
 EXPAND		=	expand/expand_home.c		\
 				expand/expand_shlvl.c		\
 				expand/expand_dollar.c		\
+				expand/expand_exit.c
 
 ERROR		=	error/syntax_error.c		\
 				error/errors.c

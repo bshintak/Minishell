@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 11:37:14 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/12 11:50:32 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/16 12:51:05 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,18 @@ char	*update_dollar(char *dollar, char **env, int *i, char *ret)
 	return (ret);
 }
 
+char	*do_dollar(char *dollar, char **env, int *i, char *ret)
+{
+	int	index;
+
+	index = *i;
+	if (dollar[index] == '$' && dollar[index + 1] != '?')
+		ret = update_dollar(dollar, env, &index, ret);
+	else if (dollar[index] == '$' && dollar[index + 1] == '?')
+		ret = get_exit(dollar, &index, ret);
+	return (ret);
+}
+
 char	*update_quote_dollar(char *dollar, char **env)
 {
 	char	*ret;
@@ -52,10 +64,10 @@ char	*update_quote_dollar(char *dollar, char **env)
 			ret = join_tokens(ret, ft_substr(&dollar[i], 0, size));
 			i += size - 1;
 		}
-		else if (dollar[i] == '$')
+		else if (dollar[i] == '$' && dollar[i + 1])
 		{
-			ret = update_dollar(dollar, env, &i, ret);
-			return (ret);
+			ret = do_dollar(dollar, env, &i, ret);
+			break ;
 		}
 	}
 	free (dollar);

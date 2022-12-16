@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:23:53 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/12 14:09:12 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/16 12:52:33 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ typedef struct s_node
 	struct s_node	*right;
 	struct s_node	*up;
 }				t_node;
+
+typedef struct s_exit
+{
+	int		status_exit;
+}				t_exit;
 
 typedef struct s_quotes
 {
@@ -57,6 +62,7 @@ typedef struct s_quotes
 # define SET_EXIT			1
 # define EXIT_SYNTAX		2
 # define CLEAR_EXIT			3
+# define GET_EXIT			4
 
 # define MISSING_QUOTE		1
 # define DOLLAR_QUOTE		2
@@ -141,6 +147,9 @@ char	*find_shlvl(char **env);
 
 /*		EXPAND_DOLLAR			*/
 char	*expand_dollar(char *token, char **env);
+
+/*		EXPAND_EXIT				*/
+char	*get_exit(char	*dollar, int *i, char *ret);
 
 /*		UTILS_WORD_PARSER		*/
 int		size_env(char *str);
