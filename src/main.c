@@ -6,20 +6,20 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:58:37 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/16 11:53:10 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/16 18:34:03 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	main_exit(char *line)
+void	main_exit(char *line)
 {
 	if (!line)
 	{
 		ft_putstr_fd("exit\n", STDOUT_FILENO);
-		return (1);
+		rl_clear_history();
+		exit (1);
 	}
-	return (0);
 }
 
 int	wrong_arg(int argc, char **argv)
@@ -60,14 +60,12 @@ int	main(int argc, char **argv, char **env)
 	while (1)
 	{
 		line = readline("➜  bshintak&&lleiria-MiniShell: ");
-		if (main_exit(line))
-			break ;
-		if (!ft_strncmp(line, "exit", 4))
-			return (ft_exit(&line[5]));
 		if (line)
 			add_history(line);
+		main_exit(line);
 		tree_parser(line, &env_copy);
 	}
+	printf("aqui\n");
 	free (env_copy);
 	return (0);
 }

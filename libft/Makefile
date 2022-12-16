@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+         #
+#    By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/22 16:27:20 by bshintak          #+#    #+#              #
-#    Updated: 2022/12/08 11:20:47 by lleiria-         ###   ########.fr        #
+#    Updated: 2022/12/16 17:03:17 by bshintak         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ SRC =	ft_strcmp			\
 		ft_isalnum			\
 		ft_isdigit			\
 		ft_isalpha			\
+		ft_isascii			\
 		ft_split			\
 		ft_strnstr			\
 		ft_calloc			\

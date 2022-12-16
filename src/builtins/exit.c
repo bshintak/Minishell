@@ -6,41 +6,47 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 12:03:28 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/12 15:00:09 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/16 17:57:53 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	num_exit(char *line, int *index)
+int	num_exit(int num)
 {
-	int		i;
-	int		len;
-	char	*num;
-
-	i = *index;
-	len = 0;
-	while (line[i] && ft_isdigit(line[i]))
-	{
-		len++;
-		i++;
-	}
-	num = ft_substr(line, *index, len);
-	return (set_exit(ft_atoi(num), SET_EXIT));
+	if (num >= 0 && num <= 255)
+		return (num);
+	else
+		return (num % 256);
 }
 
-int	ft_exit(char *line)
+int	type_exit(char *line)
 {
 	int	i;
 
+	i = -1;
+	while(line[++i])
+	{
+		if (ft_isascii(line[i]) && !ft_isdigit(line[i]))
+			return (2);
+	}
 	i = 0;
-	if (!line)
-		return (0);
-	while (line[i] == 32 || (line[i] >= 9 && line[i] <= 13))
-		i++;
-	if (ft_isalpha(line[i]))
-		return (set_exit(2, SET_EXIT));
 	if (ft_isdigit(line[i]))
-		return (num_exit(line, &i));
+		return (num_exit(ft_atoi(line)));
 	return (0);
+}
+
+void	builtin_exit(char **line)
+{
+	int	status;
+
+	status = 0;
+	if (!line[1])
+	{
+		printf("exit\n");
+		status = 0;
+	}
+	else
+		status = type_exit(line[1]);
+	exit (status);
 }

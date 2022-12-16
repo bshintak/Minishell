@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:23:53 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/16 12:52:33 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/16 18:55:46 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,9 @@ char	*ft_strrchr(const char *str, int c);
 char	*ft_strdup(char *s);
 int		ft_isalnum(int c);
 int		ft_isdigit(int c);
-int		ft_isalpha(int a);
 int		is_space(char c);
+int		ft_isalpha(int a);
+int		ft_isascii(int a);
 void	*ft_memset(void *s, int c, size_t n);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
 void	*ft_calloc(size_t count, size_t size);
@@ -115,16 +116,16 @@ void	builtin_env(char **env);
 void	builtin_cd(char **line, char ***env);
 void	builtin_export(char **line, char ***env);
 void	builtin_unset(char **line, char ***env);
-int		ft_exit(char *line);
+void	builtin_exit(char **line);
 
 /*		GET_ENV				*/
 char	**get_env(char **env);
 
 /*		ERRORS				*/
-void	new_line(void);
 void	ret_error(char *str);
 void	ret_without_error(char *str);
 void	print_error(char *token);
+void	print_error2(char *token, int status);
 
 /*		SYNTAX_ERROR		*/
 int		syntax_error(t_node *tree, char *token);

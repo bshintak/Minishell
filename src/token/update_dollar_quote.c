@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 11:37:14 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/16 12:51:05 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/16 18:37:59 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ char	*update_dollar(char *dollar, char **env, int *i, char *ret)
 		elm_env = ft_strdup(expand_dollar(&dollar[index + 1], env));
 		ret = join_tokens(ret, elm_env);
 		ret = join_tokens(ret, final);
+		free (final);
+		free (elm_env);
 	}
 	return (ret);
 }
