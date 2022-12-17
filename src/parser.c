@@ -34,8 +34,8 @@ t_node	*parser(char *line, char **env)
 	while (1)
 	{
 		token = get_token(line, reset);
-		if (syntax_error(tree, token))
-			return (error_parser(token, tree));
+		//if (syntax_error(tree, token))
+		//	return (error_parser(token, tree));
 		if (!token)
 			break ;
 		id = get_id(token);

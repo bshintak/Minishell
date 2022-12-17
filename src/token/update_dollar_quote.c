@@ -29,8 +29,8 @@ char	*update_dollar(char *dollar, char **env, int *i, char *ret)
 		elm_env = ft_strdup(expand_dollar(&dollar[index + 1], env));
 		ret = join_tokens(ret, elm_env);
 		ret = join_tokens(ret, final);
-		free (final);
 		free (elm_env);
+		free (final);
 	}
 	return (ret);
 }
@@ -56,8 +56,7 @@ char	*update_quote_dollar(char *dollar, char **env)
 	i = -1;
 	size = 0;
 	ret = ft_calloc(1, sizeof(char));
-	if (!ret)
-		ret_error("ERROR: Memory allocation failed.\n");
+	fail_malloc2(ret);
 	while (dollar[++i])
 	{
 		if (dollar[i] != '$')

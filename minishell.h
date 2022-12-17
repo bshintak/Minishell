@@ -36,11 +36,14 @@ typedef struct s_exit
 	int		status_exit;
 }				t_exit;
 
-typedef struct s_quotes
+typedef struct s_pipex
 {
-	int				simple_quo;
-	int				double_quo;
-}				t_quotes;
+	int		pipe_fd;
+	int		pid;
+	int		fd_in;
+	int		fd_out;
+	int		heredoc;
+}				t_pipex;
 
 # define FALSE				0
 # define TRUE				1
@@ -182,6 +185,7 @@ void	put_herdoc(t_node *node, char *token);
 char	**update_string(char **str, char *token);
 t_node	*search_node(t_node *tree);
 int		is_builtin(char *token);
+void	fail_malloc2(void *str);
 
 /*		ADD_NODE				*/
 void	add_pipe(t_node **tree, t_node *node);
@@ -197,7 +201,7 @@ void	add_on_left(t_node *node, t_node *new);
 void	tree_free(t_node *tree);
 
 /*		EXECUTOR				*/
-void	executor(t_node **tree, char ***env);
+void	executor(t_node **tree, char ***env, int num);
 char	**get_paths(char **env);
 char	*get_cmd_path(char *cmd, char **paths);
 

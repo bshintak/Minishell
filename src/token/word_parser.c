@@ -49,12 +49,14 @@ char	*dollar_quotes2(char *tk, int size, char **env, int *i)
 	if (ft_strchr("\"\'", tk[index]))
 	{
 		aux = ft_substr(&tk[index + 1], 0, size - 2);
+		fail_malloc2(aux);
 		if (tk[index] == '\"')
 			aux = update_quote_dollar(aux, env);
 	}
 	else
 	{
 		aux = ft_substr(&tk[index], 0, size);
+		fail_malloc2(aux);
 		aux = update_quote_dollar(aux, env);
 	}
 	return (aux);
@@ -100,7 +102,7 @@ char	*word_parser(char *token, char **env)
 		return (token);
 	dollar = ft_calloc(1, sizeof(char));
 	if (!dollar)
-		ret_error("ERROR: Memory allocation failed.\n");
+		fail_malloc2(dollar);
 	while (token[++i])
 		dollar = dollar_quotes(token, dollar, env, &i);
 	free(token);

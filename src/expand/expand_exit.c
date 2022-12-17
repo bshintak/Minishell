@@ -21,8 +21,7 @@ char	*get_exit(char	*dollar, int *i, char *ret)
 	int		index;
 
 	node = malloc(sizeof(t_exit));
-	if (!node)
-		ret_error("ERROR: Memory allocation failed.\n");
+	fail_malloc2(node);
 	index = *i;
 	size = size_env(&dollar[index + 1]);
 	final = ft_strdup(&dollar[(index + 1) + (size + 1)]);
@@ -31,5 +30,6 @@ char	*get_exit(char	*dollar, int *i, char *ret)
 	ret = join_tokens(ret, final);
 	free (final);
 	free (node);
+	free (wtv);
 	return (ret);
 }

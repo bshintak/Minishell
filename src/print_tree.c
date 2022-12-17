@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
 #include "../minishell.h"
 
 #define COUNT 10
@@ -98,4 +97,4 @@ void	print_node1(t_node *node)
 			printf("<< ");
 		print_data(*node);
 	}
-}*/
+}

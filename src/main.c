@@ -32,15 +32,38 @@ int	wrong_arg(int argc, char **argv)
 	return (0);
 }
 
+int	num_pipes(t_node *tree)
+{
+	t_node	*node;
+	int		num;
+
+	num = 0;
+	node = tree;
+	if (node->left)
+	{
+		num++;
+		while (node->left->id == ID_PIPE)
+		{
+			num++;
+			node = node->left;
+		}
+		printf("----------%d----------\n", num);
+	}
+	return (num);
+}
+
 void	tree_parser(char *line, char ***env)
 {
 	t_node		*tree;
+	int			num;
 
 	tree = parser(line, *env);
+	//print2d(tree);
 	free (line);
 	if (tree)
 	{
-		executor(&tree, env);
+		num = num_pipes(tree);
+		executor(&tree, env, num);
 		tree_free(tree);
 	}
 }

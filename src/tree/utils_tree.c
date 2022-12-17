@@ -38,6 +38,15 @@ int	strlen_matrix(char **str)
 	return (i);
 }
 
+void	fail_malloc2(void *str)
+{
+	if (!str)
+	{
+		ft_putendl_fd("minishell: Out of memory!", 2);
+		exit(EXIT_FAILURE);
+	}
+}
+
 void	fail_malloc(char **str)
 {
 	if (!str)
