@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 11:37:07 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/29 12:12:47 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/19 10:57:23 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,5 @@ void	builtin_pwd(void)
 		printf("Error: %s\n", strerror(errno));
 	else
 		printf("%s\n", path);
+	free (path);
 }

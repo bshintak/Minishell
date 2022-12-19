@@ -6,11 +6,13 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:58:37 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/16 18:34:03 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/19 10:51:37 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+int	exit_status = 0;
 
 void	main_exit(char *line)
 {
@@ -88,7 +90,6 @@ int	main(int argc, char **argv, char **env)
 		main_exit(line);
 		tree_parser(line, &env_copy);
 	}
-	printf("aqui\n");
 	free (env_copy);
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/21 17:10:37 by bshintak          #+#    #+#              #
-#    Updated: 2022/12/16 18:54:46 by bshintak         ###   ########.fr        #
+#    Updated: 2022/12/19 10:56:08 by bshintak         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ $(VERBOSE).SILENT:
 
 NAME		=	minishell
 CC			=	gcc
-CFLAGS		=	-Wall -Werror -Wextra #-fsanitize=address
+CFLAGS		=	-Wall -Werror -Wextra -fsanitize=address
 INCLUDE		=	-lreadline
 MKD			=	mkdir
 RM			=	rm -f

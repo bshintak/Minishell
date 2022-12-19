@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tree_free.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 14:27:59 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/08 11:57:19 by lleiria-         ###   ########.fr       */
+/*   Updated: 2022/12/19 10:55:35 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	node_free(t_node *node)
 	else if (is_command(node))
 	{
 		if (node->data)
-			node_free(node);
+			cmd_free(node->data);
 	}
 	free(node);
 }
@@ -42,7 +42,8 @@ void	tree_free(t_node *tree)
 	if (!tree)
 		return ;
 	if (tree->left)
-		node_free(tree->left);
+		tree_free(tree->left);
 	else if (tree->right)
-		node_free(tree->right);
+		tree_free(tree->right);
+	node_free(tree);
 }
