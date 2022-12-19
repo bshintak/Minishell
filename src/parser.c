@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 13:11:37 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/12 15:00:51 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/19 11:54:36 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ t_node	*parser(char *line, char **env)
 	while (1)
 	{
 		token = get_token(line, reset);
-		//if (syntax_error(tree, token))
-		//	return (error_parser(token, tree));
+		if (syntax_error(tree, token))
+			return (error_parser(token, tree));
 		if (!token)
 			break ;
 		id = get_id(token);

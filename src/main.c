@@ -6,13 +6,18 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:58:37 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/19 10:51:37 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/19 18:31:58 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	exit_status = 0;
+t_exit	*exit_status(void)
+{
+	static	t_exit	exit_status;
+	
+	return (&exit_status);
+}
 
 void	main_exit(char *line)
 {
@@ -20,7 +25,7 @@ void	main_exit(char *line)
 	{
 		ft_putstr_fd("exit\n", STDOUT_FILENO);
 		rl_clear_history();
-		exit (1);
+		exit((*exit_status()).i);
 	}
 }
 
@@ -49,7 +54,7 @@ int	num_pipes(t_node *tree)
 			num++;
 			node = node->left;
 		}
-		printf("----------%d----------\n", num);
+		// printf("----------%d----------\n", num);
 	}
 	return (num);
 }
@@ -60,7 +65,7 @@ void	tree_parser(char *line, char ***env)
 	int			num;
 
 	tree = parser(line, *env);
-	//print2d(tree);
+	// print2d(tree);
 	free (line);
 	if (tree)
 	{
@@ -80,6 +85,7 @@ int	main(int argc, char **argv, char **env)
 	env_copy = get_env(env);
 	if (!env_copy)
 		return (0);
+	(*exit_status()).i = 0;
 	get_signal(SIGQUIT, SIG_IGN);
 	get_signal(SIGINT, ctrl_c);
 	while (1)

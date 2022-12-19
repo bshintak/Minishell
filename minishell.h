@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:23:53 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/16 18:55:46 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/19 16:41:07 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,14 @@
 # include <stdlib.h>
 # include <signal.h>
 # include <errno.h>
+# include <sys/wait.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 
 typedef struct s_node
 {
 	int				id;
+	int				p[2];
 	void			*data;
 	struct s_node	*left;
 	struct s_node	*right;
@@ -33,13 +35,15 @@ typedef struct s_node
 
 typedef struct s_exit
 {
-	int		status_exit;
+	int			i;
 }				t_exit;
 
 typedef struct s_pipex
 {
-	int		pipe_fd;
+	int		pipe;
+	int		num_pipe;
 	int		pid;
+	int		fd;
 	int		fd_in;
 	int		fd_out;
 	int		heredoc;
@@ -69,6 +73,9 @@ typedef struct s_pipex
 
 # define MISSING_QUOTE		1
 # define DOLLAR_QUOTE		2
+
+/*		PSEUDO_GLOBAL_VAR	*/
+t_exit	*exit_status(void);
 
 /*		LIBFT				*/
 int		ft_strncmp(const char *s1, const char *s2, size_t n);

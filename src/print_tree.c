@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 11:20:29 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/12 11:23:49 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/19 11:11:50 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,18 +64,12 @@ void	print_array_string(char **str)
 void	print_data(t_node node)
 {
 	char	**c;
-	// t_redir	*r;
 
 	if (node.id == ID_COMMAND)
 	{
 		c = (char **)node.data;
 		print_array_string(c);
 	}
-	// else
-	// {
-	// 	r = (t_redir *) node.data;
-	// 	printf("%s\n", r->redir);
-	// }
 }
 
 void	print_node1(t_node *node)

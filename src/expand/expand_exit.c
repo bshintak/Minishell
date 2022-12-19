@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 12:37:26 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/16 18:36:46 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/19 11:49:43 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,16 @@
 
 char	*get_exit(char	*dollar, int *i, char *ret)
 {
-	t_exit	*node;
 	char	*wtv;
 	char	*final;
 	int		size;
 	int		index;
 
-	node = malloc(sizeof(t_exit));
-	fail_malloc2(node);
 	index = *i;
 	size = size_env(&dollar[index + 1]);
 	final = ft_strdup(&dollar[(index + 1) + (size + 1)]);
-	wtv = ft_strdup(ft_itoa(set_exit(node->status_exit, GET_EXIT)));
+	wtv = ft_strdup(ft_itoa(set_exit((*exit_status()).i, GET_EXIT)));
 	ret = join_tokens(ret, wtv);
 	ret = join_tokens(ret, final);
-	free (final);
-	free (node);
-	free (wtv);
 	return (ret);
 }

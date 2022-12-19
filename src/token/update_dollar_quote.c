@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 11:37:14 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/16 18:37:59 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/19 15:41:00 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,15 @@ char	*update_dollar(char *dollar, char **env, int *i, char *ret)
 
 	index = *i;
 	size = size_env(&dollar[index + 1]);
+	printf("%s\n", dollar);
 	if (!size)
-		ret = join_char(ret, dollar[index]);
+		return (dollar);
 	else
 	{
 		final = ft_strdup(&dollar[index + (size + 1)]);
-		elm_env = ft_strdup(expand_dollar(&dollar[index + 1], env));
+		elm_env = ft_strdup(expand_dollar(&dollar[index], env));
 		ret = join_tokens(ret, elm_env);
 		ret = join_tokens(ret, final);
-		free (elm_env);
-		free (final);
 	}
 	return (ret);
 }
@@ -44,6 +43,7 @@ char	*do_dollar(char *dollar, char **env, int *i, char *ret)
 		ret = update_dollar(dollar, env, &index, ret);
 	else if (dollar[index] == '$' && dollar[index + 1] == '?')
 		ret = get_exit(dollar, &index, ret);
+	printf("%s\n", ret);
 	return (ret);
 }
 
@@ -72,6 +72,7 @@ char	*update_quote_dollar(char *dollar, char **env)
 		}
 	}
 	free (dollar);
+	printf("%s\n", ret);
 	return (ret);
 }
 

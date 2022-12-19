@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 14:27:59 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/19 10:55:35 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/19 11:18:08 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void	tree_free(t_node *tree)
 	if (!tree)
 		return ;
 	if (tree->left)
-		tree_free(tree->left);
+		node_free(tree->left);
 	else if (tree->right)
-		tree_free(tree->right);
-	node_free(tree);
+		node_free(tree->right);
+	free (tree);
 }
