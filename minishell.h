@@ -20,6 +20,7 @@
 # include <signal.h>
 # include <errno.h>
 # include <sys/wait.h>
+# include <sys/stat.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 
@@ -64,6 +65,11 @@ typedef struct s_pipex
 # define ID_OUTPUT_APPEND	5	/* '>>' */
 # define ID_COMMAND			6	/* 'ls' */
 # define ID_BUILTIN			7	/* 'builtin' */
+
+# define SI_IGN 1
+# define SI_HDOC 2
+# define SI_RLINE 3
+# define SI_DFL 4
 
 # define EXIT_CTRL_C		130
 # define SET_EXIT			1
@@ -142,7 +148,8 @@ int		syntax_error(t_node *tree, char *token);
 
 /*		CTRL				*/
 void	get_signal(int signal, void (*function)());
-void	ctrl_c(int signal);
+void	ctrl_c(int signal, siginfo_t *info, void *ucontext);
+void	call_sigact(char act_choice);
 
 /*		UTILS_EXIT				*/
 int		set_exit(int status, int option);

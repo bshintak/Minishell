@@ -18,7 +18,10 @@ void	cmd_free(char **node)
 
 	i = -1;
 	while (node[++i])
-		free(node[i]);
+	{
+		if (node[i])
+			free(node[i]);
+	}
 	free (node);
 }
 
@@ -42,8 +45,8 @@ void	tree_free(t_node *tree)
 	if (!tree)
 		return ;
 	if (tree->left)
-		node_free(tree->left);
+		tree_free(tree->left);
 	else if (tree->right)
-		node_free(tree->right);
-	free (tree);
+		tree_free(tree->right);
+	node_free(tree);
 }

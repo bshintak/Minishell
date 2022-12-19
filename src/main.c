@@ -46,7 +46,7 @@ int	num_pipes(t_node *tree)
 
 	num = 0;
 	node = tree;
-	if (node->left)
+	if (node->left && !is_redir(node->left))
 	{
 		num++;
 		while (node->left->id == ID_PIPE)
@@ -62,16 +62,18 @@ int	num_pipes(t_node *tree)
 void	tree_parser(char *line, char ***env)
 {
 	t_node		*tree;
+	t_node		*inicial_tree;
 	int			num;
 
 	tree = parser(line, *env);
+	inicial_tree = tree;
 	// print2d(tree);
 	free (line);
 	if (tree)
 	{
 		num = num_pipes(tree);
 		executor(&tree, env, num);
-		tree_free(tree);
+		tree_free(inicial_tree);
 	}
 }
 
@@ -90,10 +92,11 @@ int	main(int argc, char **argv, char **env)
 	get_signal(SIGINT, ctrl_c);
 	while (1)
 	{
+		call_sigact(SI_RLINE);
 		line = readline("➜  bshintak&&lleiria-MiniShell: ");
+		main_exit(line);
 		if (line)
 			add_history(line);
-		main_exit(line);
 		tree_parser(line, &env_copy);
 	}
 	free (env_copy);
