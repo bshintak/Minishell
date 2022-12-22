@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 15:24:36 by lleiria-          #+#    #+#             */
-/*   Updated: 2022/12/19 18:26:12 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/22 15:18:23 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,6 @@ void	executor(t_node **tree, char ***env, int num)
 			pp.num_pipe--;
 		}
 	}
-	wait_for_cmd(pp.pid, num, *env);
+	// wait_for_cmd(pp.pid, num, *env);
 	
 }

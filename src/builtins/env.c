@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 16:34:59 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/29 12:12:08 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/22 15:13:25 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,10 @@ void	builtin_env(char **env)
 	while (env[i])
 	{
 		if (have_value(env[i]))
-			printf("%s\n", env[i]);
+		{
+			ft_putstr_fd(env[i], 1);
+			ft_putchar_fd('\n', 1);
+		}
 		i++;
 	}
 }

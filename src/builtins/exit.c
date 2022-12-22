@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 12:03:28 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/16 17:57:53 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/22 15:29:33 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	type_exit(char *line)
 	int	i;
 
 	i = -1;
-	while(line[++i])
+	while (line[++i])
 	{
 		if (ft_isascii(line[i]) && !ft_isdigit(line[i]))
 			return (2);
@@ -43,7 +43,7 @@ void	builtin_exit(char **line)
 	status = 0;
 	if (!line[1])
 	{
-		printf("exit\n");
+		ft_putstr_fd("exit\n", 1);
 		status = 0;
 	}
 	else

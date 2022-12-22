@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:58:37 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/19 18:31:58 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/22 15:18:11 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 t_exit	*exit_status(void)
 {
-	static	t_exit	exit_status;
-	
+	static t_exit	exit_status;
+
 	return (&exit_status);
 }
 
@@ -88,11 +88,11 @@ int	main(int argc, char **argv, char **env)
 	if (!env_copy)
 		return (0);
 	(*exit_status()).i = 0;
-	get_signal(SIGQUIT, SIG_IGN);
-	get_signal(SIGINT, ctrl_c);
+	// get_signal(SIGQUIT, SIG_IGN);
+	// get_signal(SIGINT, ctrl_c);
 	while (1)
 	{
-		call_sigact(SI_RLINE);
+		// call_sigact(SI_RLINE);
 		line = readline("➜  bshintak&&lleiria-MiniShell: ");
 		main_exit(line);
 		if (line)

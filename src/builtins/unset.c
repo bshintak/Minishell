@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 11:22:21 by lleiria-          #+#    #+#             */
-/*   Updated: 2022/12/06 15:46:15 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/22 15:28:10 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,10 @@ void	builtin_unset(char **line, char ***env)
 		if (exist_var(line[1], *env))
 			delete_var(line[1], env);
 		else
-			printf("unset: `%s': not a valid identifier\n", line[1]);
+		{
+			ft_putstr_fd("unset: \'", 1)
+			ft_putstr_fd(line[1], 1);
+			ft_putstr_fd("\': not a valid identifier\n", 1)
+		}
 	}
 }
