@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 15:52:54 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/05 10:45:42 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/23 12:46:10 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,15 @@ void	update_env(char *old_path, char *new_path, char ***env)
 	}
 }
 
+void	error_cd(char *token)
+{
+	ft_putstr_fd("cd: ", 1);
+	ft_putstr_fd(token, 1);
+	ft_putstr_fd(": ", 1);
+	ft_putstr_fd(strerror(errno), 1);
+	ft_putchar_fd('\n', 1);
+}
+
 void	builtin_cd(char **line, char ***env)
 {
 	char	*new_path;
@@ -66,7 +75,10 @@ void	builtin_cd(char **line, char ***env)
 	old_path = getcwd(NULL, 1025);
 	printf("old path: %s\n", old_path);
 	if (chdir(line[1]) == -1)
-		printf("error\n");
+	{
+		error_cd(line[1]);
+		return ;
+	}
 	new_path = getcwd(NULL, 1025);
 	printf("new path: %s\n", new_path);
 	update_env(old_path, new_path, env);
