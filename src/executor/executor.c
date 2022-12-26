@@ -3,23 +3,77 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 15:24:36 by lleiria-          #+#    #+#             */
-/*   Updated: 2022/12/22 15:18:23 by lleiria-         ###   ########.fr       */
+/*   Updated: 2022/12/26 16:58:30 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	is_path(char *cmd, char *path)
+void	redir(t_pipex *pp, t_node *node)
+{
+	dup2(pp->fd, STDIN_FILENO);
+	if (pp->num_pipe > 1)
+	{
+		dup2(node->p[1], STDOUT_FILENO);
+		close(node->p[1]);
+	}
+	else
+		close(node->p[1]);
+}
+
+char	*get_cmd_path(char **path, char *cmd)
+{
+	char	*tmp;
+	int		i;
+	int		j;
+
+	i = -1;
+	tmp = NULL;
+	while (path[++i])
+	{
+		tmp = ft_strjoin(path[i], cmd);
+		if (is_path(cmd, tmp))
+		{
+			j = -1;
+			while (path[++j])
+				free (path[j]);
+			free(cmd);
+			return (tmp);
+		}
+		free(tmp);
+	}
+	j = -1;
+	while (path[++j])
+		free (path[j]);
+	free(cmd);
+	return (NULL);
+}
+
+char	*get_path(char *env, char *cmd)
+{
+	char	**tmp;
+	char	*tmp2;
+
+	tmp = NULL;
+	tmp2 = NULL;
+	if (ft_strncmp(env, "PATH=", 5))
+		return (NULL);
+	tmp = ft_split(env, ':');
+	tmp2 = ft_strjoin("/", cmd);
+	return (get_cmd_path(tmp, tmp2));
+}
+
+int	is_path(char *str, char *path)
 {
 	struct stat	buf;
 
 	lstat(path, &buf);
 	if (S_ISDIR(buf.st_mode))
 	{
-		ft_putstr_fd(cmd, 2);
+		ft_putstr_fd(str, 2);
 		ft_putendl_fd(" is a directory", 2);
 		(*exit_status()).i = 126;
 		exit((*exit_status()).i);
@@ -29,13 +83,14 @@ int	is_path(char *cmd, char *path)
 	return (0);
 }
 
-char	*not_absolute(char *cmd, char **path)
+char	*path_cmd(char *cmd, char ***env)
 {
 	char	*pwd;
 	char	*tmp;
+	char	**tmp_env;
 	int		i;
 
-	i = -1;
+	tmp_env = *env;
 	if (cmd[0] && cmd[0] == '.')
 	{
 		pwd = getcwd(NULL, 0);
@@ -46,109 +101,137 @@ char	*not_absolute(char *cmd, char **path)
 		if (is_path(cmd, pwd))
 			return (pwd);
 	}
-	if (!path)
+	i = -1;
+	while (tmp_env[++i])
 	{
-		ft_putstr_fd("shell: path is unset\n", 2);
-		(*exit_status()).i = 127;
-		exit((*exit_status()).i);
-	}
-	while (path[++i])
-	{
-		pwd = ft_strjoin(path[i], cmd);
+		pwd = get_path(tmp_env[i], cmd);
 		if (is_path(cmd, pwd))
 			return (pwd);
+		free(pwd);
 	}
 	ft_putstr_fd(cmd, 2);
 	ft_putendl_fd(": Command not found", 2);
 	return (NULL);
 }
 
-char	*cmd_path(char *cmd, char **env)
-{
-	//if (cmd[0] == '/')
-	//	return (absolute_path(cmd, env));
-	//else
-	return (not_absolute(cmd, get_paths(env)));
-}
-
-void	execute_cmd(t_node *tree, char ***env, t_pipex *pp)
+void	process(t_node *node, t_pipex *pp, char ***env)
 {
 	char	**cmd;
+	char	**env2;
+	char	*path;
 
-	cmd = ((char **)(tree->data));
-	if (pipe(tree->p) == -1)
-		ft_putendl_fd("Error: Pipe failed", 2);
+	cmd = (char **)node->data;
+	ft_putstr_fd(cmd[0], 1);
+	env2 = *env;
+	path = path_cmd(cmd[0], env);
+	ft_putendl_fd(path, 2);
+	close(node->p[0]);
+	redir(pp, node);
+	rl_clear_history();
+	if (node->id == ID_BUILTIN)
+	{
+		find_builtin(node, env);
+		exit ((*exit_status()).i);
+	}
+	if (path)
+		execve(path, node->data, env2);
+	close (node->p[1]);
+	close (node->p[0]);
+	close (pp->fd);
+	// exit (127);
+}
+
+void	do_command(t_node *node, char ***env, t_pipex *pp)
+{
+	if (pipe(node->p) == -1)
+	{
+		ft_putstr_fd("Error: couldn't open pipe\n", STDERR_FILENO);
+		(*exit_status()).i = 1;
+		exit((*exit_status()).i);
+	}
 	pp->pid = fork();
 	if (pp->pid < 0)
-		ft_putendl_fd("Error: Fork failed", 2);
-	if (pp->pid == 0)
-		execve(cmd_path(cmd[0], *env), tree->data, *env);
-}
-
-void	wait_for_cmd(int pid, int num, char **env)
-{
-	int		status;
-	int		wtv;
-
-	(void)num;
-	(void)env;
-	waitpid(pid, &status, 0);
-	if (WIFEXITED(status))
-		(*exit_status()).i = WEXITSTATUS(status);
-	num--;
-	while (num)
 	{
-		wait(&wtv);
-			num--;
+		ft_putstr_fd("Error: couldn't create a new process\n", STDERR_FILENO);
+		(*exit_status()).i = 1;
+		exit((*exit_status()).i);
 	}
-}
-
-void	one_or_two_cmds(t_node *node, char ***env, t_pipex pp)
-{
-	if (node->id == ID_PIPE)
+	else if (pp->pid == 0)
 	{
-		if (node->left->id == ID_BUILTIN)
-			find_builtin(node->left, env);
-		else if (node->left->id == ID_COMMAND)
-			execute_cmd(node->left, env, &pp);
-		if (node->right->id == ID_BUILTIN)
-			find_builtin(node->right, env);
-		else if (node->right->id == ID_COMMAND)
-			execute_cmd(node->right, env, &pp);
+		ft_putchar_fd('x', 2);
+		process(node, pp, env);
+	}
+	if (pp->num_pipe != 1)
+	{
+		if (pp->fd > 0)
+			close (pp->fd);
+		close (node->p[1]);
+		pp->fd = node->p[0];
 	}
 	else
 	{
-		if (node->id == ID_BUILTIN)
-			find_builtin(node, env);
-		else if (node->id == ID_COMMAND)
-			execute_cmd(node, env, &pp);
+		close (node->p[0]);
+		close (node->p[1]);
+		if (pp->fd > 0)
+			close (pp->fd);
+	}
+}
+
+void	wait_cmd(int pid, int num, char ***env)
+{
+	int	status;
+	int	n_cmd;
+
+	(void)env;
+	n_cmd = num;
+	waitpid(pid, &status, 0);
+	if (WIFEXITED(status))
+		(*exit_status()).i = WEXITSTATUS(status);
+	while (n_cmd--)
+		wait(NULL);
+}
+
+void	one_or_two_cmds(t_node *node, t_pipex *pp, char ***env)
+{
+	if (node->id == ID_PIPE)
+	{
+		printf("one or two\n");
+		do_command(node->left, env, pp);
+		pp->num_pipe--;
+		do_command(node->right, env, pp);
+		pp->num_pipe--;
+	}
+	else
+		do_command(node, env, pp);
+}
+
+void	mult_pipes(t_node *node, t_pipex *pp, char ***env)
+{
+	while(node->up)
+	{
+		node = node->up;
+		do_command(node->right, env, pp);
+		pp->num_pipe--;
 	}
 }
 
 void	executor(t_node **tree, char ***env, int num)
 {
-	t_node	*node;
 	t_pipex	pp;
+	t_node	*node;
 
 	node = *tree;
-	pp.num_pipe = num;
+	pp.num_pipe = num + 1;
+	pp.num_cmd = num + 1;
 	pp.fd = 0;
-	one_or_two_cmds(node, env, pp);
-	while (node->up)
+	while (node->left && node->left->id == ID_PIPE)
+		node = node->left;
+ 	if (!node->up && node->id == ID_BUILTIN)
+		find_builtin(node, env);
+	else
 	{
-		printf("aqui\n");
-		node = node->up;
-		if (node->right->id == ID_BUILTIN)
-		{
-			find_builtin(node->right, env);
-			pp.num_pipe--;
-		}
-		else if (node->right->id == ID_COMMAND)
-		{
-			execute_cmd(node, env, &pp);
-			pp.num_pipe--;
-		}
+		one_or_two_cmds(node, &pp, env);
+		mult_pipes(node, &pp, env);
 	}
-	// wait_for_cmd(pp.pid, num, *env);
-	
+	wait_cmd(pp.pid, num, env);
 }

@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:23:53 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/19 16:41:07 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/26 15:58:51 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,11 @@ typedef struct s_pipex
 {
 	int		pipe;
 	int		num_pipe;
+	int		num_cmd;
 	int		pid;
 	int		fd;
-	int		fd_in;
-	int		fd_out;
+	int		in;
+	int		out;
 	int		heredoc;
 }				t_pipex;
 
@@ -216,8 +217,9 @@ void	tree_free(t_node *tree);
 
 /*		EXECUTOR				*/
 void	executor(t_node **tree, char ***env, int num);
-char	**get_paths(char **env);
-char	*get_cmd_path(char *cmd, char **paths);
+// char	**get_paths(char **env);
+char	*get_cmd_path(char **path, char *cmd);
+int		is_path(char *str, char *path);
 
 /*		PRINT_TREE				*/
 void	print2d(t_node *root);

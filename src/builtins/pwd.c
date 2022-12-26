@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 11:37:07 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/22 15:52:11 by lleiria-         ###   ########.fr       */
+/*   Updated: 2022/12/23 12:50:45 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ void	builtin_pwd(void)
 	{
 		ft_putstr_fd("Error: ", 1);
 		ft_putstr_fd(strerror(errno), 1);
-		ft_putchar_fd("\n", 1);
+		ft_putchar_fd('\n', 1);
 	}
 	else
 	{
 		ft_putstr_fd(path, 1);
-		ft_putchar_fd("\n", 1);
+		ft_putchar_fd('\n', 1);
 	}
 	free (path);
 }

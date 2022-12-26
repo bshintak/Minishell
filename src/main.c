@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:58:37 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/22 15:18:11 by lleiria-         ###   ########.fr       */
+/*   Updated: 2022/12/26 16:26:39 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	tree_parser(char *line, char ***env)
 {
 	t_node		*tree;
 	t_node		*inicial_tree;
-	int			num;
+	// int			num;
 
 	tree = parser(line, *env);
 	inicial_tree = tree;
@@ -71,8 +71,8 @@ void	tree_parser(char *line, char ***env)
 	free (line);
 	if (tree)
 	{
-		num = num_pipes(tree);
-		executor(&tree, env, num);
+		// num = num_pipes(tree);
+		executor(&tree, env, num_pipes(tree));
 		tree_free(inicial_tree);
 	}
 }
