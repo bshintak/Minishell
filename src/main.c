@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:58:37 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/26 16:26:39 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/27 12:45:26 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,8 @@ int	main(int argc, char **argv, char **env)
 	if (!env_copy)
 		return (0);
 	(*exit_status()).i = 0;
-	// get_signal(SIGQUIT, SIG_IGN);
-	// get_signal(SIGINT, ctrl_c);
+	get_signal(SIGQUIT, SIG_IGN);
+	get_signal(SIGINT, ctrl_c);
 	while (1)
 	{
 		// call_sigact(SI_RLINE);

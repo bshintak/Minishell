@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 11:37:14 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/19 15:41:00 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/27 12:40:21 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ char	*update_dollar(char *dollar, char **env, int *i, char *ret)
 
 	index = *i;
 	size = size_env(&dollar[index + 1]);
-	printf("%s\n", dollar);
 	if (!size)
 		return (dollar);
 	else
@@ -43,7 +42,6 @@ char	*do_dollar(char *dollar, char **env, int *i, char *ret)
 		ret = update_dollar(dollar, env, &index, ret);
 	else if (dollar[index] == '$' && dollar[index + 1] == '?')
 		ret = get_exit(dollar, &index, ret);
-	printf("%s\n", ret);
 	return (ret);
 }
 
@@ -54,7 +52,6 @@ char	*update_quote_dollar(char *dollar, char **env)
 	int		i;
 
 	i = -1;
-	size = 0;
 	ret = ft_calloc(1, sizeof(char));
 	fail_malloc2(ret);
 	while (dollar[++i])
@@ -65,6 +62,11 @@ char	*update_quote_dollar(char *dollar, char **env)
 			ret = join_tokens(ret, ft_substr(&dollar[i], 0, size));
 			i += size - 1;
 		}
+		else if (dollar[i] == '$' && (dollar[i + 1] == '\'' || dollar[i + 1] == '\"'))
+		{
+			free (ret);
+			return (dollar);
+		}
 		else if (dollar[i] == '$' && dollar[i + 1])
 		{
 			ret = do_dollar(dollar, env, &i, ret);
@@ -72,7 +74,6 @@ char	*update_quote_dollar(char *dollar, char **env)
 		}
 	}
 	free (dollar);
-	printf("%s\n", ret);
 	return (ret);
 }
 

@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 15:24:36 by lleiria-          #+#    #+#             */
-/*   Updated: 2022/12/26 16:58:30 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/27 14:15:28 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,10 +121,8 @@ void	process(t_node *node, t_pipex *pp, char ***env)
 	char	*path;
 
 	cmd = (char **)node->data;
-	ft_putstr_fd(cmd[0], 1);
 	env2 = *env;
 	path = path_cmd(cmd[0], env);
-	ft_putendl_fd(path, 2);
 	close(node->p[0]);
 	redir(pp, node);
 	rl_clear_history();
@@ -138,7 +136,6 @@ void	process(t_node *node, t_pipex *pp, char ***env)
 	close (node->p[1]);
 	close (node->p[0]);
 	close (pp->fd);
-	// exit (127);
 }
 
 void	do_command(t_node *node, char ***env, t_pipex *pp)
@@ -157,10 +154,7 @@ void	do_command(t_node *node, char ***env, t_pipex *pp)
 		exit((*exit_status()).i);
 	}
 	else if (pp->pid == 0)
-	{
-		ft_putchar_fd('x', 2);
 		process(node, pp, env);
-	}
 	if (pp->num_pipe != 1)
 	{
 		if (pp->fd > 0)
@@ -195,7 +189,6 @@ void	one_or_two_cmds(t_node *node, t_pipex *pp, char ***env)
 {
 	if (node->id == ID_PIPE)
 	{
-		printf("one or two\n");
 		do_command(node->left, env, pp);
 		pp->num_pipe--;
 		do_command(node->right, env, pp);

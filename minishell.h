@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:23:53 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/26 15:58:51 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/27 14:22:22 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,5 +223,6 @@ int		is_path(char *str, char *path);
 
 /*		PRINT_TREE				*/
 void	print2d(t_node *root);
+
 
 #endif

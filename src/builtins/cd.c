@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 15:52:54 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/23 12:46:10 by lleiria-         ###   ########.fr       */
+/*   Updated: 2022/12/27 12:15:12 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,25 +70,14 @@ void	builtin_cd(char **line, char ***env)
 {
 	char	*new_path;
 	char	*old_path;
-	int		i;
 
 	old_path = getcwd(NULL, 1025);
-	printf("old path: %s\n", old_path);
 	if (chdir(line[1]) == -1)
 	{
 		error_cd(line[1]);
 		return ;
 	}
 	new_path = getcwd(NULL, 1025);
-	printf("new path: %s\n", new_path);
 	update_env(old_path, new_path, env);
 	create_old(env, old_path);
-	i = 0;
-	while ((*env)[i])
-	{
-		if (ft_strncmp((*env)[i], "OLDPWD=", 7) == 0
-			|| ft_strncmp((*env)[i], "PWD=", 4) == 0)
-			printf("env[%d]: %s\n", i, (*env)[i]);
-		i++;
-	}
 }
