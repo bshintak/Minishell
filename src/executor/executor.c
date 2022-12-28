@@ -3,26 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 15:24:36 by lleiria-          #+#    #+#             */
-/*   Updated: 2022/12/27 14:15:28 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/28 21:19:36 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
-void	redir(t_pipex *pp, t_node *node)
-{
-	dup2(pp->fd, STDIN_FILENO);
-	if (pp->num_pipe > 1)
-	{
-		dup2(node->p[1], STDOUT_FILENO);
-		close(node->p[1]);
-	}
-	else
-		close(node->p[1]);
-}
 
 char	*get_cmd_path(char **path, char *cmd)
 {
