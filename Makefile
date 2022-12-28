@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+         #
+#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/21 17:10:37 by bshintak          #+#    #+#              #
-#    Updated: 2022/12/27 12:26:55 by bshintak         ###   ########.fr        #
+#    Updated: 2022/12/28 21:31:07 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,8 @@ TREE		=	tree/create_tree.c			\
 EXECUTOR	=	executor/executor.c			\
 				executor/executor_utils.c	\
 
+REDIR		=	redirections/redirection.c	\
+
 EXPAND		=	expand/expand_home.c		\
 				expand/expand_shlvl.c		\
 				expand/expand_dollar.c		\
@@ -61,7 +63,7 @@ SRC_WTV		=	main.c						\
 				ctrl.c						\
 				print_tree.c				\
 
-SRC_NAME	=	$(BUILTINS) $(TOKEN) $(TREE) $(EXECUTOR) $(EXPAND) $(ERROR) $(SRC_WTV)
+SRC_NAME	=	$(BUILTINS) $(TOKEN) $(TREE) $(EXECUTOR) $(REDIR) $(EXPAND) $(ERROR) $(SRC_WTV)
 
 SRCS		=	$(addprefix $(SRC_PATH)/, $(SRC_NAME))
 OBJS		=	$(patsubst $(SRC_PATH)/%.c, $(OBJ_PATH)/%.o, $(SRCS))

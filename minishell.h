@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:23:53 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/27 14:22:22 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/28 21:26:56 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,9 +215,11 @@ void	add_on_left(t_node *node, t_node *new);
 /*		TREE_FREE				*/
 void	tree_free(t_node *tree);
 
+/*		REDIRECTIONS			*/
+void	redir(t_pipex *pp, t_node *node);
+
 /*		EXECUTOR				*/
 void	executor(t_node **tree, char ***env, int num);
-// char	**get_paths(char **env);
 char	*get_cmd_path(char **path, char *cmd);
 int		is_path(char *str, char *path);
 
