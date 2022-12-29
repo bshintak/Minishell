@@ -6,21 +6,11 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 11:52:51 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/12 11:57:53 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/29 16:25:54 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
-int	error_pipe(char *token)
-{
-	if (token && get_id(token) == ID_PIPE)
-	{
-		print_error(token);
-		return (1);
-	}
-	return (0);
-}
 
 int	error_node(t_node *node)
 {
@@ -49,20 +39,53 @@ int	error_tree(t_node *tree, char *token)
 		aux = tree;
 	if (error_node(aux))
 	{
+		ft_putendl_fd("if error_node", 1);
 		print_error(token);
 		return (1);
 	}
 	return (0);
 }
 
-int	syntax_error(t_node *tree, char *token)
+static int	is_syntax_error(t_node *tree, char *token)
 {
 	int	status;
 
 	status = 0;
-	if (!tree && get_id(token) == ID_PIPE)
-		status = error_pipe(token);
-	if (tree)
+	if (!token || get_id(token) != ID_WORD)
 		status = error_tree(tree, token);
 	return (status);
 }
+
+int	syntax_error(t_node *tree, char *token)
+{
+	if (is_syntax_error(tree, token))
+	{
+		tree_free(tree);
+		if (token)
+			free (token);
+		return (1);
+	}
+	return (0);
+}
+
+// int	error_pipe(char *token)
+// {
+// 	if (token && get_id(token) == ID_PIPE)
+// 	{
+// 		print_error(token);
+// 		return (1);
+// 	}
+// 	return (0);
+// }
+
+// int	syntax_error(t_node *tree, char *token)
+// {
+// 	int	status;
+
+// 	status = 0;
+// 	if (!tree && get_id(token) == ID_PIPE)
+// 		status = error_pipe(token);
+// 	if (tree)
+// 		status = error_tree(tree, token);
+// 	return (status);
+// }

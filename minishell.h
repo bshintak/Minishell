@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:23:53 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/28 21:26:56 by marvin           ###   ########.fr       */
+/*   Updated: 2022/12/29 16:12:25 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,7 +182,7 @@ char	*join_char(char *token, char c);
 char	*join_tokens(char *token, char *new_token);
 
 /*		CREATE_TREE				*/
-t_node	*create_node(int id, int builtin);
+t_node	*create_node(int id);
 void	create_tree(t_node **tree, char *token, int id);
 
 /*		IS_NODE					*/
@@ -222,6 +222,9 @@ void	redir(t_pipex *pp, t_node *node);
 void	executor(t_node **tree, char ***env, int num);
 char	*get_cmd_path(char **path, char *cmd);
 int		is_path(char *str, char *path);
+
+/*		EXECUTOR_UTILS			*/
+char	*path_cmd(char *cmd, char ***env);
 
 /*		PRINT_TREE				*/
 void	print2d(t_node *root);

@@ -6,21 +6,18 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 10:43:06 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/16 18:47:54 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/29 16:12:05 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-t_node	*create_node(int id, int builtin)
+t_node	*create_node(int id)
 {
 	t_node	*node;
 
 	node = malloc(sizeof(t_node));
-	if (!node)
-		return (0);
-	if (builtin == 1)
-		id = ID_BUILTIN;
+	fail_malloc2(node);
 	node->id = id;
 	node->data = NULL;
 	node->left = NULL;
@@ -33,8 +30,6 @@ t_node	*check_node_type(t_node *node, char *token)
 {
 	if (!node || !token)
 		return (NULL);
-	if (is_herdoc(node))
-		put_herdoc(node, token);
 	else if (is_redir(node))
 		put_redir(node, token);
 	else if (is_command(node))
@@ -44,10 +39,10 @@ t_node	*check_node_type(t_node *node, char *token)
 
 void	add_new_node(t_node **tree, t_node *node)
 {
-	if (is_command(node))
-		add_command(tree, node);
-	else if (is_redir(node))
+	if (is_redir(node))
 		add_redir(tree, node);
+	else if (is_command(node))
+		add_command(tree, node);
 	else if (is_pipe(node))
 		add_pipe(tree, node);
 }
@@ -57,9 +52,7 @@ void	create_tree(t_node **tree, char *token, int id)
 	t_node	*new_node;
 	t_node	*node_with_type;
 	t_node	*node;
-	int		builtin;
 
-	builtin = 0;
 	new_node = NULL;
 	node_with_type = NULL;
 	if (id == ID_WORD)
@@ -69,13 +62,12 @@ void	create_tree(t_node **tree, char *token, int id)
 			check_node_type(node, token);
 		else
 		{
-			if (is_builtin(token))
-				builtin = 1;
-			new_node = create_node(ID_COMMAND, builtin);
+			id = is_builtin(token);
+			new_node = create_node(id);
 			node_with_type = check_node_type(new_node, token);
 			add_new_node(tree, node_with_type);
 		}
 	}
 	else
-		add_new_node(tree, create_node(id, builtin));
+		add_new_node(tree, create_node(id));
 }

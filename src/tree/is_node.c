@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_node.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:46:34 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/03 14:54:53 by codespace        ###   ########.fr       */
+/*   Updated: 2022/12/29 15:43:53 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,3 @@ int	is_redir(t_node *node)
 	return (0);
 }
 
-int	is_herdoc(t_node *node)
-{
-	if (!node)
-		return (0);
-	if (node->id == ID_INPUT_HERDOC)
-		return (1);
-	return (0);
-}

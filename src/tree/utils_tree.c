@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 12:08:08 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/12 15:07:19 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/29 16:06:40 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int	is_builtin(char *token)
 		|| !ft_strcmp(token, "export")
 		|| !ft_strcmp(token, "unset")
 		|| !ft_strcmp(token, "exit"))
-		return (1);
-	return (0);
+		return (ID_BUILTIN);
+	return (ID_COMMAND);
 }
 
 int	strlen_matrix(char **str)

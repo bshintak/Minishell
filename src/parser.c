@@ -3,21 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 13:11:37 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/28 22:18:06 by marvin           ###   ########.fr       */
+/*   Updated: 2022/12/29 16:25:22 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	*error_parser(char *token, t_node *tree)
+void	*error_parser(char *token)
 {
-	tree_free(tree);
+	(*exit_status()).i = 2;
 	if (token)
-		free(token);
-	set_exit(EXIT_SYNTAX, SET_EXIT);
+		free (token);
 	return (NULL);
 }
 
@@ -34,8 +33,8 @@ t_node	*parser(char *line, char **env)
 	while (1)
 	{
 		token = get_token(line, reset);
-		// if (syntax_error(tree, token))
-		// 	return (error_parser(token, tree));
+		if (syntax_error(tree, token))
+			return (error_parser(token));
 		if (!token)
 			break ;
 		id = get_id(token);
