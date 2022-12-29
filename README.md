@@ -18,7 +18,7 @@
 - Pipe() > create a pipe (node->p[0] > the read end)(node->p[1] > the write end)
 
 <p align="left">
-  <img src=https://raw.githubusercontent.com/bshintak/Minishell/pipe_diagram.png />
+  <img src=https://raw.githubusercontent.com/bshintak/Minishell/main/pipe_diagram.png />
 </p>
 
 - Fork() > used for creating a new process
