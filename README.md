@@ -9,7 +9,9 @@
 
 ### Executor
 - It receives the tree, the environment and the number of pipes
+
 - Basically checks whether the tree arguments are commands, builtins or redirections
+
 - one_or_two_cmds():
 > If the program receives two or more commands - if
 > If the program receives only one command - else
