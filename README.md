@@ -36,6 +36,9 @@
 
 > Otherwise if we see a PID, we know we are in the parent (and we don't need this)
 
+- Close():
+> Closes a file descriptor, so that it no longer refers to any file and may be reused
+
 - Process():
 > First we need the path of the command
 
