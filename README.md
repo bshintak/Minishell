@@ -36,6 +36,17 @@
 
 > Otherwise if we see a PID, we know we are in the parent (and we don't need this)
 
+- Open():
+> Opens the file specified by pathname
+
+> O_CREAT > create file if it doesn’t exist
+
+> O_WRONLY > write only
+
+> O_TRUNC > erase and write inside the file
+
+> O_APPEND > just write inside the file
+
 - Close():
 > Closes a file descriptor, so that it no longer refers to any file and may be reused
 
