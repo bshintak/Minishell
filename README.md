@@ -47,6 +47,8 @@
 
 > O_APPEND > just write inside the file
 
+> 0644 > owner can read and write but can't execute | group and others can only read
+
 - Close():
 > Closes a file descriptor, so that it no longer refers to any file and may be reused
 
