@@ -78,14 +78,25 @@
 
 > If the file does not exist it is created; if it does exist it is truncated
 
-- Appending Redirected Output
+- Appending Redirected Output:
 > Redirection of output causes the file to be opened for appending on file descriptor
 
 > Or the standard output (file descriptor 1) if the file descriptor is not specified
 
 > If the file does not exist it is created but if it does exist it is not truncated
 
-- Here Documents
+- Here Documents:
 > Instructs the shell to read input from the current source until a line containing only the word specified after the heredoc
 
 > All of the lines read up to that point are then used as the standard input for a command
+
+- Lstat:
+> Return a struct (stat buf)
+
+> Control all the system status and returns the information about a special link
+
+- S_ISDIR:
+> Check if the file type is a directory
+
+- St_mode: 
+> the file permissions and file type information
