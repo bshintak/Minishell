@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 19:04:29 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/16 18:56:34 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/30 16:14:26 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ char	*word_parser(char *token, char **env)
 		token = home;
 	}
 	if (needs_of_token(token) == MISSING_QUOTE)
-		print_error2(token, MISSING_QUOTE);
+		print_error_quote(token, MISSING_QUOTE);
 	if (!needs_of_token(token))
 		return (token);
 	dollar = ft_calloc(1, sizeof(char));

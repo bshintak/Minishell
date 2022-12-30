@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 15:24:50 by lleiria-          #+#    #+#             */
-/*   Updated: 2022/12/29 14:32:54 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/30 16:33:33 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ int	is_path(char *str, char *path)
 {
 	struct stat	buf;
 
-	lstat(path, &buf); // return a struct (stat buf) // control all the system status and returns the information about a special link
-	if (S_ISDIR(buf.st_mode)) // st_mode: the file permissions and file type information // S_ISDIR: file type is a directory
+	lstat(path, &buf);
+	if (S_ISDIR(buf.st_mode))
 	{
 		ft_putstr_fd(str, 2);
 		ft_putendl_fd(" is a directory", 2);
@@ -71,21 +71,29 @@ int	is_path(char *str, char *path)
 	return (0);
 }
 
-char	*path_cmd(char *cmd, char ***env)
+char	*util_path_cmd(char *cmd)
 {
 	char	*pwd;
 	char	*tmp;
+
+	pwd = getcwd(NULL, 0);
+	tmp = ft_strjoin(pwd, "/");
+	free(pwd);
+	pwd = ft_strjoin(tmp, cmd);
+	free(tmp);
+	return (pwd);
+}
+
+char	*path_cmd(char *cmd, char ***env)
+{
+	char	*pwd;
 	char	**tmp_env;
 	int		i;
 
 	tmp_env = *env;
 	if (cmd[0])
 	{
-		pwd = getcwd(NULL, 0);
-		tmp = ft_strjoin(pwd, "/");
-		free(pwd);
-		pwd = ft_strjoin(tmp, cmd);
-		free(tmp);
+		pwd = util_path_cmd(cmd);
 		if (is_path(cmd, pwd))
 			return (pwd);
 	}

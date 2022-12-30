@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 12:08:08 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/29 16:06:40 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/30 16:36:41 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,24 +36,6 @@ int	strlen_matrix(char **str)
 		i++;
 	}
 	return (i);
-}
-
-void	fail_malloc2(void *str)
-{
-	if (!str)
-	{
-		ft_putendl_fd("minishell: Out of memory!", 2);
-		exit(EXIT_FAILURE);
-	}
-}
-
-void	fail_malloc(char **str)
-{
-	if (!str)
-	{
-		ft_putendl_fd("minishell: Out of memory!", 2);
-		exit(EXIT_FAILURE);
-	}
 }
 
 char	**update_string(char **str, char *token)

@@ -74,12 +74,12 @@ void	redir_out(t_pipex *pp, t_node *node)
 		node = node->left;
 		if (node->id == ID_OUTPUT_REDIR)
 		{
-			fd = open(node->data, O_CREAT | O_WRONLY | O_TRUNC, 0644); // O_TRUNC erase and write
-			out--; // owner can read and write, cant exec // group and others can just read
+			fd = open(node->data, O_CREAT | O_WRONLY | O_TRUNC, 0644);
+			out--;
 		}
 		else if (node->id == ID_OUTPUT_APPEND)
 		{
-			fd = open(node->data, O_CREAT | O_WRONLY | O_APPEND, 0644); // O_APPEND just write
+			fd = open(node->data, O_CREAT | O_WRONLY | O_APPEND, 0644);
 			out--;
 		}
 		error_redir(fd, node);

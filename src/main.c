@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:58:37 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/29 16:00:59 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/30 15:35:55 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,26 +39,6 @@ int	wrong_arg(int argc, char **argv)
 	return (0);
 }
 
-int	num_pipes(t_node *tree)
-{
-	t_node	*node;
-	int		num;
-
-	num = 0;
-	node = tree;
-	if (node->left && !is_redir(node->left))
-	{
-		num++;
-		while (node->left->id == ID_PIPE)
-		{
-			num++;
-			node = node->left;
-		}
-		// printf("----------%d----------\n", num);
-	}
-	return (num);
-}
-
 void	tree_parser(char *line, char ***env)
 {
 	t_node		*tree;
@@ -66,7 +46,7 @@ void	tree_parser(char *line, char ***env)
 
 	tree = parser(line, *env);
 	inicial_tree = tree;
-	// print2d(tree);
+	/*print2d(tree);*/
 	free (line);
 	if (tree)
 	{
@@ -90,7 +70,6 @@ int	main(int argc, char **argv, char **env)
 	get_signal(SIGINT, ctrl_c);
 	while (1)
 	{
-		// call_sigact(SI_RLINE);
 		line = readline("➜  bshintak&&lleiria-MiniShell: ");
 		main_exit(line);
 		if (line)

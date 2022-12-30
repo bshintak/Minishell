@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:23:53 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/29 16:12:25 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/30 16:38:31 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,9 @@ char	*ft_strjoin(char *s1, char *s2);
 int		ft_strcmp(char *s1, char *s2);
 int		ft_strlen(char *str);
 char	*ft_strchr(char *s, int c);
-char	*ft_strrchr(const char *str, int c);
 char	*ft_strdup(char *s);
 int		ft_isalnum(int c);
 int		ft_isdigit(int c);
-int		is_space(char c);
 int		ft_isalpha(int a);
 int		ft_isascii(int a);
 void	*ft_memset(void *s, int c, size_t n);
@@ -107,7 +105,6 @@ int		ft_atoi(const char *str);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putendl_fd(char *s, int fd);
-char	*ft_strnstr(const char *str, const char *to_find, size_t len);
 char	**ft_split(char *s, char c);
 
 /*		GET_ID				*/
@@ -142,7 +139,7 @@ char	**get_env(char **env);
 void	ret_error(char *str);
 void	ret_without_error(char *str);
 void	print_error(char *token);
-void	print_error2(char *token, int status);
+void	print_error_quote(char *token, int status);
 
 /*		SYNTAX_ERROR		*/
 int		syntax_error(t_node *tree, char *token);
@@ -189,18 +186,19 @@ void	create_tree(t_node **tree, char *token, int id);
 int		is_command(t_node *node);
 int		is_pipe(t_node *node);
 int		is_redir(t_node *node);
-int		is_herdoc(t_node *node);
 
 /*		PUT_SOMETHING			*/
 void	put_command(t_node *node, char *token);
 void	put_redir(t_node *node, char *token);
-void	put_herdoc(t_node *node, char *token);
 
 /*		UTILS_TREE				*/
 char	**update_string(char **str, char *token);
 t_node	*search_node(t_node *tree);
 int		is_builtin(char *token);
+
+/*		FAIL_MALLOC				*/
 void	fail_malloc2(void *str);
+void	fail_malloc(char **str);
 
 /*		ADD_NODE				*/
 void	add_pipe(t_node **tree, t_node *node);
@@ -224,7 +222,14 @@ char	*get_cmd_path(char **path, char *cmd);
 int		is_path(char *str, char *path);
 
 /*		EXECUTOR_UTILS			*/
+int		num_pipes(t_node *tree);
 char	*path_cmd(char *cmd, char ***env);
+
+/*		CLOSE_PIPES				*/
+void	close_pipes(t_pipex *pp, t_node *node);
+
+/*		WAIT_COMMANDS				*/
+void	wait_cmd(int pid, int num, char ***env);
 
 /*		PRINT_TREE				*/
 void	print2d(t_node *root);

@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 15:24:36 by lleiria-          #+#    #+#             */
-/*   Updated: 2022/12/29 16:24:14 by bshintak         ###   ########.fr       */
+/*   Updated: 2022/12/30 16:23:13 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,34 +54,7 @@ void	do_command(t_node *node, char ***env, t_pipex *pp)
 	}
 	else if (pp->pid == 0)
 		process(node, pp, env);
-	if (pp->num_pipe != 1)
-	{
-		if (pp->fd > 0)
-			close (pp->fd);
-		close (node->p[1]);
-		pp->fd = node->p[0];
-	}
-	else
-	{
-		close (node->p[0]);
-		close (node->p[1]);
-		if (pp->fd > 0)
-			close (pp->fd);
-	}
-}
-
-void	wait_cmd(int pid, int num, char ***env)
-{
-	int	status;
-	int	n_cmd;
-
-	(void)env;
-	n_cmd = num;
-	waitpid(pid, &status, 0);
-	if (WIFEXITED(status))
-		(*exit_status()).i = WEXITSTATUS(status);
-	while (n_cmd--)
-		wait(NULL);
+	close_pipes(pp, node);
 }
 
 void	one_or_two_cmds(t_node *node, t_pipex *pp, char ***env)
@@ -99,7 +72,7 @@ void	one_or_two_cmds(t_node *node, t_pipex *pp, char ***env)
 
 void	mult_pipes(t_node *node, t_pipex *pp, char ***env)
 {
-	while(node->up)
+	while (node->up)
 	{
 		node = node->up;
 		do_command(node->right, env, pp);
@@ -116,7 +89,7 @@ void	executor(t_node **tree, char ***env, int num)
 	pp.num_pipe = num + 1;
 	pp.num_cmd = num + 1;
 	pp.fd = 0;
- 	if (!node->up && node->id == ID_BUILTIN)
+	if (!node->up && node->id == ID_BUILTIN)
 		find_builtin(node, env);
 	else
 	{

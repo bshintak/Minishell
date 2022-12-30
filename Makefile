@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
+#    By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/21 17:10:37 by bshintak          #+#    #+#              #
-#    Updated: 2022/12/28 21:31:07 by marvin           ###   ########.fr        #
+#    Updated: 2022/12/30 16:37:16 by bshintak         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,49 +19,53 @@ INCLUDE		=	-lreadline
 MKD			=	mkdir
 RM			=	rm -f
 
-BUILTINS	= 	builtins/pwd.c				\
-				builtins/find_builtin.c		\
-				builtins/echo.c				\
-				builtins/cd.c				\
-				builtins/env.c				\
-				builtins/export.c			\
-				builtins/unset.c			\
+BUILTINS	= 	builtins/pwd.c					\
+				builtins/find_builtin.c			\
+				builtins/echo.c					\
+				builtins/cd.c					\
+				builtins/env.c					\
+				builtins/export.c				\
+				builtins/unset.c				\
 				builtins/exit.c
 
-TOKEN		=	token/get_token.c			\
-				token/get_id.c				\
-				token/word_parser.c			\
-				token/utils_word_parser.c	\
-				token/utils_get_token.c		\
-				token/update_dollar_quote.c	\
+TOKEN		=	token/get_token.c				\
+				token/get_id.c					\
+				token/word_parser.c				\
+				token/utils_word_parser.c		\
+				token/utils_get_token.c			\
+				token/update_dollar_quote.c		\
+				token/utils_update_dol_quo.c
 
-TREE		=	tree/create_tree.c			\
-				tree/add_node.c				\
-				tree/add_node_utils.c		\
-				tree/is_node.c				\
-				tree/put_something.c		\
-				tree/utils_tree.c			\
+TREE		=	tree/create_tree.c				\
+				tree/add_node.c					\
+				tree/add_node_utils.c			\
+				tree/is_node.c					\
+				tree/put_something.c			\
+				tree/utils_tree.c				\
+				tree/fail.c						\
 				tree/tree_free.c
 
-EXECUTOR	=	executor/executor.c			\
-				executor/executor_utils.c	\
+EXECUTOR	=	executor/executor.c				\
+				executor/executor_utils.c		\
+				executor/pipes.c				\
+				executor/wait.c
 
-REDIR		=	redirections/redirection.c	\
+REDIR		=	redirections/redirection.c		\
 
-EXPAND		=	expand/expand_home.c		\
-				expand/expand_shlvl.c		\
-				expand/expand_dollar.c		\
+EXPAND		=	expand/expand_home.c			\
+				expand/expand_shlvl.c			\
+				expand/expand_dollar.c			\
 				expand/expand_exit.c
 
-ERROR		=	error/syntax_error.c		\
+ERROR		=	error/syntax_error.c			\
 				error/errors.c
 
-SRC_WTV		=	main.c						\
-				parser.c					\
-				get_env.c					\
-				utils_exit.c				\
-				ctrl.c						\
-				print_tree.c				\
+SRC_WTV		=	main.c							\
+				parser.c						\
+				get_env.c						\
+				utils_exit.c					\
+				ctrl.c							\
+				print_tree.c
 
 SRC_NAME	=	$(BUILTINS) $(TOKEN) $(TREE) $(EXECUTOR) $(REDIR) $(EXPAND) $(ERROR) $(SRC_WTV)
 

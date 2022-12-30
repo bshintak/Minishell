@@ -6,7 +6,7 @@
 #    By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/22 16:27:20 by bshintak          #+#    #+#              #
-#    Updated: 2022/12/16 17:03:17 by bshintak         ###   ########.fr        #
+#    Updated: 2022/12/30 15:56:35 by bshintak         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,12 +16,10 @@ NAME =	libft.a
 SRC =	ft_strcmp			\
 		ft_strncmp			\
 		ft_strchr			\
-		ft_strrchr			\
 		ft_strdup			\
 		ft_strlen			\
 		ft_strjoin			\
 		ft_substr			\
-		is_space			\
 		ft_memcpy			\
 		ft_memset			\
 		ft_putstr_fd		\
@@ -34,7 +32,6 @@ SRC =	ft_strcmp			\
 		ft_isalpha			\
 		ft_isascii			\
 		ft_split			\
-		ft_strnstr			\
 		ft_calloc			\
 		ft_bzero
 

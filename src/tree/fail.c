@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   fail.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/22 16:25:04 by bshintak          #+#    #+#             */
-/*   Updated: 2022/11/22 15:27:37 by lleiria-         ###   ########.fr       */
+/*   Created: 2022/12/30 16:36:17 by bshintak          #+#    #+#             */
+/*   Updated: 2022/12/30 16:36:46 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
-char	*ft_strrchr(const char *str, int c)
+void	fail_malloc2(void *str)
 {
-	int	i;
+	if (!str)
+	{
+		ft_putendl_fd("minishell: Out of memory!", 2);
+		exit(EXIT_FAILURE);
+	}
+}
 
-	i = 0;
-	while (str[i])
+void	fail_malloc(char **str)
+{
+	if (!str)
 	{
-		i++;
+		ft_putendl_fd("minishell: Out of memory!", 2);
+		exit(EXIT_FAILURE);
 	}
-	while (i >= 0)
-	{
-		if (str[i] == (unsigned char)c)
-			return (&((char *)str)[i]);
-		i--;
-	}
-	return (0);
 }

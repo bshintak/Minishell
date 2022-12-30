@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update_dollar_quote.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 11:37:14 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/28 17:00:48 by marvin           ###   ########.fr       */
+/*   Updated: 2022/12/30 16:02:04 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,22 @@ char	*do_dollar(char *dollar, char **env, int *i, char *ret)
 	return (ret);
 }
 
+char	*no_dollar(char *dollar, char *ret, int *i)
+{
+	int	index;
+	int	size;
+
+	index = *i;
+	size = word_size_parser(&dollar[index]);
+	ret = join_tokens(ret, ft_substr(&dollar[index], 0, size));
+	index += size - 1;
+	*i = index;
+	return (ret);
+}
+
 char	*update_quote_dollar(char *dollar, char **env)
 {
 	char	*ret;
-	int		size;
 	int		i;
 
 	i = -1;
@@ -57,12 +69,9 @@ char	*update_quote_dollar(char *dollar, char **env)
 	while (dollar[++i])
 	{
 		if (dollar[i] != '$')
-		{
-			size = word_size_parser(&dollar[i]);
-			ret = join_tokens(ret, ft_substr(&dollar[i], 0, size));
-			i += size - 1;
-		}
-		else if (dollar[i] == '$' && (dollar[i + 1] == '\'' || dollar[i + 1] == '\"'))
+			ret = no_dollar(dollar, ret, &i);
+		else if (dollar[i] == '$'
+			&& (dollar[i + 1] == '\'' || dollar[i + 1] == '\"'))
 		{
 			free (ret);
 			return (dollar);
@@ -74,31 +83,5 @@ char	*update_quote_dollar(char *dollar, char **env)
 		}
 	}
 	free (dollar);
-	return (ret);
-}
-
-char	*join_tokens(char *token, char *new_token)
-{
-	char	*ret;
-
-	ret = NULL;
-	if (token && new_token)
-		ret = ft_strjoin(token, new_token);
-	free(token);
-	free(new_token);
-	return (ret);
-}
-
-char	*join_char(char *token, char c)
-{
-	char	*ret;
-	char	aux[2];
-
-	if (!token)
-		return (0);
-	aux[0] = c;
-	aux[1] = '\0';
-	ret = ft_strjoin(token, aux);
-	free(token);
 	return (ret);
 }

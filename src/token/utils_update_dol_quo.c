@@ -1,41 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_node.c                                          :+:      :+:    :+:   */
+/*   utils_update_dol_quo.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/17 11:46:34 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/30 16:35:30 by bshintak         ###   ########.fr       */
+/*   Created: 2022/12/30 15:50:22 by bshintak          #+#    #+#             */
+/*   Updated: 2022/12/30 16:01:35 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	is_command(t_node *node)
+char	*join_tokens(char *token, char *new_token)
 {
-	if (!node)
-		return (0);
-	if (node->id == ID_COMMAND || node->id == ID_BUILTIN)
-		return (1);
-	return (0);
+	char	*ret;
+
+	ret = NULL;
+	if (token && new_token)
+		ret = ft_strjoin(token, new_token);
+	free(token);
+	free(new_token);
+	return (ret);
 }
 
-int	is_pipe(t_node *node)
+char	*join_char(char *token, char c)
 {
-	if (!node)
-		return (0);
-	if (node->id == ID_PIPE)
-		return (1);
-	return (0);
-}
+	char	*ret;
+	char	aux[2];
 
-int	is_redir(t_node *node)
-{
-	if (!node)
+	if (!token)
 		return (0);
-	if (node->id == ID_INPUT_REDIR || node->id == ID_OUTPUT_REDIR
-		|| node->id == ID_OUTPUT_APPEND || node->id == ID_INPUT_HERDOC)
-		return (1);
-	return (0);
+	aux[0] = c;
+	aux[1] = '\0';
+	ret = ft_strjoin(token, aux);
+	free(token);
+	return (ret);
 }
