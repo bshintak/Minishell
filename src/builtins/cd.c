@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 15:52:54 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/27 12:15:12 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/03 12:45:04 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,46 @@ void	error_cd(char *token)
 	ft_putchar_fd('\n', 1);
 }
 
+char	*go_home(char **env)
+{
+	int		i;
+	int		j;
+	int		n;
+	char	*home;
+
+	i = 0;
+	n = 0;
+	home = NULL;
+	while (env[i])
+	{
+		if (ft_strncmp(env[i], "HOME=", 5) == 0)
+		{
+			j = 5;
+			home = malloc(sizeof(char) * ft_strlen(env[i]));
+			while (env[i][j + n] != '\0')
+			{
+				home[n] = env[i][j + n];
+				n++;
+			}
+			home[n] = '\0';
+			return (home);
+		}
+		i++;
+	}
+	return (home);
+}
+
 void	builtin_cd(char **line, char ***env)
 {
 	char	*new_path;
 	char	*old_path;
+	char	*home_path;
 
 	old_path = getcwd(NULL, 1025);
-	if (chdir(line[1]) == -1)
+	home_path = go_home(*env);
+	if (!line[1])
+		chdir(home_path);
+	else if (chdir(line[1]) == -1)
 	{
 		error_cd(line[1]);
 		return ;
@@ -80,4 +113,5 @@ void	builtin_cd(char **line, char ***env)
 	new_path = getcwd(NULL, 1025);
 	update_env(old_path, new_path, env);
 	create_old(env, old_path);
+	free(home_path);
 }
