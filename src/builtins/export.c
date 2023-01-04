@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 11:25:35 by lleiria-          #+#    #+#             */
-/*   Updated: 2022/12/06 15:40:21 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/04 15:23:48 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@ void	insert_var(char ***env, char *var)
 		copy_env[i] = (*env)[i];
 		i++;
 	}
-	copy_env[i] = var;
+	copy_env[i] = ft_strdup(var);
 	copy_env[i + 1] = NULL;
+	printf("entrou: %s\n", copy_env[i]);
 	free(*env);
 	(*env) = copy_env;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 11:22:21 by lleiria-          #+#    #+#             */
-/*   Updated: 2022/12/26 17:01:59 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/04 17:14:54 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,27 @@
 void	delete_var(char *var, char ***env)
 {
 	int		i;
+	int		j;
 	char	**copy_env;
 
 	i = 0;
 	while ((*env)[i])
 		i++;
-	copy_env = malloc(sizeof(char *) * (i + 1));
+	copy_env = malloc(sizeof(char *) * (i));
+	j = 0;
 	i = 0;
 	while ((*env)[i])
 	{
 		if (ft_strncmp((*env)[i], var, ft_strlen(var)) != 0)
 		{
-			copy_env[i] = (*env)[i];
+			copy_env[j] = (*env)[i];
 			i++;
+			j++;
 		}
 		else
 			i++;
 	}
-	copy_env[i] = NULL;
+	copy_env[j] = NULL;
 	free(*env);
 	(*env) = copy_env;
 }
