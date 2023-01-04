@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:23:53 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/30 16:38:31 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/03 15:20:38 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,7 +229,7 @@ char	*path_cmd(char *cmd, char ***env);
 void	close_pipes(t_pipex *pp, t_node *node);
 
 /*		WAIT_COMMANDS				*/
-void	wait_cmd(int pid, int num, char ***env);
+void	wait_cmd(int pid, int num);
 
 /*		PRINT_TREE				*/
 void	print2d(t_node *root);

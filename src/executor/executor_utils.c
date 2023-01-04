@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 15:24:50 by lleiria-          #+#    #+#             */
-/*   Updated: 2022/12/30 16:33:33 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/03 15:06:19 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,9 @@ int	is_path(char *str, char *path)
 {
 	struct stat	buf;
 
+	if (!path)
+		return (0);
+	// ft_memset(&buf, 0, sizeof(buf));
 	lstat(path, &buf);
 	if (S_ISDIR(buf.st_mode))
 	{
@@ -91,7 +94,7 @@ char	*path_cmd(char *cmd, char ***env)
 	int		i;
 
 	tmp_env = *env;
-	if (cmd[0])
+	if (cmd[0] && cmd[0] == '.')
 	{
 		pwd = util_path_cmd(cmd);
 		if (is_path(cmd, pwd))

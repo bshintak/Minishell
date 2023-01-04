@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+         #
+#    By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/21 17:10:37 by bshintak          #+#    #+#              #
-#    Updated: 2023/01/03 12:19:48 by lleiria-         ###   ########.fr        #
+#    Updated: 2023/01/03 15:06:33 by bshintak         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ $(VERBOSE).SILENT:
 
 NAME		=	minishell
 CC			=	gcc
-CFLAGS		=	-Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS		=	-Wall -Werror -Wextra -g #-fsanitize=address
 INCLUDE		=	-lreadline
 MKD			=	mkdir
 RM			=	rm -f

@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 15:24:36 by lleiria-          #+#    #+#             */
-/*   Updated: 2022/12/30 16:23:13 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/03 15:21:19 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ void	executor(t_node **tree, char ***env, int num)
 	pp.num_pipe = num + 1;
 	pp.num_cmd = num + 1;
 	pp.fd = 0;
+	while (node->left && node->left->id == ID_PIPE)
+		node = node->left;
 	if (!node->up && node->id == ID_BUILTIN)
 		find_builtin(node, env);
 	else
@@ -96,5 +98,5 @@ void	executor(t_node **tree, char ***env, int num)
 		one_or_two_cmds(node, &pp, env);
 		mult_pipes(node, &pp, env);
 	}
-	wait_cmd(pp.pid, num, env);
+	wait_cmd(pp.pid, num);
 }

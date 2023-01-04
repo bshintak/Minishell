@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 18:18:02 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/05 11:00:41 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/03 15:25:35 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,6 @@ char	**get_env(char **env)
 		else
 			copy_env[i] = ft_strdup(env[i]);
 	}
-	copy_env[i] = '\0';
+	copy_env[i] = NULL;
 	return (copy_env);
 }
