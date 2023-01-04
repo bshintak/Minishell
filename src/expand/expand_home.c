@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 11:43:17 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/12 15:01:10 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/04 15:15:29 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,14 @@ char	*find_home(char **env)
 	return (NULL);
 }
 
-char	*get_til(char *token, char **env)
+char	*get_til(char *token, char **env, int status)
 {
 	int		token_size;
 	char	*home;
 
 	home = NULL;
+	if (status == REDIR)
+		return (NULL);
 	if (!token || !env)
 		return (NULL);
 	token_size = ft_strlen(token);

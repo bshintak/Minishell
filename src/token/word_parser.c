@@ -6,13 +6,13 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 19:04:29 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/30 16:14:26 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/04 15:17:16 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	needs_of_token(char *token)
+int	needs_of_token(char *token, int status)
 {
 	int			i;
 	int			simple_quote;
@@ -23,6 +23,8 @@ int	needs_of_token(char *token)
 	simple_quote = 0;
 	double_quote = 0;
 	dollar = 0;
+	if (status == REDIR)
+		return (0);
 	while (token[++i])
 	{
 		if (ft_is(token[i], "\""))
@@ -82,23 +84,23 @@ char	*dollar_quotes(char *tk, char *dol, char **env, int *i)
 	return (dol);
 }
 
-char	*word_parser(char *token, char **env)
+char	*word_parser(char *token, char **env, int status)
 {
 	char		*home;
 	char		*dollar;
 	int			i;
 
 	i = -1;
-	home = get_til(token, env);
+	home = get_til(token, env, status);
 	if (home)
 	{
 		if (token)
 			free(token);
 		token = home;
 	}
-	if (needs_of_token(token) == MISSING_QUOTE)
+	if (needs_of_token(token, status) == MISSING_QUOTE)
 		print_error_quote(token, MISSING_QUOTE);
-	if (!needs_of_token(token))
+	if (!needs_of_token(token, status))
 		return (token);
 	dollar = ft_calloc(1, sizeof(char));
 	if (!dollar)

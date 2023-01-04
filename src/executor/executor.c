@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 15:24:36 by lleiria-          #+#    #+#             */
-/*   Updated: 2023/01/03 15:21:19 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/04 15:19:34 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	process(t_node *node, t_pipex *pp, char ***env)
 	env2 = *env;
 	path = path_cmd(cmd[0], env);
 	close(node->p[0]);
-	redir(pp, node);
+	redir(pp, node, *env);
 	rl_clear_history();
 	if (node->id == ID_BUILTIN)
 	{

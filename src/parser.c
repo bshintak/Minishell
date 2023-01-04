@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 13:11:37 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/30 16:10:03 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/04 15:15:53 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_node	*parser(char *line, char **env)
 			break ;
 		id = get_id(token);
 		if (id == ID_WORD)
-			token = word_parser(token, env);
+			token = word_parser(token, env, 0);
 		create_tree(&tree, token, id);
 		if (token)
 			free (token);

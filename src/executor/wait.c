@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 16:18:22 by bshintak          #+#    #+#             */
-/*   Updated: 2023/01/03 15:23:12 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/04 14:13:46 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@ void	wait_cmd(int pid, int num)
 	waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
 		(*exit_status()).i = WEXITSTATUS(status);
-	else if (WIFSIGNALED(status))
-	{
-		printf("status = %d\n", status);
-		(*exit_status()).i = 128 + status;
-		if ((*exit_status()).i == 130)
-			ft_putstr_fd("\n", STDOUT_FILENO);
-		else if ((*exit_status()).i > 130)
-			ft_putendl_fd("Quit (core dumped)", STDOUT_FILENO);
-	}
+	// else if (WIFSIGNALED(status))
+	// {
+	// 	printf("status = %d\n", status);
+	// 	(*exit_status()).i = 128 + status;
+	// 	if ((*exit_status()).i == 130)
+	// 		ft_putstr_fd("\n", STDOUT_FILENO);
+	// 	else if ((*exit_status()).i > 130)
+	// 		ft_putendl_fd("Quit (core dumped)", STDOUT_FILENO);
+	// }
 	while (n_cmd)
 	{
 		wait(NULL);

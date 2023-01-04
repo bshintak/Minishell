@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:23:53 by bshintak          #+#    #+#             */
-/*   Updated: 2023/01/03 15:20:38 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/04 15:19:49 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ typedef struct s_pipex
 # define SPACES_OPERATORS	" \t\f\n\v\r<>|"
 # define SPACES				" \t\f\n\v\r"
 # define OPERATORS			"<>|"
+
+# define REDIR				100
 
 # define ID_WORD			0	/* 'word' */
 # define ID_INPUT_REDIR		1	/* '<' */
@@ -146,17 +148,17 @@ int		syntax_error(t_node *tree, char *token);
 
 /*		CTRL				*/
 void	get_signal(int signal, void (*function)());
-void	ctrl_c(int signal, siginfo_t *info, void *ucontext);
-void	call_sigact(char act_choice);
+void	ctrl_c(int signal);
 
 /*		UTILS_EXIT				*/
 int		set_exit(int status, int option);
 
 /*		WORD_PARSER				*/
-char	*word_parser(char *token, char **env);
+char	*word_parser(char *token, char **env, int status);
+char	*dollar_quotes(char *tk, char *dol, char **env, int *i);
 
 /*		EXPAND_HOME				*/
-char	*get_til(char *token, char **env);
+char	*get_til(char *token, char **env, int status);
 
 /*		EXPAND_SHLVL			*/
 char	*find_shlvl(char **env);
@@ -214,7 +216,7 @@ void	add_on_left(t_node *node, t_node *new);
 void	tree_free(t_node *tree);
 
 /*		REDIRECTIONS			*/
-void	redir(t_pipex *pp, t_node *node);
+void	redir(t_pipex *pp, t_node *node, char **env);
 
 /*		EXECUTOR				*/
 void	executor(t_node **tree, char ***env, int num);

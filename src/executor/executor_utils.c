@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 15:24:50 by lleiria-          #+#    #+#             */
-/*   Updated: 2023/01/03 15:06:19 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/04 14:42:19 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ int	is_path(char *str, char *path)
 
 	if (!path)
 		return (0);
-	// ft_memset(&buf, 0, sizeof(buf));
 	lstat(path, &buf);
 	if (S_ISDIR(buf.st_mode))
 	{
@@ -74,32 +73,36 @@ int	is_path(char *str, char *path)
 	return (0);
 }
 
-char	*util_path_cmd(char *cmd)
+char	*util_path_cmd(char *cmd, char *pwd, char *tmp)
 {
-	char	*pwd;
-	char	*tmp;
-
 	pwd = getcwd(NULL, 0);
 	tmp = ft_strjoin(pwd, "/");
 	free(pwd);
 	pwd = ft_strjoin(tmp, cmd);
 	free(tmp);
-	return (pwd);
+	if (is_path(cmd, pwd))
+		return (pwd);
+	return (NULL);
 }
 
 char	*path_cmd(char *cmd, char ***env)
 {
 	char	*pwd;
+	char	*tmp;
 	char	**tmp_env;
 	int		i;
 
 	tmp_env = *env;
+	pwd = NULL;
+	tmp = NULL;
 	if (cmd[0] && cmd[0] == '.')
 	{
-		pwd = util_path_cmd(cmd);
+		pwd = util_path_cmd(cmd, pwd, tmp);
 		if (is_path(cmd, pwd))
 			return (pwd);
 	}
+	if (pwd)
+		free (pwd);
 	i = -1;
 	while (tmp_env[++i])
 	{
@@ -110,5 +113,7 @@ char	*path_cmd(char *cmd, char ***env)
 	}
 	ft_putstr_fd(cmd, 2);
 	ft_putendl_fd(": Command not found", 2);
+	(*exit_status()).i = 126;
+	exit((*exit_status()).i);
 	return (NULL);
 }
