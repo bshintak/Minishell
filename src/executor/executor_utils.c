@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 15:24:50 by lleiria-          #+#    #+#             */
-/*   Updated: 2023/01/04 14:42:19 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/05 15:44:01 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ char	*get_path(char *env, char *cmd)
 {
 	char	**tmp;
 	char	*tmp2;
+	char	*tmp3;
 
 	tmp = NULL;
 	tmp2 = NULL;
@@ -51,7 +52,9 @@ char	*get_path(char *env, char *cmd)
 		return (NULL);
 	tmp = ft_split(env, ':');
 	tmp2 = ft_strjoin("/", cmd);
-	return (get_cmd_path(tmp, tmp2));
+	tmp3 = get_cmd_path(tmp, tmp2);
+	free(tmp);
+	return (tmp3);
 }
 
 int	is_path(char *str, char *path)
@@ -85,16 +88,10 @@ char	*util_path_cmd(char *cmd, char *pwd, char *tmp)
 	return (NULL);
 }
 
-char	*path_cmd(char *cmd, char ***env)
+char	*path_comander(char *cmd, char *pwd, char *tmp, char **tmp_env)
 {
-	char	*pwd;
-	char	*tmp;
-	char	**tmp_env;
 	int		i;
 
-	tmp_env = *env;
-	pwd = NULL;
-	tmp = NULL;
 	if (cmd[0] && cmd[0] == '.')
 	{
 		pwd = util_path_cmd(cmd, pwd, tmp);
@@ -102,7 +99,7 @@ char	*path_cmd(char *cmd, char ***env)
 			return (pwd);
 	}
 	if (pwd)
-		free (pwd);
+		free(pwd);
 	i = -1;
 	while (tmp_env[++i])
 	{
@@ -111,9 +108,5 @@ char	*path_cmd(char *cmd, char ***env)
 			return (pwd);
 		free(pwd);
 	}
-	ft_putstr_fd(cmd, 2);
-	ft_putendl_fd(": Command not found", 2);
-	(*exit_status()).i = 126;
-	exit((*exit_status()).i);
 	return (NULL);
 }

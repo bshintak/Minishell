@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:23:53 by bshintak          #+#    #+#             */
-/*   Updated: 2023/01/04 15:19:49 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/05 15:42:51 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,7 @@ void	ret_error(char *str);
 void	ret_without_error(char *str);
 void	print_error(char *token);
 void	print_error_quote(char *token, int status);
+void	cmd_error(char *cmd);
 
 /*		SYNTAX_ERROR		*/
 int		syntax_error(t_node *tree, char *token);
@@ -226,6 +227,7 @@ int		is_path(char *str, char *path);
 /*		EXECUTOR_UTILS			*/
 int		num_pipes(t_node *tree);
 char	*path_cmd(char *cmd, char ***env);
+char	*path_comander(char *cmd, char *pwd, char *tmp, char **tmp_env);
 
 /*		CLOSE_PIPES				*/
 void	close_pipes(t_pipex *pp, t_node *node);

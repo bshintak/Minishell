@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 18:46:24 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/30 16:16:17 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/05 15:13:54 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,12 @@ void	print_error_quote(char *token, int status)
 		ft_putendl_fd(": missing quote", STDERR_FILENO);
 	else
 		ft_putendl_fd(": something wrong", STDERR_FILENO);
+}
+
+void	cmd_error(char *cmd)
+{
+	ft_putstr_fd(cmd, 2);
+	ft_putendl_fd(": Command not found", 2);
+	(*exit_status()).i = 126;
+	exit((*exit_status()).i);
 }

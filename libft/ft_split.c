@@ -6,7 +6,7 @@
 /*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 14:07:07 by lleiria-          #+#    #+#             */
-/*   Updated: 2022/12/08 11:28:13 by lleiria-         ###   ########.fr       */
+/*   Updated: 2023/01/05 12:52:37 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,10 @@ char	**ft_split(char *s, char c)
 	char	**split2;
 
 	if (!s)
-		return (0);
+		return (NULL);
 	split = malloc((ft_cword(s, c) + 1) * sizeof(char *));
 	if (!split)
-		return (0);
+		return (NULL);
 	split2 = ft_spliter(split, s, c);
 	return (split2);
 }

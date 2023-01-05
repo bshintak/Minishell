@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wait.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 16:18:22 by bshintak          #+#    #+#             */
-/*   Updated: 2023/01/04 14:13:46 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/05 15:43:12 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,20 @@ void	wait_cmd(int pid, int num)
 		wait(NULL);
 		n_cmd--;
 	}
+}
+
+char	*path_cmd(char *cmd, char ***env)
+{
+	char	*pwd;
+	char	*tmp;
+	char	**tmp_env;
+
+	tmp_env = *env;
+	pwd = NULL;
+	tmp = NULL;
+	pwd = path_comander(cmd, pwd, tmp, tmp_env);
+	if (pwd)
+		return (pwd);
+	cmd_error(cmd);
+	return (NULL);
 }
