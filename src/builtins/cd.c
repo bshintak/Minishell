@@ -6,7 +6,7 @@
 /*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 15:52:54 by bshintak          #+#    #+#             */
-/*   Updated: 2023/01/04 12:17:56 by lleiria-         ###   ########.fr       */
+/*   Updated: 2023/01/05 11:57:37 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,8 @@ void	builtin_cd(char **line, char ***env)
 	else if (chdir(line[1]) == -1)
 	{
 		error_cd(line[1]);
+		free(old_path);
+		free(home_path);
 		return ;
 	}
 	new_path = getcwd(NULL, 1025);

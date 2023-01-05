@@ -6,7 +6,7 @@
 /*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 11:25:35 by lleiria-          #+#    #+#             */
-/*   Updated: 2023/01/04 15:23:48 by lleiria-         ###   ########.fr       */
+/*   Updated: 2023/01/05 12:07:02 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	insert_var(char ***env, char *var)
 	}
 	copy_env[i] = ft_strdup(var);
 	copy_env[i + 1] = NULL;
-	printf("entrou: %s\n", copy_env[i]);
 	free(*env);
 	(*env) = copy_env;
 }
@@ -94,6 +93,10 @@ void	builtin_export(char **line, char ***env)
 		if (valid_var(line[1]))
 			insert_var(env, line[1]);
 		else
-			printf("not valid var\n");
+		{
+			ft_putstr_fd("export: \'", 1);
+			ft_putstr_fd(line[1], 1);
+			ft_putstr_fd("\': not a valid identifier\n", 1);
+		}
 	}
 }
