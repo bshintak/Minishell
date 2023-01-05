@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 12:03:28 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/22 15:29:33 by lleiria-         ###   ########.fr       */
+/*   Updated: 2023/01/05 17:10:23 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,20 @@ int	type_exit(char *line)
 	while (line[++i])
 	{
 		if (ft_isascii(line[i]) && !ft_isdigit(line[i]))
+		{
+			ft_putstr_fd("exit\n", 1);
+			ft_putstr_fd("exit: ", 2);
+			ft_putstr_fd(line, 2);
+			ft_putendl_fd(" : numeric argument required", 2);
 			return (2);
+		}
 	}
 	i = 0;
 	if (ft_isdigit(line[i]))
+	{
+		ft_putstr_fd("exit\n", 1);
 		return (num_exit(ft_atoi(line)));
+	}
 	return (0);
 }
 

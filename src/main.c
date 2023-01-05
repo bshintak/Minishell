@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:58:37 by bshintak          #+#    #+#             */
-/*   Updated: 2023/01/05 16:24:27 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/05 16:53:18 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,11 @@ void	tree_parser(char *line, char ***env)
 
 	tree = parser(line, *env);
 	inicial_tree = tree;
-	while (inicial_tree->up)
-		inicial_tree = inicial_tree->up;
+	if (inicial_tree)
+	{
+		while (inicial_tree->up)
+			inicial_tree = inicial_tree->up;
+	}
 	// print2d(tree);
 	free (line);
 	if (tree)

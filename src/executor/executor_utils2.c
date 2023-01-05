@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:14:20 by bshintak          #+#    #+#             */
-/*   Updated: 2023/01/05 15:15:53 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/05 16:36:45 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ char	*get_path(char *env, char *cmd)
 {
 	char	**tmp;
 	char	*tmp2;
+	char	*tmp3;
 
 	tmp = NULL;
 	tmp2 = NULL;
@@ -51,7 +52,9 @@ char	*get_path(char *env, char *cmd)
 		return (NULL);
 	tmp = ft_split(env, ':');
 	tmp2 = ft_strjoin("/", cmd);
-	return (get_cmd_path(tmp, tmp2));
+	tmp3 = get_cmd_path(tmp, tmp2);
+	free(tmp);
+	return (tmp3);
 }
 
 int	is_path(char *str, char *path)
@@ -63,7 +66,6 @@ int	is_path(char *str, char *path)
 	lstat(path, &buf);
 	if (S_ISDIR(buf.st_mode))
 	{
-		printf("aquiiiiiiiiiiiii\n");
 		ft_putstr_fd(str, 2);
 		ft_putendl_fd(" is a directory", 2);
 		(*exit_status()).i = 126;
@@ -83,5 +85,6 @@ char	*util_path_cmd(char *cmd, char *pwd, char *tmp)
 	free(tmp);
 	if (is_path(cmd, pwd))
 		return (pwd);
+	free(pwd);
 	return (NULL);
 }

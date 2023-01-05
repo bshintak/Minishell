@@ -6,11 +6,9 @@
 #    By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/21 17:10:37 by bshintak          #+#    #+#              #
-#    Updated: 2023/01/05 12:28:57 by bshintak         ###   ########.fr        #
+#    Updated: 2023/01/05 17:18:21 by bshintak         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-$(VERBOSE).SILENT:
 
 NAME		=	minishell
 CC			=	gcc
@@ -53,6 +51,7 @@ EXECUTOR	=	executor/executor.c				\
 
 REDIR		=	redirections/redirection.c		\
 				redirections/heredoc.c			\
+				redirections/heredoc_utils.c
 
 EXPAND		=	expand/expand_home.c			\
 				expand/expand_shlvl.c			\

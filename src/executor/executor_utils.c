@@ -6,22 +6,16 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 15:24:50 by lleiria-          #+#    #+#             */
-/*   Updated: 2023/01/05 15:15:03 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/05 17:10:41 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-char	*path_nrml(char *cmd, char ***env)
+char	*path_comander(char *cmd, char *pwd, char *tmp, char **tmp_env)
 {
-	char	*pwd;
-	char	*tmp;
-	char	**tmp_env;
 	int		i;
 
-	tmp_env = *env;
-	pwd = NULL;
-	tmp = NULL;
 	if (cmd[0] && cmd[0] == '.')
 	{
 		pwd = util_path_cmd(cmd, pwd, tmp);
@@ -29,7 +23,7 @@ char	*path_nrml(char *cmd, char ***env)
 			return (pwd);
 	}
 	if (pwd)
-		free (pwd);
+		free(pwd);
 	i = -1;
 	while (tmp_env[++i])
 	{
@@ -38,10 +32,22 @@ char	*path_nrml(char *cmd, char ***env)
 			return (pwd);
 		free(pwd);
 	}
-	ft_putstr_fd(cmd, 2);
-	ft_putendl_fd(": Command not found", 2);
-	(*exit_status()).i = 126;
-	exit((*exit_status()).i);
+	return (NULL);
+}
+
+char	*path_cmd2(char *cmd, char ***env)
+{
+	char	*pwd;
+	char	*tmp;
+	char	**tmp_env;
+
+	tmp_env = *env;
+	pwd = NULL;
+	tmp = NULL;
+	pwd = path_comander(cmd, pwd, tmp, tmp_env);
+	if (pwd)
+		return (pwd);
+	cmd_error(cmd);
 	return (NULL);
 }
 
@@ -72,7 +78,7 @@ char	*absolute_path(char *cmd)
 char	*path_cmd(char *cmd, char ***env)
 {
 	if (cmd[0] == '/')
-		return(absolute_path(cmd));
+		return (absolute_path(cmd));
 	else
-		return (path_nrml(cmd, env));
+		return (path_cmd2(cmd, env));
 }

@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:23:53 by bshintak          #+#    #+#             */
-/*   Updated: 2023/01/05 14:45:34 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/05 17:17:57 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,7 @@ void	ret_error(char *str);
 void	ret_without_error(char *str);
 void	print_error(char *token);
 void	print_error_quote(char *token, int status);
+void	cmd_error(char *cmd);
 
 /*		SYNTAX_ERROR		*/
 int		syntax_error(t_node *tree, char *token);
@@ -227,12 +228,17 @@ int		is_path(char *str, char *path);
 char	*get_path(char *env, char *cmd);
 char	*util_path_cmd(char *cmd, char *pwd, char *tmp);
 
+/*		HEREDOC					*/
 int		execute_heredoc(t_node **tree, t_pipex *pp, char **env);
 int		tree_heredoc(t_node	**tree, t_pipex *pp, char **env);
+int		wait_heredoc(t_node **tree, t_pipex *e);
+void	error_readline_her(char *str, char *eof, int exit_stat);
 
 /*		EXECUTOR_UTILS			*/
 int		num_pipes(t_node *tree);
+char	*path_cmd2(char *cmd, char ***env);
 char	*path_cmd(char *cmd, char ***env);
+char	*path_comander(char *cmd, char *pwd, char *tmp, char **tmp_env);
 
 /*		CLOSE_PIPES				*/
 void	close_pipes(t_pipex *pp, t_node *node);
@@ -242,6 +248,5 @@ void	wait_cmd(int pid, int num);
 
 /*		PRINT_TREE				*/
 void	print2d(t_node *root);
-
 
 #endif

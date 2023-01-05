@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 11:37:14 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/30 16:02:04 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/05 18:00:01 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,15 @@ char	*update_dollar(char *dollar, char **env, int *i, char *ret)
 	size = size_env(&dollar[index + 1]);
 	if (!size)
 		return (dollar);
-	else
+	else if (dollar[index + 1] != '$')
 	{
 		final = ft_strdup(&dollar[index + (size + 1)]);
 		elm_env = ft_strdup(expand_dollar(&dollar[index], env));
 		ret = join_tokens(ret, elm_env);
 		ret = join_tokens(ret, final);
 	}
+	else
+		ret = ft_strdup(dollar);
 	return (ret);
 }
 
@@ -68,6 +70,8 @@ char	*update_quote_dollar(char *dollar, char **env)
 	fail_malloc2(ret);
 	while (dollar[++i])
 	{
+		if (dollar[i] == '$' && !dollar[i + 1])
+			return (dollar);
 		if (dollar[i] != '$')
 			ret = no_dollar(dollar, ret, &i);
 		else if (dollar[i] == '$'
