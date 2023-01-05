@@ -6,7 +6,7 @@
 #    By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/21 17:10:37 by bshintak          #+#    #+#              #
-#    Updated: 2023/01/04 17:36:14 by bshintak         ###   ########.fr        #
+#    Updated: 2023/01/05 12:28:57 by bshintak         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,10 +47,12 @@ TREE		=	tree/create_tree.c				\
 
 EXECUTOR	=	executor/executor.c				\
 				executor/executor_utils.c		\
+				executor/executor_utils2.c		\
 				executor/pipes.c				\
 				executor/wait.c
 
 REDIR		=	redirections/redirection.c		\
+				redirections/heredoc.c			\
 
 EXPAND		=	expand/expand_home.c			\
 				expand/expand_shlvl.c			\

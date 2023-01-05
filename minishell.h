@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:23:53 by bshintak          #+#    #+#             */
-/*   Updated: 2023/01/04 15:19:49 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/05 14:45:34 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <errno.h>
 # include <sys/wait.h>
 # include <sys/stat.h>
+# include <dirent.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 
@@ -217,11 +218,17 @@ void	tree_free(t_node *tree);
 
 /*		REDIRECTIONS			*/
 void	redir(t_pipex *pp, t_node *node, char **env);
+void	num_redir(t_pipex *pp, t_node *node);
 
 /*		EXECUTOR				*/
 void	executor(t_node **tree, char ***env, int num);
 char	*get_cmd_path(char **path, char *cmd);
 int		is_path(char *str, char *path);
+char	*get_path(char *env, char *cmd);
+char	*util_path_cmd(char *cmd, char *pwd, char *tmp);
+
+int		execute_heredoc(t_node **tree, t_pipex *pp, char **env);
+int		tree_heredoc(t_node	**tree, t_pipex *pp, char **env);
 
 /*		EXECUTOR_UTILS			*/
 int		num_pipes(t_node *tree);

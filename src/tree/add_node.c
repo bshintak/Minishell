@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 12:54:06 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/29 15:48:57 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/05 10:24:22 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,34 @@
 
 void	add_command(t_node **tree, t_node *node)
 {
-	t_node	*first_wtv;
+	t_node	*first_node;
 
-	first_wtv = *tree;
-	if (!first_wtv || is_redir(first_wtv))
+	first_node = *tree;
+	if (!first_node || is_redir(first_node))
 		add_on_top(tree, node);
-	else if (is_pipe(first_wtv))
-		add_on_right(first_wtv, node);
+	else if (is_pipe(first_node))
+		add_on_right(first_node, node);
 }
 
 void	add_redir(t_node **tree, t_node *node)
 {
-	t_node	*first_wtv;
-	t_node	*next_wtv;
+	t_node	*first_node;
+	t_node	*next_node;
 
 	if (!tree)
 		return ;
-	first_wtv = *tree;
-	if (!first_wtv)
+	first_node = *tree;
+	if (!first_node)
 		add_on_top(tree, node);
-	else if (is_command(first_wtv) || is_redir(first_wtv))
-		add_on_left(first_wtv, node);
-	else if (is_pipe(first_wtv))
+	else if (is_command(first_node) || is_redir(first_node))
+		add_on_left(first_node, node);
+	else if (is_pipe(first_node))
 	{
-		next_wtv = first_wtv->right;
-		if (!next_wtv || is_redir(next_wtv))
-			add_on_right(first_wtv, node);
+		next_node = first_node->right;
+		if (!next_node || is_redir(next_node))
+			add_on_right(first_node, node);
 		else
-			add_on_left(next_wtv, node);
+			add_on_left(next_node, node);
 	}
 }
 

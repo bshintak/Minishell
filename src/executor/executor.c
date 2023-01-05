@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 15:24:36 by lleiria-          #+#    #+#             */
-/*   Updated: 2023/01/04 15:19:34 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/05 14:46:00 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ void	executor(t_node **tree, char ***env, int num)
 	pp.fd = 0;
 	while (node->left && node->left->id == ID_PIPE)
 		node = node->left;
+	if (tree_heredoc(&node, &pp, *env))
+		return ;
 	if (!node->up && node->id == ID_BUILTIN)
 		find_builtin(node, env);
 	else

@@ -87,7 +87,7 @@ void	new_readline(int fd, t_node *node, char **env)
 	free(new_node);
 }
 
-void	do_heredoc(t_pipex *pp, int in, t_node *node, char **env)
+void	do_heredoc(t_pipex *pp, t_node *node, char **env, int in)
 {
 	int	fd;
 
@@ -111,6 +111,7 @@ void	redir_in(t_pipex *pp, t_node *node, char **env)
 	int	fd;
 	int	in;
 
+	(void)env;
 	in = pp->in + 1;
 	while (node->left)
 	{
@@ -120,7 +121,7 @@ void	redir_in(t_pipex *pp, t_node *node, char **env)
 			in--;
 			fd = open((char *)node->data, O_RDONLY, 0644);
 			error_redir(fd, node);
-			if (pp->in == 0)
+			if (in == pp->in)
 				dup2(fd, STDIN_FILENO);
 			else
 				close(fd);
@@ -128,7 +129,8 @@ void	redir_in(t_pipex *pp, t_node *node, char **env)
 		else if (node->id == ID_INPUT_HERDOC)
 		{
 			in--;
-			do_heredoc(pp, in, node, env);
+			if (in == pp->in)
+				dup2(node->p[0], STDIN_FILENO);
 		}
 	}
 }
@@ -136,22 +138,24 @@ void	redir_in(t_pipex *pp, t_node *node, char **env)
 void	redir_out(t_pipex *pp, t_node *node)
 {
 	int	fd;
+	int	out;
 
+	out = pp->out + 1;
 	while (node->left)
 	{
 		node = node->left;
 		if (node->id == ID_OUTPUT_REDIR)
 		{
+			out--;
 			fd = open(node->data, O_CREAT | O_WRONLY | O_TRUNC, 0644);
-			pp->out--;
 		}
 		else if (node->id == ID_OUTPUT_APPEND)
 		{
+			out--;
 			fd = open(node->data, O_CREAT | O_WRONLY | O_APPEND, 0644);
-			pp->out--;
 		}
 		error_redir(fd, node);
-		if (pp->out == 0)
+		if (pp->out == out)
 			dup2(fd, STDOUT_FILENO);
 		else
 			close(fd);
@@ -162,11 +166,18 @@ void	redir(t_pipex *pp, t_node *node, char **env)
 {
 	num_redir(pp, node);
 	if (pp->in)
+	{
+		if (pp->fd)
+			close(pp->fd);
 		redir_in(pp, node, env);
+	}
 	else
 		dup2(pp->fd, STDIN_FILENO);
 	if (pp->out)
+	{
+		close(node->p[1]);
 		redir_out(pp, node);
+	}
 	else
 	{
 		if (pp->num_pipe > 1)

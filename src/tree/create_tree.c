@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 10:43:06 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/29 16:12:05 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/05 10:26:40 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ t_node	*create_node(int id)
 	t_node	*node;
 
 	node = malloc(sizeof(t_node));
-	fail_malloc2(node);
+	if (!node)
+		return (0);
 	node->id = id;
 	node->data = NULL;
 	node->left = NULL;
