@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 17:11:34 by bshintak          #+#    #+#             */
-/*   Updated: 2023/01/05 17:17:48 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/06 18:12:58 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,16 @@ int	wait_heredoc(t_node **tree, t_pipex *e)
 		return (1);
 	}
 	return (0);
+}
+
+void	new_line_exist(char *new_line, int fd, char **env)
+{
+	char	*join;
+	char	*parser;
+
+	join = ft_strjoin(new_line, "\n");
+	free (new_line);
+	parser = word_parser(join, env, REDIR);
+	write(fd, parser, ft_strlen(parser));
+	free(join);
 }

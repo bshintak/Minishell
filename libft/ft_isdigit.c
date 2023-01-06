@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 14:55:27 by lleiria-          #+#    #+#             */
-/*   Updated: 2022/11/25 17:27:01 by lleiria-         ###   ########.fr       */
+/*   Updated: 2023/01/06 16:55:24 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,3 @@ int	ft_isdigit(int c)
 	else
 		return (0);
 }
-/*
-int main()
-{
-    char c;
-    c = '1';
-    printf("\nResult when digit: %d", ft_isdigit(c));
-
-    c = '+';
-    printf("\nResult when other: %d", ft_isdigit(c));
-
-    c='A';
-    printf("\nResult when alphabetic character: %d", ft_isdigit(c));
-
-    return 0;
-}
-*/

@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 11:37:14 by bshintak          #+#    #+#             */
-/*   Updated: 2023/01/05 18:00:01 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/06 16:22:31 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,14 @@ char	*update_dollar(char *dollar, char **env, int *i, char *ret)
 	index = *i;
 	size = size_env(&dollar[index + 1]);
 	if (!size)
-		return (dollar);
-	else if (dollar[index + 1] != '$')
+		ret = ft_strdup(dollar);
+	else
 	{
 		final = ft_strdup(&dollar[index + (size + 1)]);
-		elm_env = ft_strdup(expand_dollar(&dollar[index], env));
+		elm_env = expand_dollar(&dollar[index], env);
 		ret = join_tokens(ret, elm_env);
 		ret = join_tokens(ret, final);
 	}
-	else
-		ret = ft_strdup(dollar);
 	return (ret);
 }
 
@@ -49,8 +47,8 @@ char	*do_dollar(char *dollar, char **env, int *i, char *ret)
 
 char	*no_dollar(char *dollar, char *ret, int *i)
 {
-	int	index;
-	int	size;
+	int		index;
+	int		size;
 
 	index = *i;
 	size = word_size_parser(&dollar[index]);
@@ -58,6 +56,12 @@ char	*no_dollar(char *dollar, char *ret, int *i)
 	index += size - 1;
 	*i = index;
 	return (ret);
+}
+
+char	*free_ret(char *dollar, char *ret)
+{
+	free (ret);
+	return (dollar);
 }
 
 char	*update_quote_dollar(char *dollar, char **env)
@@ -70,21 +74,16 @@ char	*update_quote_dollar(char *dollar, char **env)
 	fail_malloc2(ret);
 	while (dollar[++i])
 	{
-		if (dollar[i] == '$' && !dollar[i + 1])
-			return (dollar);
-		if (dollar[i] != '$')
-			ret = no_dollar(dollar, ret, &i);
-		else if (dollar[i] == '$'
+		if (dollar[i] == '$'
 			&& (dollar[i + 1] == '\'' || dollar[i + 1] == '\"'))
-		{
-			free (ret);
-			return (dollar);
-		}
+			return (free_ret(dollar, ret));
 		else if (dollar[i] == '$' && dollar[i + 1])
 		{
 			ret = do_dollar(dollar, env, &i, ret);
 			break ;
 		}
+		else if (dollar[i] != '$')
+			ret = no_dollar(dollar, ret, &i);
 	}
 	free (dollar);
 	return (ret);

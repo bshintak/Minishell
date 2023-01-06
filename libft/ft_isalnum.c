@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 16:27:12 by lleiria-          #+#    #+#             */
-/*   Updated: 2022/11/25 16:35:03 by lleiria-         ###   ########.fr       */
+/*   Updated: 2023/01/06 16:55:15 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,27 +20,3 @@ int	ft_isalnum(int c)
 	else
 		return (0);
 }
-/*
-int main()
-{
-    char c;
-    int result;
-
-    c = '5';
-    result = ft_isalnum(c);
-    printf("When %c is passed, return value is %d\n", c, result);
-
-    c = 'Q';
-    result = ft_isalnum(c);
-    printf("When %c is passed, return value is %d\n", c, result);
-
-    c = 'l';
-    result = ft_isalnum(c);
-    printf("When %c is passed, return value is %d\n", c, result);
-
-    c = '+';
-    result = ft_isalnum(c);
-    printf("When %c is passed, return value is %d\n", c, result);
-
-    return 0;
-}*/

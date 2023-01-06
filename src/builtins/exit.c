@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 12:03:28 by bshintak          #+#    #+#             */
-/*   Updated: 2023/01/05 17:10:23 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/06 16:44:30 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	type_exit(char *line)
 	return (0);
 }
 
-void	builtin_exit(char **line)
+void	builtin_exit(char **line, char **env)
 {
 	int	status;
 
@@ -57,5 +57,6 @@ void	builtin_exit(char **line)
 	}
 	else
 		status = type_exit(line[1]);
+	free (env);
 	exit (status);
 }

@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:58:37 by bshintak          #+#    #+#             */
-/*   Updated: 2023/01/05 16:53:18 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/06 18:28:50 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,17 @@ t_exit	*exit_status(void)
 	return (&exit_status);
 }
 
-void	main_exit(char *line)
+void	main_exit(char *line, char **env)
 {
+	int	i;
+
+	i = -1;
 	if (!line)
 	{
 		ft_putstr_fd("exit\n", STDOUT_FILENO);
 		rl_clear_history();
+		while (env[++i])
+			free (env[i]);
 		exit((*exit_status()).i);
 	}
 }
@@ -77,7 +82,7 @@ int	main(int argc, char **argv, char **env)
 	while (1)
 	{
 		line = readline("➜  bshintak&&lleiria-MiniShell: ");
-		main_exit(line);
+		main_exit(line, env_copy);
 		if (line)
 			add_history(line);
 		tree_parser(line, &env_copy);

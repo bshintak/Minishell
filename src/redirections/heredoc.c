@@ -6,23 +6,11 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 11:16:17 by bshintak          #+#    #+#             */
-/*   Updated: 2023/01/05 17:16:48 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/06 18:41:26 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
-void	new_line_exist(char *new_line, int fd, char **env)
-{
-	char	*join;
-	char	*parser;
-
-	join = ft_strjoin(new_line, "\n");
-	free (new_line);
-	parser = word_parser(join, env, REDIR);
-	write(fd, parser, ft_strlen(parser));
-	free(join);
-}
 
 void	new_readline2(int fd, t_node *node, char **env)
 {
@@ -42,7 +30,6 @@ void	new_readline2(int fd, t_node *node, char **env)
 			new_line_exist(new_line, fd, env);
 		}
 	}
-	// rl_clear_history();
 	free(new_line);
 	free(new_node);
 	exit (0);
@@ -54,32 +41,6 @@ int	process_heredoc(t_node **node, t_pipex *pp, int i, char **env)
 		new_readline2((*node)->p[1], *node, env);
 	else
 		new_readline2(-1, *node, env);
-	return (0);
-}
-
-int	tree_heredoc(t_node	**tree, t_pipex *pp, char **env)
-{
-	t_node	*node;
-
-	node = *tree;
-	if (node->id == ID_COMMAND)
-	{
-		if (execute_heredoc(tree, pp, env))
-			return (1);
-	}
-	if (node->id == ID_PIPE)
-	{
-		if (execute_heredoc(&((*tree)->left), pp, env))
-			return (1);
-		if (execute_heredoc(&((*tree)->right), pp, env))
-			return (1);
-	}
-	while (node->up)
-	{
-		node = node->up;
-		if (execute_heredoc(tree, pp, env))
-			return (1);
-	}
 	return (0);
 }
 
@@ -97,10 +58,10 @@ int	ft_heredoc(t_node **tree, t_pipex *pp, char **env, int i)
 			exit((*exit_status()).i);
 		}
 		pp->pid = fork();
-		// rl_clear_history();
 		if (pp->pid < 0)
 		{
-			ft_putstr_fd("Error: couldn't create a new process\n", STDERR_FILENO);
+			ft_putstr_fd("Error: couldn't create a new process\n",
+				STDERR_FILENO);
 			(*exit_status()).i = 1;
 			exit((*exit_status()).i);
 		}
@@ -129,6 +90,32 @@ int	execute_heredoc(t_node **tree, t_pipex *pp, char **env)
 				return (1);
 		}
 		node = node->up;
+	}
+	return (0);
+}
+
+int	tree_heredoc(t_node	**tree, t_pipex *pp, char **env)
+{
+	t_node	*node;
+
+	node = *tree;
+	if (node->id == ID_COMMAND || node->id == ID_INPUT_HERDOC)
+	{
+		if (execute_heredoc(tree, pp, env))
+			return (1);
+	}
+	if (node->id == ID_PIPE)
+	{
+		if (execute_heredoc(&((*tree)->left), pp, env))
+			return (1);
+		if (execute_heredoc(&((*tree)->right), pp, env))
+			return (1);
+	}
+	while (node->up)
+	{
+		node = node->up;
+		if (execute_heredoc(tree, pp, env))
+			return (1);
 	}
 	return (0);
 }

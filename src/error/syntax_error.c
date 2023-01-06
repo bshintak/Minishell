@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 11:52:51 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/29 16:25:54 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/06 16:57:33 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int	error_tree(t_node *tree, char *token)
 		aux = tree;
 	if (error_node(aux))
 	{
-		ft_putendl_fd("if error_node", 1);
 		print_error(token);
 		return (1);
 	}

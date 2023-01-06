@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 15:24:50 by lleiria-          #+#    #+#             */
-/*   Updated: 2023/01/05 17:10:41 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/06 16:55:37 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ char	*absolute_path(char *cmd)
 	dir = opendir(cmd);
 	if (dir)
 	{
-		printf("aqui2\n");
 		closedir(dir);
 		ft_putstr_fd(cmd, 2);
 		ft_putendl_fd(" is a directory", 2);

@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 19:04:29 by bshintak          #+#    #+#             */
-/*   Updated: 2023/01/05 17:47:19 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/06 16:24:59 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,12 @@ char	*dollar_quotes(char *tk, char *dol, char **env, int *i)
 	index = *i;
 	aux = NULL;
 	size = size_parser(&tk[index]);
+	if ((size == 1 && tk[index] == '$')
+		|| (tk[index] == '$' && tk[index + 1] == '$'))
+	{
+		free (dol);
+		return (ft_strdup(tk));
+	}
 	if (size)
 	{
 		aux = dollar_quotes2(tk, size, env, &index);

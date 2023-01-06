@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:23:53 by bshintak          #+#    #+#             */
-/*   Updated: 2023/01/05 17:17:57 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/06 18:13:17 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ void	builtin_env(char **env);
 void	builtin_cd(char **line, char ***env);
 void	builtin_export(char **line, char ***env);
 void	builtin_unset(char **line, char ***env);
-void	builtin_exit(char **line);
+void	builtin_exit(char **line, char **env);
 
 /*		GET_ENV				*/
 char	**get_env(char **env);
@@ -233,6 +233,7 @@ int		execute_heredoc(t_node **tree, t_pipex *pp, char **env);
 int		tree_heredoc(t_node	**tree, t_pipex *pp, char **env);
 int		wait_heredoc(t_node **tree, t_pipex *e);
 void	error_readline_her(char *str, char *eof, int exit_stat);
+void	new_line_exist(char *new_line, int fd, char **env);
 
 /*		EXECUTOR_UTILS			*/
 int		num_pipes(t_node *tree);

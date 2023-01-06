@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 14:27:59 by bshintak          #+#    #+#             */
-/*   Updated: 2023/01/05 16:22:41 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/06 16:55:53 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,6 @@ void	node_free(t_node *node)
 
 void	tree_free(t_node *tree)
 {
-	// printf("%d\n", tree->id);
-	// if (tree->id != ID_PIPE)
-	// 	printf("%s\n", (char *)tree->data);
 	if (!tree)
 		return ;
 	if (tree->left)

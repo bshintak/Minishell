@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 11:40:23 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/19 13:13:07 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/06 12:18:37 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*expand_dollar(char *token, char **env)
 	while (env[i] && ft_strncmp(env[i], token + 1, size))
 		i++;
 	if (env[i] && env[i][size] == '=')
-		return (env[i] + size + 1);
+		return (ft_strdup(env[i] + size + 1));
 	else
 		return (ft_substr(token, 0, size + 1));
 	return (NULL);
