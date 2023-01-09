@@ -6,7 +6,7 @@
 /*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 18:18:02 by bshintak          #+#    #+#             */
-/*   Updated: 2023/01/09 12:04:57 by lleiria-         ###   ########.fr       */
+/*   Updated: 2023/01/09 15:22:32 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@ char	**get_env(char **env)
 		if (!ft_strncmp(env[i], "SHLVL=", 7))
 			copy_env[i] = get_shlvl(env[i]);
 		else
+		{
 			copy_env[i] = ft_strdup(env[i]);
+		}
 	}
 	copy_env[i] = NULL;
 	return (copy_env);

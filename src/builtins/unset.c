@@ -6,7 +6,7 @@
 /*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 11:22:21 by lleiria-          #+#    #+#             */
-/*   Updated: 2023/01/09 12:20:16 by lleiria-         ###   ########.fr       */
+/*   Updated: 2023/01/09 17:28:09 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,16 @@ void	delete_var(char *var, char ***env)
 		i++;
 	copy_env = malloc(sizeof(char *) * (i));
 	j = 0;
-	i = 0;
-	while ((*env)[i])
+	i = -1;
+	while ((*env)[++i])
 	{
 		if (ft_strncmp((*env)[i], var, ft_strlen(var)) != 0)
 		{
 			copy_env[j] = (*env)[i];
-			i++;
 			j++;
 		}
 		else
-			i++;
+			free((*env)[i]);
 	}
 	copy_env[j] = NULL;
 	free(*env);
