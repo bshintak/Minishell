@@ -50,6 +50,7 @@ typedef struct s_pipex
 	int		in;
 	int		out;
 	int		heredoc;
+	char	*line;
 }				t_pipex;
 
 # define FALSE				0

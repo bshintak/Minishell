@@ -20,7 +20,8 @@ void	process(t_node *node, t_pipex *pp, char ***env)
 
 	cmd = (char **)node->data;
 	env2 = *env;
-	path = path_cmd(cmd[0], env);
+	if (node->id == ID_COMMAND || node->id == ID_BUILTIN)
+		path = path_cmd(cmd[0], env);
 	close(node->p[0]);
 	redir(pp, node, *env);
 	rl_clear_history();

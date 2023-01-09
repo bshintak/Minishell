@@ -94,17 +94,38 @@ int	execute_heredoc(t_node **tree, t_pipex *pp, char **env)
 	return (0);
 }
 
+int	execute_heredoc_first(t_node **tree, t_pipex *pp, char **env)
+{
+	t_node	*node;
+	int		i;
+
+	i = 0;
+	node = *tree;
+	num_redir(pp, node);
+	while (node->id != ID_COMMAND)
+	{
+		if (node->id == ID_INPUT_HERDOC || node->id == ID_INPUT_REDIR)
+		{
+			i++;
+			if (ft_heredoc(&node, pp, env, i))
+				return (1);
+		}
+		node = node->left;
+	}
+	return (0);
+}
+
 int	tree_heredoc(t_node	**tree, t_pipex *pp, char **env)
 {
 	t_node	*node;
 
 	node = *tree;
-	if (node->id == ID_COMMAND || node->id == ID_INPUT_HERDOC)
+	if (node->id == ID_COMMAND)
 	{
 		if (execute_heredoc(tree, pp, env))
 			return (1);
 	}
-	if (node->id == ID_PIPE)
+	else if (node->id == ID_PIPE)
 	{
 		if (execute_heredoc(&((*tree)->left), pp, env))
 			return (1);

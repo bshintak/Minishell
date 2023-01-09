@@ -1,0 +1,9 @@
+libft
+Makefile
+minishell
+minishell.h
+objects
+out.txt
+pipe_diagram.png
+README.md
+src
