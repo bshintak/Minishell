@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_get_token.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 15:21:00 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/06 12:15:31 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/09 12:57:57 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,21 @@ int	quotation_marks(char *line, char quote)
 		i++;
 	}
 	return (0);
+}
+
+int	num_of_dol(char *dollar)
+{
+	char	*aux;
+	int		i;
+	int		ret;
+
+	aux = dollar;
+	i = -1;
+	ret = 0;
+	while (aux[++i])
+	{
+		if (aux[i] == '$')
+			ret++;
+	}
+	return (ret);
 }

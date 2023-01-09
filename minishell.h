@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:23:53 by bshintak          #+#    #+#             */
-/*   Updated: 2023/01/06 18:13:17 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/09 12:52:30 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ t_exit	*exit_status(void);
 /*		LIBFT				*/
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_substr(char *s, unsigned int start, int len);
-char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strjoin(char const *s1, char const *s2);
 int		ft_strcmp(char *s1, char *s2);
 int		ft_strlen(char *str);
 char	*ft_strchr(char *s, int c);
@@ -121,6 +121,8 @@ char	*get_word(int *i, char *line);
 /*		UTILS_GET_TOKEN		*/
 int		ft_is(char c, char *set);
 int		quotation_marks(char *line, char quote);
+int		num_of_dol(char *dollar);
+int		num_quotes(char *dollar);
 
 /*		PARSER				*/
 t_node	*parser(char *line, char **env);

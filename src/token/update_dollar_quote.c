@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update_dollar_quote.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 11:37:14 by bshintak          #+#    #+#             */
-/*   Updated: 2023/01/06 16:22:31 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/09 12:56:43 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,17 @@ char	*no_dollar(char *dollar, char *ret, int *i)
 {
 	int		index;
 	int		size;
+	int		j;
+	char	*aux;
 
+	j = -1;
 	index = *i;
+	aux = dollar;
+	while (aux[++j])
+	{
+		if (aux[j] == '$' && aux[j + 1] == '$')
+			return (dollar);
+	}
 	size = word_size_parser(&dollar[index]);
 	ret = join_tokens(ret, ft_substr(&dollar[index], 0, size));
 	index += size - 1;
@@ -70,8 +79,11 @@ char	*update_quote_dollar(char *dollar, char **env)
 	int		i;
 
 	i = -1;
-	ret = ft_calloc(1, sizeof(char));
-	fail_malloc2(ret);
+	if (num_of_dol(dollar) < 2)
+	{
+		ret = ft_calloc(1, sizeof(char));
+		fail_malloc2(ret);
+	}
 	while (dollar[++i])
 	{
 		if (dollar[i] == '$'
