@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 11:25:35 by lleiria-          #+#    #+#             */
-/*   Updated: 2023/01/05 12:07:02 by lleiria-         ###   ########.fr       */
+/*   Updated: 2023/01/10 15:07:07 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	valid_var(char *var)
 	return (1);
 }
 
-void	print_export_line(char *env_line)
+void	print_export_line(char *env_line, int fd)
 {
 	int		i;
 
@@ -57,25 +57,25 @@ void	print_export_line(char *env_line)
 	ft_putstr_fd("declare -x ", 1);
 	while (env_line[i] != '\0' && env_line[i] != '=')
 	{
-		write(1, &env_line[i], 1);
+		ft_putchar_fd(env_line[i], fd);
 		i++;
 	}
 	if (env_line[i] == '=')
 	{
-		write(1, &env_line[i], 1);
-		write(1, "\"", 1);
+		ft_putchar_fd(env_line[i], fd);
+		ft_putchar_fd('\"', fd);
 		i++;
 		while (env_line[i] != '\0')
 		{
-			write(1, &env_line[i], 1);
+			ft_putchar_fd(env_line[i], fd);
 			i++;
 		}
-		write(1, "\"", 1);
+		ft_putchar_fd('\"', fd);
 	}
-	write(1, "\n", 1);
+	ft_putchar_fd('\n', fd);
 }
 
-void	builtin_export(char **line, char ***env)
+void	builtin_export(char **line, char ***env, int fd)
 {
 	int		i;
 
@@ -84,7 +84,7 @@ void	builtin_export(char **line, char ***env)
 	{
 		while ((*env)[i])
 		{
-			print_export_line((*env)[i]);
+			print_export_line((*env)[i], fd);
 			i++;
 		}
 	}
@@ -94,9 +94,9 @@ void	builtin_export(char **line, char ***env)
 			insert_var(env, line[1]);
 		else
 		{
-			ft_putstr_fd("export: \'", 1);
-			ft_putstr_fd(line[1], 1);
-			ft_putstr_fd("\': not a valid identifier\n", 1);
+			ft_putstr_fd("export: \'", fd);
+			ft_putstr_fd(line[1], fd);
+			ft_putstr_fd("\': not a valid identifier\n", fd);
 		}
 	}
 }

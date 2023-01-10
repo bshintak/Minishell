@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:23:53 by bshintak          #+#    #+#             */
-/*   Updated: 2023/01/10 11:52:09 by lleiria-         ###   ########.fr       */
+/*   Updated: 2023/01/10 15:12:15 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,12 +134,12 @@ int		num_quotes(char *dollar);
 t_node	*parser(char *line, char **env);
 
 /*		BUILTIN		*/
-void	find_builtin(t_node *token, char ***env);
-void	builtin_pwd(void);
-void	builtin_echo(char **cmd);
-void	builtin_env(char **env);
+void	find_builtin(t_node *token, char ***env, int fd);
+void	builtin_pwd(int fd);
+void	builtin_echo(char **cmd, int fd);
+void	builtin_env(char **env, int fd);
 void	builtin_cd(char **line, char ***env);
-void	builtin_export(char **line, char ***env);
+void	builtin_export(char **line, char ***env, int fd);
 void	builtin_unset(char **line, char ***env);
 void	builtin_exit(char **line, char **env);
 
@@ -226,8 +226,10 @@ void	add_on_left(t_node *node, t_node *new);
 void	tree_free(t_node *tree);
 
 /*		REDIRECTIONS			*/
-void	redir(t_pipex *pp, t_node *node, char **env);
+void	redir(t_pipex *pp, t_node *node);
 void	num_redir(t_pipex *pp, t_node *node);
+int		redir_builtin(t_node *node, t_pipex *pp);
+void	error_redir(int fd, t_node *node);
 
 /*		EXECUTOR				*/
 void	executor(t_node **tree, char ***env, int num, t_heredoc *wtv);

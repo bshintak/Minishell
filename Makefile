@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+         #
+#    By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/21 17:10:37 by bshintak          #+#    #+#              #
-#    Updated: 2023/01/10 12:00:42 by lleiria-         ###   ########.fr        #
+#    Updated: 2023/01/10 15:11:00 by bshintak         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,7 @@ EXECUTOR	=	executor/executor.c				\
 				executor/wait.c
 
 REDIR		=	redirections/redirection.c		\
+				redirections/redir_builtins.c	\
 				redirections/heredoc.c			\
 				redirections/heredoc2.c			\
 				redirections/heredoc_utils.c

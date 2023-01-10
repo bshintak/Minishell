@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 11:20:29 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/19 11:11:50 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/10 15:39:05 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	print2dutil(t_node *root, int space)
 	printf("\n");
 	for (int i = COUNT; i < space; i++)
 		printf(" ");
-	//printf("%s\n", root->data);
+	//("%s\n", root->data);
 	print_node1(root);
 	// Process left child
 	print2dutil(root->left, space);

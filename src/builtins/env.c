@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 16:34:59 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/22 15:13:25 by lleiria-         ###   ########.fr       */
+/*   Updated: 2023/01/10 14:59:51 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	have_value(char *env_line)
 	return (0);
 }
 
-void	builtin_env(char **env)
+void	builtin_env(char **env, int fd)
 {
 	int	i;
 
@@ -35,8 +35,8 @@ void	builtin_env(char **env)
 	{
 		if (have_value(env[i]))
 		{
-			ft_putstr_fd(env[i], 1);
-			ft_putchar_fd('\n', 1);
+			ft_putstr_fd(env[i], fd);
+			ft_putchar_fd('\n', fd);
 		}
 		i++;
 	}

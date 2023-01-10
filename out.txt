@@ -1,9 +1,1 @@
-libft
-Makefile
-minishell
-minishell.h
-objects
-out.txt
-pipe_diagram.png
-README.md
-src
+/nfs/homes/bshintak/bin:/nfs/homes/bshintak/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 15:24:36 by lleiria-          #+#    #+#             */
-/*   Updated: 2023/01/10 12:16:14 by lleiria-         ###   ########.fr       */
+/*   Updated: 2023/01/10 15:41:55 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ void	process(t_node *node, t_pipex *pp, char ***env)
 	if (node->id == ID_COMMAND || node->id == ID_BUILTIN)
 		path = path_cmd(cmd[0], env);
 	close(node->p[0]);
-	redir(pp, node, *env);
+	redir(pp, node);
 	rl_clear_history();
 	if (node->id == ID_BUILTIN)
 	{
-		find_builtin(node, env);
+		find_builtin(node, env, 1);
 		exit ((*exit_status()).i);
 	}
 	if (path)
@@ -60,10 +60,6 @@ void	do_command(t_node *node, char ***env, t_pipex *pp)
 
 void	one_or_two_cmds(t_node *node, t_pipex *pp, char ***env)
 {
-	int		i = -1;
-	char	**cmd;
-
-	cmd = (char **)node->data;
 	if (node->id == ID_PIPE)
 	{
 		do_command(node->left, env, pp);
@@ -72,11 +68,7 @@ void	one_or_two_cmds(t_node *node, t_pipex *pp, char ***env)
 		pp->num_pipe--;
 	}
 	else
-	{
-		while (cmd[++i])
-			printf("do command %s\n", cmd[i]);
 		do_command(node, env, pp);
-	}
 }
 
 void	mult_pipes(t_node *node, t_pipex *pp, char ***env)
@@ -100,10 +92,10 @@ void	executor(t_node **tree, char ***env, int num, t_heredoc *wtv)
 	pp.fd = 0;
 	while (node->left && node->left->id == ID_PIPE)
 		node = node->left;
+	if (!node->up && node->id == ID_BUILTIN)
+		return (find_builtin(node, env, redir_builtin(node, &pp)));
 	if (tree_heredoc(&node, &pp, *env, wtv))
 		return ;
-	if (!node->up && node->id == ID_BUILTIN)
-		find_builtin(node, env);
 	else
 	{
 		one_or_two_cmds(node, &pp, env);

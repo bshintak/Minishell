@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:58:37 by bshintak          #+#    #+#             */
-/*   Updated: 2023/01/10 12:00:05 by lleiria-         ###   ########.fr       */
+/*   Updated: 2023/01/10 15:42:50 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	wrong_arg(int argc, char **argv)
 {
 	if (argc != 1 && argv[1])
 	{
-		printf("wrong argument!\n");
+		ft_putstr_fd("wrong argument!\n", 2);
 		return (1);
 	}
 	return (0);

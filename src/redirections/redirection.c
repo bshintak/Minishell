@@ -37,12 +37,11 @@ void	error_redir(int fd, t_node *node)
 	}
 }
 
-void	redir_in(t_pipex *pp, t_node *node, char **env)
+void	redir_in(t_pipex *pp, t_node *node)
 {
 	int	fd;
 	int	in;
 
-	(void)env;
 	in = pp->in + 1;
 	while (node->left)
 	{
@@ -93,14 +92,14 @@ void	redir_out(t_pipex *pp, t_node *node)
 	}
 }
 
-void	redir(t_pipex *pp, t_node *node, char **env)
+void	redir(t_pipex *pp, t_node *node)
 {
 	num_redir(pp, node);
 	if (pp->in)
 	{
 		if (pp->fd)
 			close(pp->fd);
-		redir_in(pp, node, env);
+		redir_in(pp, node);
 	}
 	else
 		dup2(pp->fd, STDIN_FILENO);
