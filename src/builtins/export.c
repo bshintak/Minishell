@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 11:25:35 by lleiria-          #+#    #+#             */
-/*   Updated: 2023/01/10 15:07:07 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/10 16:48:02 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	valid_var(char *var)
 	i = 0;
 	if (ft_isdigit(var[i]))
 		return (0);
-	while (var[i])
+	while (var[i] && var[i] != '=')
 	{
 		if (!ft_isalnum(var[i]) && var[i] != '_' && var[i] != '=')
 			return (0);

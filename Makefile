@@ -6,13 +6,13 @@
 #    By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/21 17:10:37 by bshintak          #+#    #+#              #
-#    Updated: 2023/01/10 15:11:00 by bshintak         ###   ########.fr        #
+#    Updated: 2023/01/10 16:22:31 by bshintak         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	minishell
 CC			=	gcc
-CFLAGS		=	-Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS		=	-Wall -Werror -Wextra -g #-fsanitize=address
 INCLUDE		=	-lreadline
 MKD			=	mkdir
 RM			=	rm -f
