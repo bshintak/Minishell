@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 17:11:34 by bshintak          #+#    #+#             */
-/*   Updated: 2023/01/06 18:12:58 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/10 11:51:51 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,18 @@ void	new_line_exist(char *new_line, int fd, char **env)
 	parser = word_parser(join, env, REDIR);
 	write(fd, parser, ft_strlen(parser));
 	free(join);
+}
+
+int	is_heredoc(t_heredoc *wtv)
+{
+	char		*line;
+	int			i;
+
+	i = 0;
+	line = wtv->line;
+	while (line && ft_is(line[i], SPACES))
+		i++;
+	if (line[i] && line[i] == '<' && line[i + 1] == '<')
+		return (1);
+	return (0);
 }

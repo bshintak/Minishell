@@ -6,7 +6,7 @@
 /*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:23:53 by bshintak          #+#    #+#             */
-/*   Updated: 2023/01/09 12:52:30 by lleiria-         ###   ########.fr       */
+/*   Updated: 2023/01/10 11:52:09 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,11 @@ typedef struct s_exit
 {
 	int			i;
 }				t_exit;
+
+typedef struct s_heredoc
+{
+	char	*line;
+}				t_heredoc;
 
 typedef struct s_pipex
 {
@@ -225,7 +230,7 @@ void	redir(t_pipex *pp, t_node *node, char **env);
 void	num_redir(t_pipex *pp, t_node *node);
 
 /*		EXECUTOR				*/
-void	executor(t_node **tree, char ***env, int num);
+void	executor(t_node **tree, char ***env, int num, t_heredoc *wtv);
 char	*get_cmd_path(char **path, char *cmd);
 int		is_path(char *str, char *path);
 char	*get_path(char *env, char *cmd);
@@ -233,10 +238,12 @@ char	*util_path_cmd(char *cmd, char *pwd, char *tmp);
 
 /*		HEREDOC					*/
 int		execute_heredoc(t_node **tree, t_pipex *pp, char **env);
-int		tree_heredoc(t_node	**tree, t_pipex *pp, char **env);
+int		exec_here_first(t_node **tree, t_pipex *pp, char **env);
+int		tree_heredoc(t_node	**tree, t_pipex *pp, char **env, t_heredoc *wtv);
 int		wait_heredoc(t_node **tree, t_pipex *e);
 void	error_readline_her(char *str, char *eof, int exit_stat);
 void	new_line_exist(char *new_line, int fd, char **env);
+int		is_heredoc(t_heredoc *wtv);
 
 /*		EXECUTOR_UTILS			*/
 int		num_pipes(t_node *tree);

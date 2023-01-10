@@ -6,18 +6,11 @@
 /*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:58:37 by bshintak          #+#    #+#             */
-/*   Updated: 2023/01/09 15:01:54 by lleiria-         ###   ########.fr       */
+/*   Updated: 2023/01/10 12:00:05 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-t_exit	*exit_status(void)
-{
-	static t_exit	exit_status;
-
-	return (&exit_status);
-}
 
 void	main_exit(char *line, char **env)
 {
@@ -44,7 +37,7 @@ int	wrong_arg(int argc, char **argv)
 	return (0);
 }
 
-void	tree_parser(char *line, char ***env)
+void	tree_parser(char *line, char ***env, t_heredoc *wtv)
 {
 	t_node		*tree;
 	t_node		*inicial_tree;
@@ -60,9 +53,23 @@ void	tree_parser(char *line, char ***env)
 	free (line);
 	if (tree)
 	{
-		executor(&tree, env, num_pipes(tree));
+		executor(&tree, env, num_pipes(tree), wtv);
 		tree_free(inicial_tree);
 		tree = NULL;
+	}
+}
+
+void	while_func(char *line, char **env_copy, t_heredoc *wtv)
+{
+	while (1)
+	{
+		line = readline("➜  bshintak&&lleiria-MiniShell: ");
+		main_exit(line, env_copy);
+		if (line)
+			add_history(line);
+		wtv->line = ft_strdup(line);
+		tree_parser(line, &env_copy, wtv);
+		free (wtv->line);
 	}
 }
 
@@ -70,7 +77,10 @@ int	main(int argc, char **argv, char **env)
 {
 	char		*line;
 	char		**env_copy;
+	t_heredoc	*wtv;
 
+	line = NULL;
+	wtv = malloc(sizeof(t_heredoc));
 	if (wrong_arg(argc, argv))
 		return (0);
 	env_copy = get_env(env);
@@ -79,14 +89,8 @@ int	main(int argc, char **argv, char **env)
 	(*exit_status()).i = 0;
 	get_signal(SIGQUIT, SIG_IGN);
 	get_signal(SIGINT, ctrl_c);
-	while (1)
-	{
-		line = readline("➜  bshintak&&lleiria-MiniShell: ");
-		main_exit(line, env_copy);
-		if (line)
-			add_history(line);
-		tree_parser(line, &env_copy);
-	}
+	while_func(line, env_copy, wtv);
+	free (wtv);
 	free (env_copy);
 	return (0);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+         #
+#    By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/21 17:10:37 by bshintak          #+#    #+#              #
-#    Updated: 2023/01/05 17:18:21 by bshintak         ###   ########.fr        #
+#    Updated: 2023/01/10 12:00:42 by lleiria-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,7 @@ EXECUTOR	=	executor/executor.c				\
 
 REDIR		=	redirections/redirection.c		\
 				redirections/heredoc.c			\
+				redirections/heredoc2.c			\
 				redirections/heredoc_utils.c
 
 EXPAND		=	expand/expand_home.c			\

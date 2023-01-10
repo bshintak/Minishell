@@ -3,14 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   utils_exit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 16:19:07 by bshintak          #+#    #+#             */
-/*   Updated: 2022/12/19 11:47:01 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/10 11:59:35 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+t_exit	*exit_status(void)
+{
+	static t_exit	exit_status;
+
+	return (&exit_status);
+}
 
 int	set_exit(int status, int option)
 {
