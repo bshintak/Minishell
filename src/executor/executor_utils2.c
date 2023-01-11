@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:14:20 by bshintak          #+#    #+#             */
-/*   Updated: 2023/01/05 16:36:45 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/11 15:34:23 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int	is_path(char *str, char *path)
 {
 	struct stat	buf;
 
+	ft_memset(&buf, 0, sizeof(buf));
 	if (!path)
 		return (0);
 	lstat(path, &buf);

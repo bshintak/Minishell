@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 11:16:17 by bshintak          #+#    #+#             */
-/*   Updated: 2023/01/10 12:30:49 by lleiria-         ###   ########.fr       */
+/*   Updated: 2023/01/11 14:46:27 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	execute_heredoc(t_node **tree, t_pipex *pp, char **env)
 	num_redir(pp, node);
 	while (node->left)
 		node = node->left;
-	while (node->id != ID_COMMAND)
+	while (node->id != ID_COMMAND && node->id != ID_BUILTIN)
 	{
 		if (node->id == ID_INPUT_HERDOC || node->id == ID_INPUT_REDIR)
 		{
@@ -117,7 +117,7 @@ int	exec_here_first(t_node **tree, t_pipex *pp, char **env)
 				return (1);
 		}
 	}
-	while (node->up && node->id != ID_COMMAND)
+	while (node->up && node->id != ID_COMMAND && node->id != ID_BUILTIN)
 		node = node->up;
 	return (0);
 }

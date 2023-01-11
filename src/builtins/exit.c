@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 12:03:28 by bshintak          #+#    #+#             */
-/*   Updated: 2023/01/09 16:47:40 by lleiria-         ###   ########.fr       */
+/*   Updated: 2023/01/11 15:43:55 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,19 @@ void	builtin_exit(char **line, char **env)
 		ft_putstr_fd("exit\n", 1);
 		status = 0;
 	}
+	else if (line[1] && line[2])
+	{
+		(*exit_status()).i = 1;
+		ft_putstr_fd("exit: too many arguments\n", 1);
+		while (env[++i])
+			free (env[i]);
+		free (env);
+		return ;
+	}
 	else
 		status = type_exit(line[1]);
 	while (env[++i])
 		free (env[i]);
+	free (env);
 	exit (status);
 }

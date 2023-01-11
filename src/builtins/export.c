@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 11:25:35 by lleiria-          #+#    #+#             */
-/*   Updated: 2023/01/10 16:48:02 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/11 14:32:20 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	print_export_line(char *env_line, int fd)
 
 void	builtin_export(char **line, char ***env, int fd)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	if (!line[1])

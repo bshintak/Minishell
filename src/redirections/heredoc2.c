@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 12:42:27 by bshintak          #+#    #+#             */
-/*   Updated: 2023/01/10 12:42:30 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/11 14:44:58 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	tree_heredoc2(t_node **tree, t_pipex *pp, char **env, t_node *node)
 {
-	if (node->id == ID_COMMAND)
+	if (node->id == ID_COMMAND || node->id == ID_BUILTIN)
 	{
 		if (execute_heredoc(tree, pp, env))
 			return (1);
@@ -34,7 +34,7 @@ int	tree_heredoc(t_node	**tree, t_pipex *pp, char **env, t_heredoc *wtv)
 	t_node		*node;
 
 	node = *tree;
-	if (node->id == ID_COMMAND && is_heredoc(wtv))
+	if ((node->id == ID_COMMAND || node->id == ID_BUILTIN) && is_heredoc(wtv))
 	{
 		if (exec_here_first(tree, pp, env))
 			return (1);

@@ -6,7 +6,7 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 15:24:36 by lleiria-          #+#    #+#             */
-/*   Updated: 2023/01/10 15:41:55 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/11 16:36:36 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	process(t_node *node, t_pipex *pp, char ***env)
 	char	**env2;
 	char	*path;
 
+	get_signal(SIGINT, SIG_DFL);
+	get_signal(SIGQUIT, SIG_DFL);
 	cmd = (char **)node->data;
 	env2 = *env;
 	if (node->id == ID_COMMAND || node->id == ID_BUILTIN)
@@ -101,5 +103,6 @@ void	executor(t_node **tree, char ***env, int num, t_heredoc *wtv)
 		one_or_two_cmds(node, &pp, env);
 		mult_pipes(node, &pp, env);
 	}
+	get_signal(SIGINT, SIG_IGN);
 	wait_cmd(pp.pid, num);
 }

@@ -6,13 +6,13 @@
 /*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:58:37 by bshintak          #+#    #+#             */
-/*   Updated: 2023/01/10 15:42:50 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/11 16:38:51 by bshintak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	main_exit(char *line, char **env)
+void	main_exit(char *line, char **env, t_heredoc *wtv)
 {
 	int	i;
 
@@ -23,6 +23,8 @@ void	main_exit(char *line, char **env)
 		rl_clear_history();
 		while (env[++i])
 			free (env[i]);
+		free (env);
+		free (wtv);
 		exit((*exit_status()).i);
 	}
 }
@@ -49,7 +51,6 @@ void	tree_parser(char *line, char ***env, t_heredoc *wtv)
 		while (inicial_tree->up)
 			inicial_tree = inicial_tree->up;
 	}
-	// print2d(tree);
 	free (line);
 	if (tree)
 	{
@@ -63,9 +64,11 @@ void	while_func(char *line, char **env_copy, t_heredoc *wtv)
 {
 	while (1)
 	{
+		get_signal(SIGQUIT, SIG_IGN);
+		get_signal(SIGINT, ctrl_c);
 		line = readline("➜  bshintak&&lleiria-MiniShell: ");
-		main_exit(line, env_copy);
-		if (line)
+		main_exit(line, env_copy, wtv);
+		if (line && *line)
 			add_history(line);
 		wtv->line = ft_strdup(line);
 		tree_parser(line, &env_copy, wtv);
@@ -87,8 +90,6 @@ int	main(int argc, char **argv, char **env)
 	if (!env_copy)
 		return (0);
 	(*exit_status()).i = 0;
-	get_signal(SIGQUIT, SIG_IGN);
-	get_signal(SIGINT, ctrl_c);
 	while_func(line, env_copy, wtv);
 	free (wtv);
 	free (env_copy);
