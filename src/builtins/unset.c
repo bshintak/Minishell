@@ -6,7 +6,7 @@
 /*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 11:22:21 by lleiria-          #+#    #+#             */
-/*   Updated: 2023/01/12 15:28:45 by lleiria-         ###   ########.fr       */
+/*   Updated: 2023/01/12 16:20:33 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	var_len(char *var)
 	len = 0;
 	while (var[len] != '=' && var[len] != '\0')
 		len++;
-	len++;
 	return (len);
 }
 
@@ -37,7 +36,7 @@ void	delete_var(char *var, char ***env)
 	i = -1;
 	while ((*env)[++i])
 	{
-		if (ft_strncmp((*env)[i], var, var_len(var)) != 0)
+		if (ft_strncmp((*env)[i], var, var_len((*env)[i])) != 0)
 		{
 			copy_env[j] = (*env)[i];
 			j++;
@@ -57,7 +56,7 @@ int	exist_var(char *var, char **env)
 	i = 0;
 	while (env[i])
 	{
-		if (!ft_strncmp(env[i], var, var_len(var)))
+		if (!ft_strncmp(env[i], var, var_len(env[i])))
 			return (1);
 		i++;
 	}
