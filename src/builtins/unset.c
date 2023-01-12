@@ -6,11 +6,22 @@
 /*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 11:22:21 by lleiria-          #+#    #+#             */
-/*   Updated: 2023/01/09 17:28:09 by lleiria-         ###   ########.fr       */
+/*   Updated: 2023/01/12 15:28:45 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+int	var_len(char *var)
+{
+	int	len;
+
+	len = 0;
+	while (var[len] != '=' && var[len] != '\0')
+		len++;
+	len++;
+	return (len);
+}
 
 void	delete_var(char *var, char ***env)
 {
@@ -26,7 +37,7 @@ void	delete_var(char *var, char ***env)
 	i = -1;
 	while ((*env)[++i])
 	{
-		if (ft_strncmp((*env)[i], var, ft_strlen(var)) != 0)
+		if (ft_strncmp((*env)[i], var, var_len(var)) != 0)
 		{
 			copy_env[j] = (*env)[i];
 			j++;
@@ -42,13 +53,11 @@ void	delete_var(char *var, char ***env)
 int	exist_var(char *var, char **env)
 {
 	int	i;
-	int	var_len;
 
 	i = 0;
-	var_len = ft_strlen(var);
 	while (env[i])
 	{
-		if (!ft_strncmp(env[i], var, var_len) && var[var_len] != '=')
+		if (!ft_strncmp(env[i], var, var_len(var)))
 			return (1);
 		i++;
 	}

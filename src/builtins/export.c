@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 11:25:35 by lleiria-          #+#    #+#             */
-/*   Updated: 2023/01/11 14:32:20 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/12 15:03:19 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	insert_var(char ***env, char *var)
 	char	**copy_env;
 
 	i = 0;
+	if (exist_var(var, *env))
+		delete_var(var, env);
 	while ((*env)[i])
 		i++;
 	copy_env = malloc(sizeof(char *) * (i + 2));

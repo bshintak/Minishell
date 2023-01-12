@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bshintak <bshintak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:23:53 by bshintak          #+#    #+#             */
-/*   Updated: 2023/01/11 15:19:31 by bshintak         ###   ########.fr       */
+/*   Updated: 2023/01/12 12:53:50 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,8 @@ void	builtin_cd(char **line, char ***env);
 void	builtin_export(char **line, char ***env, int fd);
 void	builtin_unset(char **line, char ***env);
 void	builtin_exit(char **line, char **env);
+int		exist_var(char *var, char **env);
+void	delete_var(char *var, char ***env);
 
 /*		GET_ENV				*/
 char	**get_env(char **env);
